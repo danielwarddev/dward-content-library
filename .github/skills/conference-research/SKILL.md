@@ -18,7 +18,7 @@ This skill helps research conferences to understand what kinds of talks get acce
 
 ### Step 1: Gather Conference Information
 
-Ask the user:
+Ask the user if they did not provide already:
 
 > "Which conference are you targeting? (If you have a link to the conference or its past programs, that helps!)"
 

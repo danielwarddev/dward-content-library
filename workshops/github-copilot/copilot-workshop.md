@@ -1,0 +1,29 @@
+- What is AI - same section as my other presentation - what does the word mean, tokens, vectors, etc, etc
+- GitHub Copilot VS Code extension - setting up, signing in, making sure you can ask it something in the chat
+- Copilot CLI as well
+- Chat debug view
+- Copilot instructions (root + can have multiple)
+- Click on your previous message to edit
+- Accepting its changes
+- Chat history
+- Copilot UI - agent dropdowns, model dropdown, participants, prompts, tools
+- Context window, context rot, starting a new convo
+- Ctrl + I for inline. Also comments. Also snoozing
+- Prompting techniques - clarifying questions, few shot, be honest with me, 
+- Ask vs Edit vs Agent vs Plan
+- Copilot button in bottom right
+- MCP + how it works - only loads name and description and decides for itself when to use
+- Custom prompts
+- Custom agents
+- VS Code settings - auto allow certain things in workspace automatically or certain tools
+- Load a custom MCP server in .vscode - Github might be an easy one
+- Hooks
+- Agent skills - how + why to use
+- Advanced usage - RPI, Spec Kit
+- Coding Agent
+- Copilot Code Review on PRs
+- Share awesome-copilot repo
+- Rumsfeld model?
+- Hands-on part. What should we do? Should I start them out with a base project?
+- Remember to go over the free plan to see what they'll be able to work with https://docs.github.com/en/copilot/get-started/plans
+- No administration stuff - just dev stuff
