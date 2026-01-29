@@ -1,0 +1,1611 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Pokemon Card Offer Price Comparison</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                    Oxygen, Ubuntu, sans-serif;
+                margin: 0;
+                padding: 20px;
+                background: #1a1a2e;
+                color: #eee;
+            }
+            h1 {
+                color: #ffcb05;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            .summary {
+                text-align: center;
+                margin-bottom: 20px;
+                color: #aaa;
+            }
+            .filters {
+                display: flex;
+                gap: 15px;
+                margin-bottom: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .filters label {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                cursor: pointer;
+            }
+            .filters input[type="checkbox"] {
+                width: 18px;
+                height: 18px;
+            }
+            .table-container {
+                overflow-x: auto;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 14px;
+            }
+            th,
+            td {
+                padding: 10px 8px;
+                text-align: left;
+                border-bottom: 1px solid #333;
+            }
+            th {
+                background: #16213e;
+                color: #ffcb05;
+                cursor: pointer;
+                user-select: none;
+                position: sticky;
+                top: 0;
+                white-space: nowrap;
+            }
+            th:hover {
+                background: #1f3460;
+            }
+            th::after {
+                content: " ⇅";
+                opacity: 0.3;
+            }
+            th.sort-asc::after {
+                content: " ▲";
+                opacity: 1;
+            }
+            th.sort-desc::after {
+                content: " ▼";
+                opacity: 1;
+            }
+            tr:hover {
+                background: #16213e;
+            }
+            tr.great-deal {
+                background: rgba(40, 167, 69, 0.2);
+            }
+            tr.good-deal {
+                background: rgba(40, 167, 69, 0.1);
+            }
+            tr.bad-deal {
+                background: rgba(220, 53, 69, 0.2);
+            }
+            tr.hidden {
+                display: none;
+            }
+            .money {
+                font-family: "Courier New", monospace;
+                text-align: right;
+            }
+            .positive {
+                color: #28a745;
+            }
+            .negative {
+                color: #dc3545;
+            }
+            .neutral {
+                color: #6c757d;
+            }
+            .verdict {
+                font-weight: bold;
+            }
+            .legend {
+                display: flex;
+                gap: 20px;
+                justify-content: center;
+                margin-bottom: 15px;
+                flex-wrap: wrap;
+            }
+            .legend-item {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .legend-box {
+                width: 20px;
+                height: 20px;
+                border-radius: 3px;
+            }
+            .legend-great {
+                background: rgba(40, 167, 69, 0.4);
+            }
+            .legend-good {
+                background: rgba(40, 167, 69, 0.2);
+            }
+            .legend-bad {
+                background: rgba(220, 53, 69, 0.3);
+            }
+            .totals {
+                margin-top: 20px;
+                padding: 15px;
+                background: #16213e;
+                border-radius: 8px;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+            }
+            .total-item {
+                text-align: center;
+            }
+            .total-value {
+                font-size: 24px;
+                font-weight: bold;
+                color: #ffcb05;
+            }
+            .total-label {
+                color: #aaa;
+                font-size: 12px;
+            }
+            .checkbox-col {
+                width: 40px;
+                text-align: center;
+            }
+            .checkbox-col input {
+                width: 18px;
+                height: 18px;
+                cursor: pointer;
+            }
+            th.checkbox-col::after {
+                content: "";
+            }
+            tr.unchecked {
+                opacity: 0.4;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>🎴 Pokemon Card Offer Price Comparison</h1>
+        <p class="summary">Click column headers to sort</p>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-box legend-great"></div>
+                Great Deal (10%+ above market)
+            </div>
+            <div class="legend-item">
+                <div class="legend-box legend-good"></div>
+                Good Deal (at/above market)
+            </div>
+            <div class="legend-item">
+                <div class="legend-box legend-bad"></div>
+                Below Market (consider rejecting)
+            </div>
+        </div>
+
+        <div class="filters">
+            <label
+                ><input type="checkbox" id="showAll" checked /> Show All</label
+            >
+            <label
+                ><input type="checkbox" id="showGreat" /> Great Deals
+                Only</label
+            >
+            <label
+                ><input type="checkbox" id="showBad" /> Below Market Only</label
+            >
+        </div>
+
+        <div class="totals">
+            <div class="total-item">
+                <div class="total-value" id="totalOffer">$0</div>
+                <div class="total-label">Total Offer Value</div>
+            </div>
+            <div class="total-item">
+                <div class="total-value" id="totalBest">$0</div>
+                <div class="total-label">Total Best Alternative</div>
+            </div>
+            <div class="total-item">
+                <div class="total-value" id="totalDiff">$0</div>
+                <div class="total-label">Difference</div>
+            </div>
+            <div class="total-item">
+                <div class="total-value" id="visibleCount">0</div>
+                <div class="total-label">Items Selected / Shown</div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table id="priceTable">
+                <thead>
+                    <tr>
+                        <th class="checkbox-col">
+                            <input type="checkbox" id="selectAll" checked />
+                        </th>
+                        <th data-sort="number">#</th>
+                        <th data-sort="string">Item Name</th>
+                        <th data-sort="number">Offer</th>
+                        <th data-sort="number">PriceCharting</th>
+                        <th data-sort="number">CSI Cash</th>
+                        <th data-sort="number">CSI Credit</th>
+                        <th data-sort="number">GN Cash</th>
+                        <th data-sort="number">GN Credit</th>
+                        <th data-sort="number">Best Alt</th>
+                        <th data-sort="number">Diff $</th>
+                        <th data-sort="number">Diff %</th>
+                        <th data-sort="string">Verdict</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <script>
+            const cardData = [
+                {
+                    num: 1,
+                    name: "Silver Tempest ETB [Pokemon Center]",
+                    offer: 250.0,
+                    pc: 299,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 299,
+                    bestSource: "eBay",
+                },
+                {
+                    num: 2,
+                    name: "Poliwrath #H24 (Skyridge)",
+                    offer: 238.0,
+                    pc: 238.52,
+                    csiCash: 100,
+                    csiCredit: 125,
+                    gnCash: 175.16,
+                    gnCredit: 218.95,
+                    bestAlt: 238.52,
+                    bestSource: "PC",
+                },
+                {
+                    num: 3,
+                    name: "Kingdra #148 (Aquapolis)",
+                    offer: 218.0,
+                    pc: 241.07,
+                    csiCash: 185,
+                    csiCredit: 231.25,
+                    gnCash: 194.43,
+                    gnCredit: 243.04,
+                    bestAlt: 243.04,
+                    bestSource: "GN Credit",
+                },
+                {
+                    num: 4,
+                    name: "Rayquaza EX #97 (Dragon)",
+                    offer: 212.0,
+                    pc: 234.77,
+                    csiCash: 125,
+                    csiCredit: 156.25,
+                    gnCash: 155.77,
+                    gnCredit: 194.71,
+                    bestAlt: 234.77,
+                    bestSource: "PC",
+                },
+                {
+                    num: 5,
+                    name: "Dark Espeon #4 (Neo Destiny)",
+                    offer: 200.0,
+                    pc: 192.2,
+                    csiCash: 100,
+                    csiCredit: 125,
+                    gnCash: 215.06,
+                    gnCredit: 268.82,
+                    bestAlt: 268.82,
+                    bestSource: "GN Credit",
+                },
+                {
+                    num: 6,
+                    name: "Gengar & Mimikyu GX #53 (Team Up)",
+                    offer: 155.0,
+                    pc: 170.7,
+                    csiCash: 140,
+                    csiCredit: 175,
+                    gnCash: 128.03,
+                    gnCredit: 160.04,
+                    bestAlt: 175,
+                    bestSource: "CSI Credit",
+                },
+                {
+                    num: 7,
+                    name: "Espeon [Reverse Holo] #11 (Aquapolis)",
+                    offer: 130.0,
+                    pc: 130,
+                    csiCash: 40,
+                    csiCredit: 50,
+                    gnCash: 92.95,
+                    gnCredit: 116.19,
+                    bestAlt: 130,
+                    bestSource: "PC",
+                },
+                {
+                    num: 8,
+                    name: "Feraligatr #12 (Expedition)",
+                    offer: 125.0,
+                    pc: 125.14,
+                    csiCash: 40,
+                    csiCredit: 50,
+                    gnCash: 250.25,
+                    gnCredit: 312.81,
+                    bestAlt: 312.81,
+                    bestSource: "GN Credit",
+                },
+                {
+                    num: 9,
+                    name: "Sudowoodo #H24 (Aquapolis)",
+                    offer: 71.0,
+                    pc: 68.18,
+                    csiCash: 30,
+                    csiCredit: 37.5,
+                    gnCash: 89.38,
+                    gnCredit: 111.72,
+                    bestAlt: 111.72,
+                    bestSource: "GN Credit",
+                },
+                {
+                    num: 10,
+                    name: "Moltres & Zapdos & Articuno GX #SM210",
+                    offer: 85.0,
+                    pc: 96,
+                    csiCash: 45,
+                    csiCredit: 56.25,
+                    gnCash: 50.41,
+                    gnCredit: 63.01,
+                    bestAlt: 96,
+                    bestSource: "PC",
+                },
+                {
+                    num: 11,
+                    name: "Mewtwo EX #101 (Ruby & Sapphire)",
+                    offer: 80.0,
+                    pc: 80.19,
+                    csiCash: 40,
+                    csiCredit: 50,
+                    gnCash: 103.89,
+                    gnCredit: 129.86,
+                    bestAlt: 129.86,
+                    bestSource: "GN Credit",
+                },
+                {
+                    num: 12,
+                    name: "Blissey [1st Edition] #2 (Neo Revelation)",
+                    offer: 86.0,
+                    pc: 86.28,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 86.28,
+                    bestSource: "PC",
+                },
+                {
+                    num: 13,
+                    name: "Jolteon [Reverse Holo] #13 (Skyridge)",
+                    offer: 85.0,
+                    pc: 85,
+                    csiCash: 24,
+                    csiCredit: 30,
+                    gnCash: 44.68,
+                    gnCredit: 55.85,
+                    bestAlt: 85,
+                    bestSource: "PC",
+                },
+                {
+                    num: 14,
+                    name: "Giovanni's Nidoking #7 (Gym Challenge)",
+                    offer: 90.0,
+                    pc: 52.5,
+                    csiCash: 28,
+                    csiCredit: 35,
+                    gnCash: 41.18,
+                    gnCredit: 51.48,
+                    bestAlt: 52.5,
+                    bestSource: "PC",
+                },
+                {
+                    num: 15,
+                    name: "Muk & Alolan Muk GX Alt #197 (Unbroken)",
+                    offer: 81.0,
+                    pc: 84.91,
+                    csiCash: 55,
+                    csiCredit: 68.75,
+                    gnCash: 72.25,
+                    gnCredit: 90.31,
+                    bestAlt: 90.31,
+                    bestSource: "GN Credit",
+                },
+                {
+                    num: 16,
+                    name: "Mewtwo & Mew GX #71 (Unified Minds)",
+                    offer: 65.0,
+                    pc: 67.5,
+                    csiCash: 48,
+                    csiCredit: 60,
+                    gnCash: 65.12,
+                    gnCredit: 81.4,
+                    bestAlt: 81.4,
+                    bestSource: "GN Credit",
+                },
+                {
+                    num: 17,
+                    name: "Rayquaza EX #104 (Roaring Skies)",
+                    offer: 66.0,
+                    pc: 65.48,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 69.25,
+                    gnCredit: 86.56,
+                    bestAlt: 86.56,
+                    bestSource: "GN Credit",
+                },
+                {
+                    num: 18,
+                    name: "Wailord EX #100 (EX Sandstorm)",
+                    offer: 80.0,
+                    pc: 80.6,
+                    csiCash: 45,
+                    csiCredit: 56.25,
+                    gnCash: 51.2,
+                    gnCredit: 64,
+                    bestAlt: 80.6,
+                    bestSource: "PC",
+                },
+                {
+                    num: 19,
+                    name: "Giovanni's Machamp #6 (Gym Challenge)",
+                    offer: 60.0,
+                    pc: 38.17,
+                    csiCash: 25,
+                    csiCredit: 31.25,
+                    gnCash: 35.81,
+                    gnCredit: 44.76,
+                    bestAlt: 38.17,
+                    bestSource: "PC",
+                },
+                {
+                    num: 20,
+                    name: "Blissey #H6 (Aquapolis)",
+                    offer: 57.0,
+                    pc: 57.07,
+                    csiCash: 30,
+                    csiCredit: 37.5,
+                    gnCash: 33,
+                    gnCredit: 41.25,
+                    bestAlt: 57.07,
+                    bestSource: "PC",
+                },
+                {
+                    num: 21,
+                    name: "Groudon EX #150 (Primal Clash)",
+                    offer: 63.0,
+                    pc: 52.22,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 54.46,
+                    gnCredit: 68.08,
+                    bestAlt: 68.08,
+                    bestSource: "GN Credit",
+                },
+                {
+                    num: 22,
+                    name: "Celebi & Venusaur GX #159 (Team Up)",
+                    offer: 58.0,
+                    pc: 55.22,
+                    csiCash: 38,
+                    csiCredit: 47.5,
+                    gnCash: 42.53,
+                    gnCredit: 53.16,
+                    bestAlt: 55.22,
+                    bestSource: "PC",
+                },
+                {
+                    num: 23,
+                    name: "Lucario & Melmetal GX #224 (Unbroken Bonds)",
+                    offer: 56.0,
+                    pc: 56.08,
+                    csiCash: 32,
+                    csiCredit: 40,
+                    gnCash: 40.13,
+                    gnCredit: 50.16,
+                    bestAlt: 56.08,
+                    bestSource: "PC",
+                },
+                {
+                    num: 24,
+                    name: "Blastoise & Piplup GX #38 (Cosmic Eclipse)",
+                    offer: 47.0,
+                    pc: 43.27,
+                    csiCash: 30,
+                    csiCredit: 37.5,
+                    gnCash: 26.94,
+                    gnCredit: 33.68,
+                    bestAlt: 43.27,
+                    bestSource: "PC",
+                },
+                {
+                    num: 25,
+                    name: "M Latios EX #102 (Roaring Skies)",
+                    offer: 50.0,
+                    pc: 50,
+                    csiCash: 28,
+                    csiCredit: 35,
+                    gnCash: 55.28,
+                    gnCredit: 69.1,
+                    bestAlt: 69.1,
+                    bestSource: "GN Credit",
+                },
+                {
+                    num: 26,
+                    name: "Scizor GX #175 (Celestial Storm)",
+                    offer: 47.0,
+                    pc: 47.59,
+                    csiCash: 14,
+                    csiCredit: 17.5,
+                    gnCash: 29,
+                    gnCredit: 36.25,
+                    bestAlt: 47.59,
+                    bestSource: "PC",
+                },
+                {
+                    num: 27,
+                    name: "Mewtwo EX #157 (BREAKthrough)",
+                    offer: 41.0,
+                    pc: 41,
+                    csiCash: 25,
+                    csiCredit: 31.25,
+                    gnCash: 29.59,
+                    gnCredit: 36.99,
+                    bestAlt: 41,
+                    bestSource: "PC",
+                },
+                {
+                    num: 28,
+                    name: "Mega Lopunny & Jigglypuff GX #225 (Cosmic)",
+                    offer: 39.0,
+                    pc: 39.31,
+                    csiCash: 25,
+                    csiCredit: 31.25,
+                    gnCash: 25.69,
+                    gnCredit: 32.11,
+                    bestAlt: 39.31,
+                    bestSource: "PC",
+                },
+                {
+                    num: 29,
+                    name: "Greninja & Zoroark GX #107 (Unbroken Bonds)",
+                    offer: 33.0,
+                    pc: 34,
+                    csiCash: 19,
+                    csiCredit: 23.75,
+                    gnCash: 25.55,
+                    gnCredit: 31.94,
+                    bestAlt: 34,
+                    bestSource: "PC",
+                },
+                {
+                    num: 30,
+                    name: "Ampharos GX #185 (Team Up)",
+                    offer: 35.0,
+                    pc: 34.56,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 27.75,
+                    gnCredit: 34.69,
+                    bestAlt: 34.69,
+                    bestSource: "GN Credit",
+                },
+                {
+                    num: 31,
+                    name: "Mega Sableye & Tyranitar GX (Unified Minds)",
+                    offer: 33.0,
+                    pc: 66.55,
+                    csiCash: 19,
+                    csiCredit: 23.75,
+                    gnCash: 23.25,
+                    gnCredit: 29.06,
+                    bestAlt: 66.55,
+                    bestSource: "PC",
+                },
+                {
+                    num: 32,
+                    name: "Sceptile GX #216 (Lost Thunder)",
+                    offer: 32.0,
+                    pc: 32.76,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 26.76,
+                    gnCredit: 33.45,
+                    bestAlt: 33.45,
+                    bestSource: "GN Credit",
+                },
+                {
+                    num: 33,
+                    name: "Garchomp & Giratina GX #146 (Unified Minds)",
+                    offer: 32.0,
+                    pc: 30.25,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 26.21,
+                    gnCredit: 32.76,
+                    bestAlt: 32.76,
+                    bestSource: "GN Credit",
+                },
+                {
+                    num: 34,
+                    name: "Moltres & Zapdos & Articuno GX #69 (Hidden)",
+                    offer: 30.0,
+                    pc: 31.29,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 21.27,
+                    gnCredit: 26.59,
+                    bestAlt: 31.29,
+                    bestSource: "PC",
+                },
+                {
+                    num: 35,
+                    name: "Genesect GX #224 (Lost Thunder)",
+                    offer: 24.0,
+                    pc: 24.99,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 15.1,
+                    gnCredit: 18.88,
+                    bestAlt: 24.99,
+                    bestSource: "PC",
+                },
+                {
+                    num: 36,
+                    name: "Sharpedo EX #152 (Primal Clash)",
+                    offer: 21.0,
+                    pc: 21.74,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 22.52,
+                    gnCredit: 28.15,
+                    bestAlt: 28.15,
+                    bestSource: "GN Credit",
+                },
+                {
+                    num: 37,
+                    name: "Tentacruel [Reverse Holo] #38 (Aquapolis)",
+                    offer: 20.0,
+                    pc: 20.99,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 20.63,
+                    gnCredit: 25.79,
+                    bestAlt: 25.79,
+                    bestSource: "GN Credit",
+                },
+                {
+                    num: 38,
+                    name: "Arceus & Dialga & Palkia GX #156 (Cosmic)",
+                    offer: 21.0,
+                    pc: 21.99,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 14.89,
+                    gnCredit: 18.61,
+                    bestAlt: 21.99,
+                    bestSource: "PC",
+                },
+                {
+                    num: 39,
+                    name: "Lucario & Melmetal GX #120 (Unbroken Bonds)",
+                    offer: 26.0,
+                    pc: 22.73,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 19.23,
+                    gnCredit: 24.04,
+                    bestAlt: 22.73,
+                    bestSource: "PC",
+                },
+                {
+                    num: 40,
+                    name: "Muk & Alolan Muk GX #61 (Unbroken Bonds)",
+                    offer: 15.0,
+                    pc: 14.99,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 10.67,
+                    gnCredit: 13.34,
+                    bestAlt: 14.99,
+                    bestSource: "PC",
+                },
+                {
+                    num: 41,
+                    name: "Vileplume GX #4 (Cosmic Eclipse)",
+                    offer: 15.0,
+                    pc: 14.8,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 8.99,
+                    gnCredit: 11.24,
+                    bestAlt: 14.8,
+                    bestSource: "PC",
+                },
+                {
+                    num: 42,
+                    name: "Venomoth GX #216 (Unbroken Bonds)",
+                    offer: 12.0,
+                    pc: 11.86,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 7.58,
+                    gnCredit: 9.47,
+                    bestAlt: 11.86,
+                    bestSource: "PC",
+                },
+                {
+                    num: 43,
+                    name: "Dragonite GX #152 (Unified Minds)",
+                    offer: 10.0,
+                    pc: 10.72,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 7.28,
+                    gnCredit: 9.1,
+                    bestAlt: 10.72,
+                    bestSource: "PC",
+                },
+                {
+                    num: 44,
+                    name: "Silvally GX #119 (Crimson Invasion)",
+                    offer: 11.0,
+                    pc: 10.95,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 7.39,
+                    gnCredit: 9.24,
+                    bestAlt: 10.95,
+                    bestSource: "PC",
+                },
+                {
+                    num: 45,
+                    name: "Gyarados GX #18 (Crimson Invasion)",
+                    offer: 12.0,
+                    pc: 11.73,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 7.92,
+                    gnCredit: 9.9,
+                    bestAlt: 11.73,
+                    bestSource: "PC",
+                },
+                {
+                    num: 46,
+                    name: "Thundurus EX #38 (Plasma Freeze)",
+                    offer: 10.0,
+                    pc: 9.74,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 6.19,
+                    gnCredit: 7.74,
+                    bestAlt: 9.74,
+                    bestSource: "PC",
+                },
+                {
+                    num: 47,
+                    name: "Blacephalon GX #52 (Lost Thunder)",
+                    offer: 8.0,
+                    pc: 8.63,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 6.18,
+                    gnCredit: 7.72,
+                    bestAlt: 8.63,
+                    bestSource: "PC",
+                },
+                {
+                    num: 48,
+                    name: "Alolan Marowak GX #SM187 (Promo)",
+                    offer: 10.0,
+                    pc: 11.19,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 9.69,
+                    gnCredit: 12.11,
+                    bestAlt: 12.11,
+                    bestSource: "GN Credit",
+                },
+                {
+                    num: 49,
+                    name: "Rapid Strike Urshifu VMAX #TG21 (Brilliant)",
+                    offer: 9.0,
+                    pc: 9.26,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 5.91,
+                    gnCredit: 7.39,
+                    bestAlt: 9.26,
+                    bestSource: "PC",
+                },
+                {
+                    num: 50,
+                    name: "Jirachi GX #79 (Unified Minds)",
+                    offer: 9.0,
+                    pc: 8.7,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 5.42,
+                    gnCredit: 6.78,
+                    bestAlt: 8.7,
+                    bestSource: "PC",
+                },
+                {
+                    num: 51,
+                    name: "Blaziken GX #28 (Celestial Storm)",
+                    offer: 8.0,
+                    pc: 8.23,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 5.61,
+                    gnCredit: 7.01,
+                    bestAlt: 8.23,
+                    bestSource: "PC",
+                },
+                {
+                    num: 52,
+                    name: "Volcanion EX #107 (Steam Siege)",
+                    offer: 8.0,
+                    pc: 8.14,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 5.57,
+                    gnCredit: 6.96,
+                    bestAlt: 8.14,
+                    bestSource: "PC",
+                },
+                {
+                    num: 53,
+                    name: "Pikachu VMAX #44 (Vivid Voltage)",
+                    offer: 8.0,
+                    pc: 8.25,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 4.83,
+                    gnCredit: 6.04,
+                    bestAlt: 8.25,
+                    bestSource: "PC",
+                },
+                {
+                    num: 54,
+                    name: "Articuno GX #31 (Hidden Fates)",
+                    offer: 8.0,
+                    pc: 7.99,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 5.01,
+                    gnCredit: 6.26,
+                    bestAlt: 7.99,
+                    bestSource: "PC",
+                },
+                {
+                    num: 55,
+                    name: "Naganadel & Guzzlord GX #158 (Cosmic)",
+                    offer: 8.0,
+                    pc: 7.51,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 5.89,
+                    gnCredit: 7.36,
+                    bestAlt: 7.51,
+                    bestSource: "PC",
+                },
+                {
+                    num: 56,
+                    name: "Tyranitar GX #121 (Lost Thunder)",
+                    offer: 8.0,
+                    pc: 8.1,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 4.88,
+                    gnCredit: 6.1,
+                    bestAlt: 8.1,
+                    bestSource: "PC",
+                },
+                {
+                    num: 57,
+                    name: "Dedenne GX #57 (Unbroken Bonds)",
+                    offer: 7.0,
+                    pc: 7.15,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 4.69,
+                    gnCredit: 5.86,
+                    bestAlt: 7.15,
+                    bestSource: "PC",
+                },
+                {
+                    num: 58,
+                    name: "Glaceon GX #39 (Ultra Prism)",
+                    offer: 7.0,
+                    pc: 6.88,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 3.99,
+                    gnCredit: 4.99,
+                    bestAlt: 6.88,
+                    bestSource: "PC",
+                },
+                {
+                    num: 59,
+                    name: "Nihilego GX #49 (Crimson Invasion)",
+                    offer: 6.0,
+                    pc: 6.86,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 4.14,
+                    gnCredit: 5.17,
+                    bestAlt: 6.86,
+                    bestSource: "PC",
+                },
+                {
+                    num: 60,
+                    name: "Suicune GX #60 (Lost Thunder)",
+                    offer: 5.0,
+                    pc: 5.6,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 4.14,
+                    gnCredit: 5.17,
+                    bestAlt: 5.6,
+                    bestSource: "PC",
+                },
+                {
+                    num: 61,
+                    name: "Whimsicott GX #140 (Unbroken Bonds) (x2)",
+                    offer: 6.0,
+                    pc: 2.81,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 1.56,
+                    gnCredit: 1.95,
+                    bestAlt: 2.81,
+                    bestSource: "PC",
+                },
+                {
+                    num: 62,
+                    name: "Scizor GX #90 (Celestial Storm)",
+                    offer: 5.0,
+                    pc: 5.18,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 3.21,
+                    gnCredit: 4.01,
+                    bestAlt: 5.18,
+                    bestSource: "PC",
+                },
+                {
+                    num: 63,
+                    name: "Gardevoir GX #93 (Burning Shadows)",
+                    offer: 5.0,
+                    pc: 4.99,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 4.99,
+                    bestSource: "PC",
+                },
+                {
+                    num: 64,
+                    name: "Venomoth GX #193 (Unbroken Bonds)",
+                    offer: 5.0,
+                    pc: 5.0,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 3.23,
+                    gnCredit: 4.04,
+                    bestAlt: 5.0,
+                    bestSource: "PC",
+                },
+                {
+                    num: 65,
+                    name: "Marshadow GX #80 (Burning Shadows)",
+                    offer: 3.0,
+                    pc: 4.54,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 2.16,
+                    gnCredit: 2.7,
+                    bestAlt: 4.54,
+                    bestSource: "PC",
+                },
+                {
+                    num: 66,
+                    name: "Guzzlord GX #63 (Crimson Invasion)",
+                    offer: 6.0,
+                    pc: 5.06,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 3.14,
+                    gnCredit: 3.93,
+                    bestAlt: 5.06,
+                    bestSource: "PC",
+                },
+                {
+                    num: 67,
+                    name: "Alolan Muk GX #138 (Burning Shadows)",
+                    offer: 5.0,
+                    pc: 4.84,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 4.84,
+                    bestSource: "PC",
+                },
+                {
+                    num: 68,
+                    name: "Lapras VMAX #50 (Sword & Shield)",
+                    offer: 4.0,
+                    pc: 4.68,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 2.35,
+                    gnCredit: 2.94,
+                    bestAlt: 4.68,
+                    bestSource: "PC",
+                },
+                {
+                    num: 69,
+                    name: "Darkrai GX #88 (Burning Shadows)",
+                    offer: 5.0,
+                    pc: 4.82,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 2.33,
+                    gnCredit: 2.91,
+                    bestAlt: 4.82,
+                    bestSource: "PC",
+                },
+                {
+                    num: 70,
+                    name: "Alolan Golem GX #102 (Crimson Invasion)",
+                    offer: 4.0,
+                    pc: 4.25,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 2.5,
+                    gnCredit: 3.13,
+                    bestAlt: 4.25,
+                    bestSource: "PC",
+                },
+                {
+                    num: 71,
+                    name: "Sigilyph GX #202 (Lost Thunder)",
+                    offer: 4.0,
+                    pc: 4.52,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: 2.13,
+                    gnCredit: 2.66,
+                    bestAlt: 4.52,
+                    bestSource: "PC",
+                },
+                {
+                    num: 72,
+                    name: "Toxtricity VMAX #71 (Rebel Clash)",
+                    offer: 3.0,
+                    pc: 3.61,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 3.61,
+                    bestSource: "PC",
+                },
+                {
+                    num: 73,
+                    name: "Venomoth GX #12 (Unbroken Bonds)",
+                    offer: 3.0,
+                    pc: 2.99,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 2.99,
+                    bestSource: "PC",
+                },
+                {
+                    num: 74,
+                    name: "Mr. Mime GX #56 (Celestial Storm)",
+                    offer: 3.0,
+                    pc: 3.5,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 3.5,
+                    bestSource: "PC",
+                },
+                {
+                    num: 75,
+                    name: "Alolan Muk GX #84 (Burning Shadows)",
+                    offer: 3.0,
+                    pc: 3.04,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 3.04,
+                    bestSource: "PC",
+                },
+                {
+                    num: 76,
+                    name: "Celesteela GX #163 (Unbroken Bonds)",
+                    offer: 2.0,
+                    pc: 2.69,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 2.69,
+                    bestSource: "PC",
+                },
+                {
+                    num: 77,
+                    name: "Mr. Mime GX #67 (Team Up)",
+                    offer: 2.0,
+                    pc: 3.75,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 3.75,
+                    bestSource: "PC",
+                },
+                {
+                    num: 78,
+                    name: "Cobalion GX #106 (Team Up)",
+                    offer: 2.0,
+                    pc: 2.8,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 2.8,
+                    bestSource: "PC",
+                },
+                {
+                    num: 79,
+                    name: "Boltund V #249 (Fusion Strike)",
+                    offer: 2.0,
+                    pc: 1.99,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 1.99,
+                    bestSource: "PC",
+                },
+                {
+                    num: 80,
+                    name: "Galarian Cursola V #71 (Champion's Path)",
+                    offer: 2.0,
+                    pc: 2.11,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 2.11,
+                    bestSource: "PC",
+                },
+                {
+                    num: 81,
+                    name: "Banette GX #66 (Celestial Storm)",
+                    offer: 2.0,
+                    pc: 2.14,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 2.14,
+                    bestSource: "PC",
+                },
+                {
+                    num: 82,
+                    name: "Virizion GX #34 (Lost Thunder)",
+                    offer: 2.0,
+                    pc: 2.33,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 2.33,
+                    bestSource: "PC",
+                },
+                {
+                    num: 83,
+                    name: "Salazzle GX #25 (Burning Shadows)",
+                    offer: 2.0,
+                    pc: 1.99,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 1.99,
+                    bestSource: "PC",
+                },
+                {
+                    num: 84,
+                    name: "Inteleon VMAX #50 (Rebel Clash)",
+                    offer: 2.0,
+                    pc: 2.2,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 2.2,
+                    bestSource: "PC",
+                },
+                {
+                    num: 85,
+                    name: "Tapu Fini GX #39 (Burning Shadows)",
+                    offer: 2.0,
+                    pc: 1.99,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 1.99,
+                    bestSource: "PC",
+                },
+                {
+                    num: 86,
+                    name: "Noivern GX #99 (Burning Shadows)",
+                    offer: 2.0,
+                    pc: 2.09,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 2.09,
+                    bestSource: "PC",
+                },
+                {
+                    num: 87,
+                    name: "Sandaconda V #184 (Rebel Clash)",
+                    offer: 2.0,
+                    pc: 1.85,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 1.85,
+                    bestSource: "PC",
+                },
+                {
+                    num: 88,
+                    name: "Wishiwashi GX #63 (Cosmic Eclipse)",
+                    offer: 2.0,
+                    pc: 1.87,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 1.87,
+                    bestSource: "PC",
+                },
+                {
+                    num: 89,
+                    name: "Pinsir GX #6 (Hidden Fates)",
+                    offer: 2.0,
+                    pc: 1.31,
+                    csiCash: null,
+                    csiCredit: null,
+                    gnCash: null,
+                    gnCredit: null,
+                    bestAlt: 1.31,
+                    bestSource: "PC",
+                },
+            ];
+
+            // Calculate derived values
+            cardData.forEach((card) => {
+                card.diffDollar = card.offer - card.bestAlt;
+                card.diffPercent =
+                    ((card.offer - card.bestAlt) / card.bestAlt) * 100;
+
+                if (card.diffPercent >= 10) {
+                    card.verdict = "GREAT";
+                    card.dealClass = "great-deal";
+                } else if (card.diffPercent >= -5) {
+                    card.verdict = "GOOD";
+                    card.dealClass = "good-deal";
+                } else {
+                    card.verdict = "BELOW";
+                    card.dealClass = "bad-deal";
+                }
+            });
+
+            const tbody = document.querySelector("#priceTable tbody");
+            const thead = document.querySelector("#priceTable thead");
+            let currentSort = { column: null, direction: "asc" };
+
+            // Track checked items - all checked by default
+            const checkedItems = new Set(cardData.map((c) => c.num));
+
+            function formatMoney(val) {
+                if (val === null || val === undefined) return "N/A";
+                return "$" + val.toFixed(2);
+            }
+
+            function formatDiff(val, isPercent = false) {
+                if (val === null || val === undefined) return "N/A";
+                const prefix = val >= 0 ? "+" : "";
+                const suffix = isPercent ? "%" : "";
+                return prefix + val.toFixed(isPercent ? 1 : 2) + suffix;
+            }
+
+            function renderTable(data) {
+                tbody.innerHTML = "";
+                data.forEach((card) => {
+                    const tr = document.createElement("tr");
+                    tr.className = card.dealClass;
+                    tr.dataset.verdict = card.verdict;
+                    tr.dataset.num = card.num;
+
+                    const diffClass =
+                        card.diffDollar >= 0 ? "positive" : "negative";
+
+                    const isChecked = checkedItems.has(card.num);
+                    if (!isChecked) {
+                        tr.classList.add("unchecked");
+                    }
+
+                    tr.innerHTML = `
+                    <td class="checkbox-col"><input type="checkbox" class="row-checkbox" data-num="${card.num}" ${isChecked ? "checked" : ""} /></td>
+                    <td>${card.num}</td>
+                    <td>${card.name}</td>
+                    <td class="money">${formatMoney(card.offer)}</td>
+                    <td class="money">${formatMoney(card.pc)}</td>
+                    <td class="money">${formatMoney(card.csiCash)}</td>
+                    <td class="money">${formatMoney(card.csiCredit)}</td>
+                    <td class="money">${formatMoney(card.gnCash)}</td>
+                    <td class="money">${formatMoney(card.gnCredit)}</td>
+                    <td class="money">${formatMoney(card.bestAlt)}<br><small>(${card.bestSource})</small></td>
+                    <td class="money ${diffClass}">${formatDiff(card.diffDollar)}</td>
+                    <td class="money ${diffClass}">${formatDiff(card.diffPercent, true)}</td>
+                    <td class="verdict">${card.verdict}</td>
+                `;
+                    tbody.appendChild(tr);
+                });
+                attachCheckboxListeners();
+                updateTotals();
+            }
+
+            function updateTotals() {
+                const visibleRows = [
+                    ...tbody.querySelectorAll("tr:not(.hidden)"),
+                ];
+                const visibleNums = visibleRows.map((tr) =>
+                    parseInt(tr.dataset.num),
+                );
+                const visibleCards = cardData.filter((c) =>
+                    visibleNums.includes(c.num),
+                );
+
+                // Only count checked items
+                const checkedCards = visibleCards.filter((c) =>
+                    checkedItems.has(c.num),
+                );
+
+                const totalOffer = checkedCards.reduce(
+                    (sum, c) => sum + c.offer,
+                    0,
+                );
+                const totalBest = checkedCards.reduce(
+                    (sum, c) => sum + c.bestAlt,
+                    0,
+                );
+                const diff = totalOffer - totalBest;
+                const diffPercent =
+                    totalBest > 0 ? (diff / totalBest) * 100 : 0;
+
+                document.getElementById("totalOffer").textContent =
+                    formatMoney(totalOffer);
+                document.getElementById("totalBest").textContent =
+                    formatMoney(totalBest);
+                document.getElementById("totalDiff").textContent =
+                    formatDiff(diff) +
+                    " (" +
+                    formatDiff(diffPercent, true) +
+                    ")";
+                document.getElementById("totalDiff").className =
+                    "total-value " + (diff >= 0 ? "positive" : "negative");
+                document.getElementById("visibleCount").textContent =
+                    checkedCards.length + " / " + visibleCards.length;
+            }
+
+            function sortData(column, direction) {
+                const sortKey = {
+                    0: "num",
+                    1: "num",
+                    2: "name",
+                    3: "offer",
+                    4: "pc",
+                    5: "csiCash",
+                    6: "csiCredit",
+                    7: "gnCash",
+                    8: "gnCredit",
+                    9: "bestAlt",
+                    10: "diffDollar",
+                    11: "diffPercent",
+                    12: "verdict",
+                }[column];
+
+                const sorted = [...cardData].sort((a, b) => {
+                    let valA = a[sortKey];
+                    let valB = b[sortKey];
+
+                    if (valA === null) valA = -Infinity;
+                    if (valB === null) valB = -Infinity;
+
+                    if (typeof valA === "string") {
+                        return direction === "asc"
+                            ? valA.localeCompare(valB)
+                            : valB.localeCompare(valA);
+                    }
+                    return direction === "asc" ? valA - valB : valB - valA;
+                });
+
+                renderTable(sorted);
+            }
+
+            // Sort click handlers
+            thead.querySelectorAll("th").forEach((th, index) => {
+                // Skip the checkbox column
+                if (index === 0) return;
+
+                th.addEventListener("click", () => {
+                    const newDirection =
+                        currentSort.column === index &&
+                        currentSort.direction === "asc"
+                            ? "desc"
+                            : "asc";
+                    currentSort = { column: index, direction: newDirection };
+
+                    thead
+                        .querySelectorAll("th")
+                        .forEach((h) =>
+                            h.classList.remove("sort-asc", "sort-desc"),
+                        );
+                    th.classList.add(
+                        newDirection === "asc" ? "sort-asc" : "sort-desc",
+                    );
+
+                    sortData(index, newDirection);
+                });
+            });
+
+            // Checkbox handlers
+            function attachCheckboxListeners() {
+                tbody.querySelectorAll(".row-checkbox").forEach((cb) => {
+                    cb.addEventListener("change", function () {
+                        const num = parseInt(this.dataset.num);
+                        const row = this.closest("tr");
+                        if (this.checked) {
+                            checkedItems.add(num);
+                            row.classList.remove("unchecked");
+                        } else {
+                            checkedItems.delete(num);
+                            row.classList.add("unchecked");
+                        }
+                        updateSelectAllCheckbox();
+                        updateTotals();
+                    });
+                });
+            }
+
+            function updateSelectAllCheckbox() {
+                const allCheckboxes = tbody.querySelectorAll(".row-checkbox");
+                const checkedCount = [...allCheckboxes].filter(
+                    (cb) => cb.checked,
+                ).length;
+                const selectAll = document.getElementById("selectAll");
+                selectAll.checked = checkedCount === allCheckboxes.length;
+                selectAll.indeterminate =
+                    checkedCount > 0 && checkedCount < allCheckboxes.length;
+            }
+
+            document
+                .getElementById("selectAll")
+                .addEventListener("change", function () {
+                    const isChecked = this.checked;
+                    tbody.querySelectorAll(".row-checkbox").forEach((cb) => {
+                        cb.checked = isChecked;
+                        const num = parseInt(cb.dataset.num);
+                        const row = cb.closest("tr");
+                        if (isChecked) {
+                            checkedItems.add(num);
+                            row.classList.remove("unchecked");
+                        } else {
+                            checkedItems.delete(num);
+                            row.classList.add("unchecked");
+                        }
+                    });
+                    updateTotals();
+                });
+
+            // Filter handlers
+            document
+                .getElementById("showAll")
+                .addEventListener("change", function () {
+                    if (this.checked) {
+                        document.getElementById("showGreat").checked = false;
+                        document.getElementById("showBad").checked = false;
+                        applyFilters();
+                    }
+                });
+
+            document
+                .getElementById("showGreat")
+                .addEventListener("change", function () {
+                    if (this.checked) {
+                        document.getElementById("showAll").checked = false;
+                        document.getElementById("showBad").checked = false;
+                    }
+                    applyFilters();
+                });
+
+            document
+                .getElementById("showBad")
+                .addEventListener("change", function () {
+                    if (this.checked) {
+                        document.getElementById("showAll").checked = false;
+                        document.getElementById("showGreat").checked = false;
+                    }
+                    applyFilters();
+                });
+
+            function applyFilters() {
+                const showAll = document.getElementById("showAll").checked;
+                const showGreat = document.getElementById("showGreat").checked;
+                const showBad = document.getElementById("showBad").checked;
+
+                tbody.querySelectorAll("tr").forEach((tr) => {
+                    const verdict = tr.dataset.verdict;
+                    if (showAll) {
+                        tr.classList.remove("hidden");
+                    } else if (showGreat) {
+                        tr.classList.toggle("hidden", verdict !== "GREAT");
+                    } else if (showBad) {
+                        tr.classList.toggle("hidden", verdict !== "BELOW");
+                    } else {
+                        tr.classList.remove("hidden");
+                        document.getElementById("showAll").checked = true;
+                    }
+                });
+                updateTotals();
+            }
+
+            // Initial render
+            renderTable(cardData);
+        </script>
+    </body>
+</html>

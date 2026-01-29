@@ -8,8 +8,8 @@
 
 | Conference             | CFP Deadline | Event Date | Location         | Status |
 | ---------------------- | ------------ | ---------- | ---------------- | ------ |
-| Stir Trek 2026         | Jan 25 ⚠️    | May 1      | Columbus, OH     | [ ]    |
-| AI Coding Summit 2026  | Jan 26 ⚠️    | Feb 26-27  | Online           | [ ]    |
+| Stir Trek 2026         | Jan 25 ⚠️    | May 1      | Columbus, OH     | [x]    |
+| AI Coding Summit 2026  | Jan 26 ⚠️    | Feb 26-27  | Online           | [x]    |
 | Techorama 2026 Belgium | Jan 30 ⚠️    | May 11-13  | Antwerp, Belgium | [ ]    |
 
 ### 🔔 Next Week (Jan 31 - Feb 7)
