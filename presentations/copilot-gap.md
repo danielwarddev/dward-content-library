@@ -2,23 +2,19 @@
 
 ## Description (tool agnostic)
 
-Many developers fall into two camps with AI tools: using it as a fancy autocomplete or as a magic wand that tries to implement everything within a few prompts.
+Many developers fall into two camps with AI coding tools: using them as fancy autocomplete or as a magic wand that implements everything with a few prompts. Studies show AI increases productivity and lowers frustration, but also that it can lower critical thinking and produce less secure code. How can we make sure we're on the winning side of that?
 
-This approach often leads teams to spend more time on tasks than they would without AI, either because AI wasn't the best tool for the job or because it didn't receive enough context.
+Getting real value out of AI coding tools requires knowing not just which features and patterns to use, but when to use them and when to choose something else. This session will demonstrate how to do that.
 
-Studies show that AI increases productivity and lowers frustration, but also that it can end up lowering critical thinking and producing less secure code. How can we make sure we're on the former side of that?
-
-Drawing from experience on coaching dozens of teams on AI usage, this session will go over the practical tooling available in modern AI tools like GitHub Copilot and Claude Code, how attendees can use these features effectively to get the results they want, and the right and wrong times to use AI.
+Through a live demo using GitHub Copilot and Claude Code, you'll learn how to effectively give AI context, when to use specific features, and the actual usage patterns that make AI productive. You'll learn when to be hands-on and when to let AI drive, and leave with practical techniques you can bring to your team today.
 
 ## Description (GitHub Copilot-specific)
 
-Many developers fall into two camps with AI tools: using them as a fancy autocomplete or as a magic wand that tries to implement everything within a few prompts.
+Many developers fall into two camps with GitHub Copilot: using it as a fancy autocomplete or as a magic wand that implements everything with a few prompts. Studies show AI increases productivity and lowers frustration, but also that it can lower critical thinking and produce less secure code. How can we make sure we're on the winning side of that?
 
-This approach often leads teams to spend more time on tasks than they would without AI, either because AI wasn't the best tool for the job or because it didn't receive enough context.
+Getting the real value out of GitHub Copilot requires knowing not just which features and patterns to use, but when to use them and when to choose something else. This session will demonstrate how to do that.
 
-Studies show that AI increases productivity and lowers frustration, but also that it can end up lowering critical thinking and producing less secure code. How can we make sure we're on the former side of that?
-
-Drawing from experience on coaching dozens of teams on GitHub Copilot, this session will go over the practical tooling available in GitHub Copilot, how attendees can use these features effectively to get the results they want, and the right and wrong times to use AI.
+Through a live demo, you'll learn how to effectively give Copilot context, when to use specific features, and the actual usage patterns that make Copilot productive. You'll learn when to be hands-on and when to let Copilot drive, and leave with practical techniques you can bring to your team today.
 
 ## Organizer notes
 
@@ -26,12 +22,13 @@ Attendees of this conference will presumably already be interested in AI, but I 
 
 Most devs aren't enthusiasts on social media, and plus, GitHub Copilot slower features came slower than Claude Code and other tools. In my experience, this led to many devs that are "hidden" in enterprises end up not using AI because they don't realize how to and the value it can add.
 
-I've been working as a coach at a large enterprise on helping teams use AI for about a year now, and have worked with dozens of teams with AI and seen 
+I've been working as a coach at a large enterprise on helping teams use AI for about a year now, and have worked with dozens of teams with AI and seen
 some common pitfalls and reluctance to use AI.
 
 Attendees will learn features they may not have known existed or how to use them (such as Agent Skills or the chat debug log), recognize when to use AI and when not to, how apply specific demonstrated techniques to get better results with AI, and get a better mental model for how to use AI in general.
 
 Outline:
+
 - Going over the two traps: "fancy autocomplete" and "magic wand" and why they both usually fall short
 - Feature demos: Agent Skills, custom prompts, skills, and agents, MCP tools
 - When should I use AI? Applying the Rumsfeld Model to AI

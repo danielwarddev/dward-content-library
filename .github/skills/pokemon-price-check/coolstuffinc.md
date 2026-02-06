@@ -10,14 +10,14 @@
 - Ampersand (`&`) → `%26`
 - etc.
 
+⚠️ **Search by name ONLY** - do not include set or card number in the search.
+
 **Examples:**
 
-| Card Name        | Encoded URL                                                                                      |
-| ---------------- | ------------------------------------------------------------------------------------------------ |
-| Dark Espeon      | `https://www.coolstuffinc.com/main_selllist.php?name=dark+espeon&min=&max=&a=1&s=pokemon`        |
-| Gengar & Mimikyu | `https://www.coolstuffinc.com/main_selllist.php?name=gengar+%26+mimikyu&min=&max=&a=1&s=pokemon` |
-
-⚠️ **Search by name ONLY** - do not include set or card number in the search.
+| Card             | Card # | Search Query (name only)                        | Encoded URL                                                                                      |
+| ---------------- | ------ | ----------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Dark Espeon      | #4     | `dark espeon` ❌ NOT `dark espeon 4`            | `https://www.coolstuffinc.com/main_selllist.php?name=dark+espeon&min=&max=&a=1&s=pokemon`        |
+| Gengar & Mimikyu | #53    | `gengar & mimikyu` ❌ NOT `gengar & mimikyu 53` | `https://www.coolstuffinc.com/main_selllist.php?name=gengar+%26+mimikyu&min=&max=&a=1&s=pokemon` |
 
 ## Search Process
 

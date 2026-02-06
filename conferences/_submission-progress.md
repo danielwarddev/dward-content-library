@@ -8,17 +8,17 @@
 
 | Conference             | CFP Deadline | Event Date | Location         | Status |
 | ---------------------- | ------------ | ---------- | ---------------- | ------ |
-| Stir Trek 2026         | Jan 25 ⚠️    | May 1      | Columbus, OH     | [x]    |
-| AI Coding Summit 2026  | Jan 26 ⚠️    | Feb 26-27  | Online           | [x]    |
-| Techorama 2026 Belgium | Jan 30 ⚠️    | May 11-13  | Antwerp, Belgium | [ ]    |
+| Stir Trek 2026         | Jan 25 ⚠️    | May 1      | Columbus, OH     | ✅    |
+| AI Coding Summit 2026  | Jan 26 ⚠️    | Feb 26-27  | Online           | ✅    |
+| Techorama 2026 Belgium | Jan 30 ⚠️    | May 11-13  | Antwerp, Belgium | ✅    |
 
 ### 🔔 Next Week (Jan 31 - Feb 7)
 
 | Conference                      | CFP Deadline | Event Date | Location            | Status |
 | ------------------------------- | ------------ | ---------- | ------------------- | ------ |
-| DevSA - More Human Than Human   | Jan 31       | Feb 28     | San Antonio, TX     | [ ]    |
-| NDC Copenhagen 2026             | Feb 1        | Jun 1-4    | Copenhagen, Denmark | [ ]    |
-| Memphis Global AI Bootcamp 2026 | Feb 5        | Mar 16     | Online              | [ ]    |
+| DevSA - More Human Than Human   | Jan 31       | Feb 28     | San Antonio, TX     | ✅    |
+| NDC Copenhagen 2026             | Feb 1        | Jun 1-4    | Copenhagen, Denmark | ✅    |
+| Memphis Global AI Bootcamp 2026 | Feb 5        | Mar 16     | Online              | [✅]    |
 
 ### 📅 February 2026
 

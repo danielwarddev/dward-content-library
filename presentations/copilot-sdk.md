@@ -1,12 +1,12 @@
-# How to Quickly Prototype Custom Agents with GitHub Copilot SDK
+# Put An Agent Inside Your App In 10 Minutes Or Less With the GitHub Copilot SDK
 
 ## Description
 
-GitHub recently released the Copilot SDK, letting developers build custom AI agents using GitHub Copilot. What does that actually look like in practice, though, and why should you build your own agents instead of just using plain old Copilot?
+What if adding a custom AI agent to your app took less time than your next standup? Custom AI solutions for your company used to require a dedicated team and a big budget. Now, with the GitHub Copilot SDK, you can embed AI capabilities that understand your enterprise domain knowledge, tools, and workflows in an afternoon.
 
-This session will go over what the GitHub Copilot SDK is, why you might want to use it on your team, and how to use it with a live demo of a custom agent made with the SDK.
+This session shows you how to go from zero to a working AI agent embedded in your application in 10 minutes or less, live on stage. We'll cover how to set up the tools, why you might want to use the Copilot SDK, and what kind of agents you can build with it. You'll leave with working knowledge of how to use the GitHub Copilot SDK to put Copilot's capabilities into your existing applications today.
 
-Every team has unique workflows, tools, and domain knowledge, and this session will show how to use the SDK to extend GitHub Copilot for your team today.
+The live demo will be in C#, but the SDK is in a variety of languages, so the knowledge is transferable.
 
 ## Organizer notes
 

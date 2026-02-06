@@ -1,10 +1,12 @@
-# AI-Assisted Unit Testing - How to Stop AI From Cheating On Your Tests
+# From Liability to Lifeline: AI Test Generation That Actually Works
 
 ## Description
 
-We've all been there - ask AI to fix a failing test, and instead watch it delete the test, gut the code, or hardcode a passing value. While AI tools can be very helpful for coding, they often miss the mark and need a guiding hand to get them to the right spot.
+AI is notorious for "solving" test failures in questionable ways. Ask AI to fix a failing test and watch it delete the test entirely; ask it to write new tests and get hardcoded values that always pass. Teams often end up wasting time "babysitting" the AI to get it to work right, or outright stop trusting AI altogether, never taking advantage of its full potential as a collaborator. At worst, teams may accept faulty tests from AI that give false confidence in their production system.
 
-This session will go over how to use specific coding practices and AI features to get your AI assistants to actually create tests that test. The good news is that the same practices that help AI are the same ones that make your code better and more readable anyway!
+The good news is that there are techniques you can use to get AI to give you both consistent and high-quality test results. Not only that, but the same practices also help make your code more maintainable.
+
+This session covers strategies that make test generation with AI actually work. You'll leave with test structures, coding standards, prompts, and specific AI features to apply immediately on your own projects that help turn AI from liability to a lifeline.
 
 ## Organizer notes
 

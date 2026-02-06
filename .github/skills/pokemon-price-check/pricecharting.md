@@ -75,6 +75,20 @@ PriceCharting has various layouts. Common patterns:
 - Actual buylist offers will typically be 50-70% of market price
 - Graded prices (PSA 9, PSA 10) are shown separately when available
 
+### Finding Holo Versions
+
+When searching for holo cards, note that PriceCharting naming can be inconsistent:
+
+- Cards with **both holo and non-holo** versions will have `[Holo]` in the name (e.g., "Bibarel [Holo] #121")
+- Cards that **only come as holo** (like most rares from Cosmic Eclipse, Hidden Fates, etc.) may not have "holo" in the name - the base version IS the holo
+- `[Reverse Holo]` is always labeled separately
+
+**To verify a card is holo when the name doesn't say so:**
+
+1. Click into the card's detail page
+2. Check the eBay sold listings section
+3. The listing titles will usually say "holo", "holofoil", or "holo rare" if it's a holo card
+
 ## PowerShell Parsing
 
 ```powershell
