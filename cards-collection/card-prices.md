@@ -47,7 +47,7 @@
 | Beautifly 5                | Roaring Skies        | $0.77         | $0.18     | N/A          |
 | Suicune 59                 | Lost Thunder         | $3.07         | $1.61     | N/A          |
 | Regice 28                  | Crimson Invasion     | $0.72         | $0.13     | N/A          |
-| Gyarados 4                 | HeartGold SoulSilver | $14.98        | $13.04    | $3.00        |
+| Gyarados 4                 | HeartGold SoulSilver | $14.78        | $12.68    | $3.00        |
 | Milotic 27                 | Crimson Invasion     | $0.78         | $0.14     | $0.10        |
 | Volcanion 25               | Steam Siege          | $0.50         | $0.16     | N/A          |
 | Arcanine 22                | Sun & Moon           | $2.63         | $1.64     | N/A          |
@@ -83,10 +83,14 @@
 | Forest Seal Stone 156      | Silver Tempest       | $0.82         | $0.03     | N/A          |
 | Seviper SV15               | Hidden Fates         | $1.61         | $0.78     | $0.75        |
 | Xurkitree SV14             | Hidden Fates         | $3.85         | $2.19     | $0.50        |
+| Giratina 86                | Unified Minds        | $6.13         | $3.67     | $0.35        |
+| Chesnaught 11              | BREAKthrough         | $1.99         | $0.76     | $0.50        |
+| Pikachu SM157              | SM Black Star Promos | $13.18        | $7.85     | N/A          |
+| Pikachu SM183              | SM Black Star Promos | $8.04         | $5.34     | N/A          |
 
-**Total PriceCharting Value:** $197.40
-**Total GameNerdz Buylist:** $100.74
-**Total CoolStuffInc Buylist:** $22.15
+**Total PriceCharting Value:** $226.54
+**Total GameNerdz Buylist:** $118.00
+**Total CoolStuffInc Buylist:** $23.00
 
 ---
 
@@ -220,9 +224,11 @@
 | Zangoose 132          | Team Up          | $1.98         | $0.19     | N/A          |
 | Fire Energy SWSH      | Sword & Shield   | $1.99         | $0.11     | N/A          |
 | Metal Energy SWSH     | Sword & Shield   | N/A           | $0.05     | N/A          |
+| Spiritomb 112         | Unbroken Bonds   | $3.73         | $2.13     | N/A          |
+| Scrafty 138           | Unified Minds    | $0.52         | $0.05     | N/A          |
 
-**Total PriceCharting Value:** $233.43
-**Total GameNerdz Buylist:** $127.27
+**Total PriceCharting Value:** $237.68
+**Total GameNerdz Buylist:** $129.45
 **Total CoolStuffInc Buylist:** $11.15
 
 _Note: GameNerdz values shown are cash (credit ÷ 1.25). CSI searched by name only. Notable finds: Electrode 22 (Evolutions) = $45.65 GN, Dragonite 52 = $12.64 GN, Lapras 31 (Team Up) = $4.06 GN. Magnezone 4 and Metal Energy SWSH not found on PriceCharting._

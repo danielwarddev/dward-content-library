@@ -355,3 +355,6 @@ MigrationBackup/
 
 # Rider
 .idea
+
+# Playwright MCP
+.playwright-mcp

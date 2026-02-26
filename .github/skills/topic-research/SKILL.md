@@ -1,5 +1,5 @@
 ---
-name: topic-idea-research
+name: topic-research
 description: Research ideas for new blog topics to find SEO opportunities. Use this skill when evaluating potential post ideas or validating topic demand.
 ---
 
