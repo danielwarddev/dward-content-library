@@ -50,6 +50,13 @@ This file tracks all SaaS ideas that have been researched to prevent duplicate w
 | 2026-01-29 | SEO Content Workbench                    | Rich content editor with real-time SEO scoring, formatting, and optimization                     |
 | 2026-01-29 | Visitor Check-In for Professional Svcs   | Digital check-in system for law firms, medical offices, and professional services                |
 | 2026-01-29 | Pet Services Booking Platform            | Booking and client management for groomers, trainers, pet sitters                                |
+| 2026-02-28 | FieldForms                               | Affordable mobile forms and checklists for field service teams ($12-15/user vs $39 incumbents)   |
+| 2026-02-28 | RetainerPilot                            | Retainer hours tracking, client dashboards, and auto-billing for freelancers/agencies             |
+| 2026-02-28 | SeatCheck                                | Lightweight SaaS subscription audit tool for SMBs (10-200 employees)                             |
+| 2026-02-28 | SettlementSync                           | Payment reconciliation matching marketplace payouts to bank deposits for multi-platform sellers   |
+| 2026-02-28 | ContractRadar                            | Contract renewal deadline and cancellation window tracker for SMBs                                |
+| 2026-02-28 | PermitPulse                              | Building permit and inspection tracking for small general contractors                             |
+| 2026-02-28 | MigrationGuard                           | Database schema migration impact previewer and safety checker for dev teams                       |
 
 ---
 
