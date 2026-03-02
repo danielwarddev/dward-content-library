@@ -1,0 +1,96 @@
+game concept: travel to another side
+like the seasons changing thing, but a door where colors etc change
+
+strange stats
+
+you play as a moving ant colony, you can throw ants to attack but you lose ants
+getting hurt makes you lose ants
+when you run out of ants you lose
+you can pick up ants along the way
+
+only one spell, but you can upgrade it
+
+that is just an ordinary cup. pay it no mind.
+
+something with time control - i have the chronos asset
+
+2d platformer where light kills you
+
+you get three wishes at the start of every level/segment - these can be lives, stats, weapons, and more (could be a theme idea for the infinite shmup)
+maybe should have checkpoints and options for a few saved games
+enemies drop things? items? health? etc.
+
+play off of chibi robo 3ds concepts, but a good game
+whip-like item serves as a weapon and also to rope/zipline onto ledges and platforms
+can unlock abilities for it, like spinning it around, make it longer, elements, etc.
+
+platformer with 30 second time limit for each level/segment
+
+similar game idea to all other cubes make same or mirrored movements as you, but you also can clone them by going into a certain spot
+
+vaporwave esque infinite runner/flyer/dodger
+
+play as a chameleon and need to blend in, can unlock/learn new colors/patterns to blend in to
+
+puzzle where every action does two things
+
+Two very different ways to play the same game - puzzle game where you can either solve the puzzle or brute force it by destroying the blocks but not dying
+
+World pieces (A large world from small multi-connected nodes)
+
+Confined - 2d platformer puzzles with very small rooms
+
+Two Opposing Forces - magnet/repel/attract-based puzzle game?
+
+death does not matter - ants, have to die to open up ways to other parts or make it safe
+
+Achievments - fake achievements making fun of xbox/achievement obsession nowadays
+
+coding - sequence puzzles games like opus magnum
+
+What hurts you hurts me - take damage the enemies take, so can only kill so many and have to dodge the rest - they can still damage you without you damaging them
+
+floral pattern - also fractals, other patterns, for puzzle game or cool-looking background
+
+Obstacles help you improve - eaach obstacle slightly increases your abilities like jump height so that you can clear obstacles that are more challenging
+
+You are the key - you can pick up things and add them on to yourself to change your shape in various ways
+maybe a robot? when you pick up a new part you can pick a location to add it in
+doorways require certain shapes to open, and you are the key. picking up parts and structuring yourself in certain ways allows you to be that shape
+
+Overcrowded - a stupid god sim where you deal with dense areas i.e. china with costco
+
+Recycle - educational crafting game
+
+Running out of colour - color is a resource you have to use to color a grayscale world 
+
+wind control game where taps reverse the wind
+
+You only have a hat - trench coat and derby, all control revolves around hat - throw it and teleport/jump to it, attack with it, jump on top of it
+
+Under half control - game controls one part - movement, jumping, action, attacks, etc. - and you control the other. try to get through platformers like this
+
+Science Magic - would be neat to merge things like geography magic, biomancy, etc.
+
+Moving Grounds - puzzle platformer where you can press ground to make it jump up so you can reach things, uncover ways, destroy things, etc.
+
+Mazes are (not) fun - instead of solving mazes, destroy them with blasts and get to the end
+
+Too many birds - seagull/geese hate
+
+Cross-section
+frictionless
+Everything is destructible
+The game needs your help
+Echoes
+Rejected Nursery Rhymes
+Everything in the game starts with the same letter.
+You can only interact with the game in the beginning
+Pain opens new possibilities
+Anything can become a weapon
+Two Colors
+It has to rhyme!
+censorship
+Tea
+Positive Negative
+Nothing can stop you

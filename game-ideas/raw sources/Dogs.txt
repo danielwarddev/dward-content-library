@@ -1,0 +1,47 @@
+Stats
+1. POW – Power. How strong the dog is.
+2. SPD – Speed. Both how fast and how agile the dog is.
+3. INT – Intelligence. How smart the dog is.
+4. BARK – Bark. The effectiveness of the dog’s bark.
+5. SIZE – Size. How big the dog is.
+6. LEAD – Leadership. The leadership skills of the dog to become the alpha of the pack.
+7. TAIL - Total Attitude Indicator Length. Tails affect everything from cuteness, to balance, to communication, so the longer, the better! This affects a bit of everything.
+Contest Stats
+1. Cuteness
+2. Fight
+3. Tricks
+
+Individual Stats
+Individual stats are stats that are determined by random rolls of the game for each individual dog, rather than their breed.
+
+POW - Power
+Power affects how much damage a dog deals in battle. It is used in the following formula:
+
+SPD – Speed
+Speed affects both turn order in a battle and dodge chance. It is used in the following formulas:
+
+INT – Intelligence
+Intelligence affects 
+
+Breed Stats
+Breed stats are stats that are preset for each type of breed, and cannot change.
+
+BARK – Bark
+Bark affects 
+
+LEAD – Leadership
+Leadership determines which party member will be the alpha dog. To read about what this means, refer to the section The Pack.
+
+TAIL – Luck
+Tail is this game’s luck stat, and affects damage min/maxing, dodge and hit chance and loot (if the party member is the alpha dog). It is used in the following formulas:
+
+
+The Pack
+The player’s party is referred to as their “pack.” A pack consists of 4 party members of the player’s currently available companions. The pack can only be changed when in a town. The party leader is referred to as the “alpha” and will be displayed on the overworld as the character sprite.
+
+
+Companions
+A companion is a dog currently with the player, whether in the pack or not. Companions can be found in two different ways. 
+
+Tricks
+Skills are tricks

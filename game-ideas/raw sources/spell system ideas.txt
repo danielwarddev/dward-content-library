@@ -1,0 +1,75 @@
+* defensive (shields and such)
+* summons
+* damage
+* conditions
+* buffs
+* heal
+* cone
+* missile
+* aoe and aoe over time
+* movement speed
+* aa speed
+* casting speed
+* channeling speed
+* wall
+* dome
+* disable
+* stun
+* silence
+* disarm
+* armor increase
+* explosion
+* revive
+* decrease damage by x amount (mods could also make immune to damage by saying damage = damage - damage)
+* storm (aoe you can move)
+* spray
+* totem
+* bounce
+* boomerang
+* effect increase (have an arraylist of variables for this in each effect?)
+* teleport
+* blink (teleport with no cast time)
+* pierce
+* splinter (skillshot/projectile splinters in midair, doing less damage but producing multiple, smaller shots in straight and both 45 degree angles (for 3; can also make more if invest enough sp)
+* block
+* invisibility
+* spikes
+* lava
+* vacuum (sucks enemies into a specified point)
+* fan (blows enemy in a specified direction)
+* cooldowns decreased (could be active or passive)
+* create clones of yourself with a % of your damage and a % chance that enemies will be fooled by them
+* damage/healing/whatever effects over time are done in pulses; normally, the pulses are very quick, but for other purposes, the pulses could be used for things like every 5 seconds something happens, such as a disarm or a big heal
+* totems that can shoot enemies every x seconds
+* effect that allows a projectile to do more damage the more time it flies, aoe do more damage the more time it's active, etc.
+* Glyphs/figures, possibly just for animation and aethetic purposes
+* Something similar to signets in GW – you can cast them while silenced (not stunned) and they cost no mana
+* summons (should be able to cast lots of very weak monsters at very little cost if you wish, or few very strong monsters – make sure to do a good aggro algorithm on enemies so that a stupidly weak summon can't let you run away scott-free, though)
+* Death effect (from optional, secret(?) boss: % chance to isntantly kill non-boss target – more % is very expensive
+* -terrain manipulation – even things like water – should be able to “split the sea”
+* skill that creates a meter that increasesd when you do x (player chooses? Just when you hit an enemy?) - when it is full, your spells are granted an enhanced/bonus effect
+* blood magic type of things – maybe a certain sign, where everything is the same, but you have no mana, and spells cost health, instead – changes gameplay entirely – spam, spike healers can be created, only cooldowns matter, and you must keep track of your own health – maybe healing spells should not cost as much health, or something? (maybe say recommended for experienced players, since it is a whole new ballgame? Maybe not)
+* transformation (i.e. Lich, treant, etc. - what do they change? Stats only? Silence you but lots of power? Certain spells? Maybe unique for each one – SP only gives better duration, and maybe general stats, like spell power (affects all spells in the form), stats, etc.)
+* illusions? Creating illusionary monsters to distract, for instance – should any illusions actually do damage, or just confuse and make the enemy act a certain way?
+* Should there be schools of magic? Every effect is linked to a school, and there are advantages to leveling up in certain schools, so there is some guidance and limitations amidst all the effects – what advantages, though? Only able to spend sp in those skills? i.e. You have 30 to spend in fire magic, 20 in necromancy, etc. - anyway, there should be some kind of class definition, even if it is loose, or defined by other effects like the sign you choose at the beginning of the game, that possible chooses your stats/powers – or maybe there should be no classes at all?
+
+
+-keep in mind all kinds of spells - , damage, conditions, buffs, heals, range, aoe, cone, missile, storm (AoE over time), freeze, burn, stopping/slowing/speeding up time (this affects all actions; movement, channels, casts, dots - everything - it is extremely powerful), teleporting, speed boosts, armor increases, be able to create terrain/walls, disable/silence, explosion (smaller aoe damage - or bigger, if they spend enough points) on impact, take % less damage for x seconds, revive someone (for co op), take % less damage (makes things too simple in co op since it would create tanks? would probably come about somehow, anyway), cyclone (moving AoE - or controllable? should these be 2 different things? if not controllable, how do you move it? drag an arrow and point it in a direction to create it? make sure arrow is as thick as the aoe radius - could work 0 could also change the speed at which it travels - unless each enemy can only be hit by it once - maybe if slow and more than once, costs a lot, but fast and only once, not as much, slow and once very little and fast and more than once a little more), disarms, stuns, roots, sprays (cone/lines/whatever in front of you that lasts for x seconds), some kind of totems? they would apply certain effects (maybe not DoT or interval damage - if damage, it is very expensive) such as conditions last x or x% longer, water spells do x or x% more, aoe is x or x% bigger, etc. they could be floating orbs or maybe actual totems, shots that bounce between enemies (sp increases # of bounces and decreases range required for a bounce), pierce (think TA's psi blades), reflect missiles (could be an aoe dome for you, a wall, a temporary enchantment, etc. - maybe reflects back with less damage unless you invest sp in it - maybe starts as block projectiles with 0% reflect), invisibility, boomerange effect for skillshots, and more. Some will cost more than others, of course
+
+How spells work: create an enum named Triggers; different things like ON_SELF_HIT, ON_ENEMY_HIT, ON_ENEMY_HEAL, maybe target and effect? i.e. a Trigger enum is (Target, ArrayList<Effect>), ex. (SELF, HEAL). Triggers are not moddable this way, but effects are - or, maybe Effect(Target, Trigger)
+Triggers:
+* on [target] cast
+* on [target] heal
+* on [target] attack
+* on [target] move
+* on [target] cast [spell type]/[specific spell]/[specific effect]
+* on [target] damage [target]
+* on [target] heal [target]
+* on [target] [effect] [target]
+* time interval
+* time interval after another trigger
+* on [target] apply [condition]/[effect] to [target]
+
+Maybe a script could be created, so that players could create their own effects (such as launching an exploding octopus at foes)
+
+make one of the trigger reactions to change/add/remove a spell from your bar; just be able to modify it; this includes spell costs, cooldowns, etc. - of one spell, one type of spell, your first 3 spells, all spells, etc.

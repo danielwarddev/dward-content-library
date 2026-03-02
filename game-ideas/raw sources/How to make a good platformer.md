@@ -1,0 +1,3 @@
+How to make a good 3D platformer
+
+Set out to make a game like FURI. Big focus on boss fights, interesting attack patterns, actually challenging. Then, just think what if you made levels in between the bosses? But also actually kind of similar to the boss? Similar to how you have to learn the attack patterns of enemies in Megaman and can't just rush through the room. What if each time you walked into a new room it was almost like a puzzle? Have to figure out bullet patterns + jumping/dashing through it to get to the door. It's a platforming/action game, but could be argued it's a puzzle game, too

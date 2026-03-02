@@ -1,0 +1,135 @@
+lemmings
+incredible machine
+goldberg pun/joke
+transformice
+funny games
+contraception game - get pregnant or avoid it
+play as a sperm?
+upgrade/modify your sperm
+space theme? can be applied to just about anything
+online oregon trail that requires co op
+game about the floor is lava
+end of game is someone off screen calling her for dinner, screen changes to room, she looks over says ok and runs off
+puzzle game where things change between past/future
+water pipes game
+rube goldberg game
+simple strategy card game
+ice sliding puzzle game
+lode runner
+dos games
+
+puzzle game where you go back/forward in time
+can switch seasons
+
+have towns as well with "puzzles" (quests)
+sad things, happy things with families, legacies, people getting sick and dying, the way life is/things are, etc.
+activist trying to change something, in the future it's still the same
+show how people are still about the same level of happy no matter what
+
+
+Dogs RPG
+Space-like TES game with ship customization
+Possible MMO
+Card game
+Game with very customizable spell system
+3D puzzle/story/atmosphere based game where the puzzles revolve around you turning time forward and back. The environment changes or effects happens depending on the time (rotted wood, rivers flowing, rocks dis/appearing, etc.). Towns/politics/other things can change for emotional effect in the story
+Turn-based rpg that is actually challenging with a meaningful, different combat system
+Space-based game where you rule a nation/empire. Start off as a citizen of a settlement, become leader, commander, 2nd in command, etc. You manage the economics, etc. of the empire. Everything - food shortages, punishing worlds, starting or stopping wars, etc.
+Slime alchemy game done for game jam - expand on it, quests, writs, battles, etc.
+
+Cooking game where the object is to make unique/weird dishes with things that don't really go together
+
+getting to a planet first means trying to secure mining rights for it
+if someone arrives around sound time or before you get them, you can kill them, try to get them to like you, bribe them, etc.
+
+iap ideas:
+instead of remove ads
+points accumulate and you can purchase things with them
+you can also purchase things with real money
+rewarded ad to continue - once per play? a cooldown?
+theme changes
+watch a rewarded ad at the start to try a different theme
+
+
+game with dungeon tiles where you make your own
+deck building dungeon building game
+every tile has:
+-difficulty/rewards
+-a top and a bottom
+-a point cost (you have a point req for each floor)
+
+the game works out the placement of enemies, boss, keys, locked doors, treasures, upgrades, etc.
+
+vr game where you look like a thing with no feet and long arms
+jump/move by moving your arms
+
+spiderman-like shooting vr game
+
+ideas:
+lemmings like
+the incredible machines
+spaceship building game
+tactics game
+potion deckbuilding game
+spell deckbuilding game
+card game with time travel where you can undo others turns/actions
+card game where you create animals like the mtg unset
+android version of windows phone desktop dock
+cards of humanity type game for video game ideas (or other media?)
+tabletop game that revolves around portals - creating them, destroying others' to move around and gain positional advantage
+
+
+p38 tiger cry ham and egg
+
+
+First, we'll make a circle travel around a cube. Click on the blab lah to blah blah.
+
+Well done! You're a natural. We'll have you up in no time!
+
+Oh, no. No. What have you done? You've really done it now. Oh, no. Oh, my.
+
+Simple graphics but use effects screen shakes etc.
+
+
+lcg where you build spells
+spell components
+can cast x spells per turn
+can have x amount of spells (as many as you want?)
+each spell can have x diff types of components
+similar concept as game
+components are things like effects (what spell actually does), triggers (like when you cast it, this happens, when you take damage, etc), type (hex - effect happens every turn, more expensive, bolts, auras, etc)
+
+lcg about raising monsters and then fighting with them (2 phases or at the same time?)
+
+
+
+deckbuilding games with 52 card deck
+card values are as normal, with face cards being J10, Q11, K12, A13
+hearts - ignore 1 card/1 less card next turn
+spades - draw from the main deck
+clubs - swap with opponent
+diamonds - none (draw?). win condition. when the game deck is depleted, the game immediately ends and players go through their personal decks and count the total value of all these. whoever has the most wins. if tied, then clubs. if tied, then spades. if tied, then hearts
+choose a card to play each turn that will be your effect. its number does not matter. the rest of your cards will be played for their value
+
+players have no starting deck. players draw 5 cards each from the main deck.
+create a trade row of 5 cards. same rules as star realms.
+at the end of each turn, players discard what's left of their hand and draw 5 more cards. shuffle discard pile into deck as necessary to draw 5 total.
+there are two goals every turn: counter the opponent's cards, or pass yours
+
+every turn, must choose 1 card to play
+need to choose between which suit you want and which suit you think you can win
+
+vampire survivor/bullet heaven type game combined with creature collector/pokemon genre
+you find new enemies and can "tame" (?) them somehow
+you can have up to 3 (too few?) on a team at a time
+this team makeup is essentially your build
+each enemy has its own ability, type, size, speed, etc
+on top of that, the character your pick has a unique ability
+maybe also pick a trait or something that makes fire enemies do more, effect
+
+platformer game (think megaman zero) where your attacks are physics-based
+you have a bladed whip kind of weapon
+instead of a static attack animation, you can send your weapon out in front and pull it back
+however, this is controlled by a physics system
+if the blade collides with an enemy, it does damage (based on speed?) AND cuts them in the specified spot like how megaman zero does (eg robot gets sliced in half vert or horiz)
+what other things can be done besides apply force forward and back? spin in circle? other stuff?

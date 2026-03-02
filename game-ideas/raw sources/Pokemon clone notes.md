@@ -1,0 +1,10 @@
+- Shining hunting is important. Really like the way Coromon did it. There are 2 diff kinds of shinies, with 1 being ~2% chance (~10% with item) and the other being normal shiny rates. Can still get the dopamine hit from mid level shiny as it' very rare and still keeps the very rare shiny extremely special
+- Annoying to have weather/ability effects pop up repeatedly - can just show these on UI?
+- Coromon has a better balance of money/item price/difficulty
+- Exploring houses has benefits - using the plant pots found in them permanently adds them to your fruit drone to remotely plant/harvest
+- Monster checklist
+	- Front/back sprites + animations
+	- Cry
+	- Shiny pallettes
+	- Moveset
+	- Types, abilities, stats, move pool, catch rate, breeding info

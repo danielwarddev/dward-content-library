@@ -1,0 +1,121 @@
+What is fun
+- Just using dynamite all the time
+- No fall damage
+- Destroying bodies after death (wish there was drops/secrets/achievements from this. Nice to have a boss/miniboss that revies the undestroyed dead bodies)
+- Finding secrets
+- Rewards for exploring (mroe enemies, easter eggs, secrets)
+- Being able to pick up + throw everything sometimes for more effects (barrels, trash bags)
+- Fun idle gun animations
+- Fast food building
+- Science lab
+- Glass windows you dcan drop down in from(special moves?)
+- Bathrooms
+- Seeing your character in the mirror
+- References/homages to other games (multitool, similar mechanics/gore/SFX, etc)
+- One jumpscape in a game that isn't a horror gaem (maybe sneaking through a vent) that is probably a low level enemy that can't actually kill you
+- Opening a door in a mundane level to a huge scene
+- Constantly seeing new kinds of enemies
+- Lots of enemies bunching up to throw dynamite on
+- Lots of minibosses from doors opening up as a boss intro
+- Rare powerup modes in level where you don't need to reload, one shot kills, more enemies coming
+- Different walking guns as enemies
+- Getting in a big immobile ship with a huge gun
+- Boss doesn't have to be looking at you + can be walking away and still shoot at you
+- Boss's attacks ricochet +  electrify parts of the level
+- Enemies (like slugs) that can casually follow you through crouching areas to freak  you out
+- Eyeball monster that you have to hit in the pupils to damage/turn off attack
+- Attacks displacing/disorienting you - blasting you away, teleporting you, something like force staff, erc. In Zortch, everything seems to displace you (ie shotgun shot blows you back)
+- Turning the corner in a room and seeing a huge new enemy. Should be scary. Probably has to be bigger in stature, standing still, maybe white/holy. Other enemies centered around it (in general, not literally a circle)
+- Cool scenes/skyboxes you can look out on in the level every now and then when a room opens up. Maybe a walkway/skyway overlooking the city before you go back into the building, for instance. Gives a feel of the universe you're in. To encourage this, maybe have secrets/achievements/unlocks/buffs/etc for interacting with it somehow - maybe if you stare in a spot for 2 secs a shooting star goes by or something. Or shooting a specific sign
+- Dropping down a shaft to be immediately greeted by enemies
+- Looping a level around to finish or after you get a key to locked doors
+- Multiple ways to get through level - needed? More Deux Ex than Doom
+- Bayh doors opening to reveal enemies
+- Achievements for finishing each level on a difficulty, taking no damage in a level (difficulty?)
+- Boss where you have to shoot its slow moving bullets out of air to avoid them
+- Fly/nest enemies (buzzing in ear is a great SFX that's actually annoying/unnvering)
+- Enemies that create other enemies
+- Caches of weapons/ammo/health/etc
+- Enemies that follow you and enemies spawning on both sides of you in a corner is pretty brutal
+- Fun/cute ways of getting things - like vending machine for health
+- Backtrack from where a level starts you for a secret (eg if it starts you in front of a destroyed door/hallway/corridor that you can still go into slightly)
+- Any motivation for killing all enemies? Can require it to progress or maybe give money for each enemy killed for upgrades/cosmetics at end of level. Or maybe could be used to level up. Level up could level up stats or, instead of making you stronger, unlock certain things?
+- Later levels have smaller versions of previous bosses
+- Nice to have "safe rooms" maybe to start the level or between major sections. Feels comfortable, nice breather. If you want lore, books, journals, computers, etc, this is a good place to put them
+- No/very little music, just ambient background/factory noises is great for setting the mood. Maybe for a major level or plot point. Can still have enemies and everything, too
+- Really fun to open a door, toss some dynamite in, then close it. All the better if enemies make their own surprised/panic sounds (should be humorous/satisfying, not unsettling)
+- Metal/meaty parts of enemies. Metal takes no damage and makes a metal sound
+- Some enemies also throw grenades and hide, just like you!
+- Secondary type of enemy (often aliens) that is weak to a different type of weaponry (often energy or alien), but still takes less damage from normal weapons
+- Enemy that only dies if you damage it x amount in y seconds - can't shoot and hide over and over. May need to show health bars for this
+- Similarly, can have healer enemies that player should probably prioritize. Maybe they hide behind other enemies on purpose, though. They cower when other enemies are dead and can't fight themselves? Maybe achievement for not killing them?
+- Destroying security cameras is fun, especially if they don't lock on to you and beep, which is super annoying. Just a bonus/achievement? Make enemies not aware of you?
+- Secrets you can see but not reach so you know about them and can try to figure it out. Could be a barrier, too big of a gap, etc
+- Jumping puzzles for secrets
+- Later in the levels loops back to higher sections of the same room and you can look down on where you were. Just cool or any purpose for interaction here? Lowering a bridge and pressing more switches together, etc
+- Drop down a shaft and immediately greeted by an enemy
+- Like not having fall damage. There is a very small amount from very large heights that also knocks you down and you have to move to get up, which is kind of comical
+- Alien ambient noises/SFX are super cool
+- Chained explosives lines can be really cool and satisfying. Any weapon for this?
+- Cool to fight in other areas that have another purpose, like an assembly line, factory, science lab, server room, mining base, space station, ship/boat, etc
+- Claymores are good for catching player off guard when they are using to ramboing into rooms
+- Good when after you pick up a key card or something, music changes, picks up bass, drums/percussion/other stuff start. Probably to signal to the player that a hard part of end of level is coming up. Gets them pumped up/prepared. May also be kind of funny for a comedy game to do this and then nothing happens. You probably have to have a character or the narrator point it out though, eg I really thought something was going to happen there for some reason, oh well, etc
+- Shotgun really doesn't do that much unless close + has to reload
+- Statues of enemies that use same model but aren't actually them. Kind of signifies they might come to life later too. Or when you walk back through the level after collecting item/key the status are gone
+- The only truly scary enemies are probably the metal flaming skulls floating around that beeline for you once they see you and explode on impact
+- Liked the boss that was really just a TON of tiny enemies
+- Train full of enemies arriving as you enter a room - should they notice you or not?
+- Can run up ladders
+- Don't have to crouch to go through vents
+- Can run through vents
+- Crouching doesn't slow you down
+- Moving pathways are fun
+- Fun to get in a huge ship and just blast stuff for a section
+
+
+Ideas:
+- Boss that releases tiny enemies that bounce around whenever you hit him. If you just repeatedly spam grenades you will be overwhelmed quickly
+- Boss that shoots an exploding projectile that both homes and has a gravity field around it so it sucks you in slightly when close
+- Also jumps towards you and stomp + shockwave/blast
+- Bosses should have patterns you have to learn
+- For a boss fight, have to use a diff weapon and can't reload normally. For every reload, have to run around level and pick up another ammo box. Maybe could be something boss drops
+- Secrets in boss levels (maybe just one each) are good! Hard to find/think about/get when you're fighting the boss
+- Easy way to show "leveled up" enemies as the game progresses is to just use the same model but change the main colors. Feels nice to see, too, and could maybe signify uniform rank or something depending on the enemy
+- From IdleOn: there is a Journeyman class that counts as a beginner. This isn't a thing, but it would be cool if it was like OSRS where you could make a "pure" kind of build in that you have to find equips from quests/rare drops that are for Class:ALL. Any way to incorporate this into other games?
+- Enemies that pick up the models of the ammo you've shot and use them back at you
+- Enemies that play dead after you shoot them - should probably explode their bodies just to be sure
+- Door that slightly cracks itself open + makes noise when you walk by it
+- Secret within a secret - secret hatch in a secret room
+- Enemies breaking out of testing vats/tubes when you enter the room
+- Enemies screaming as they find you - should be scary/intimidating, actually has to be a tough enemy
+- Claymores placed around level - and/or maybe enemies that place claymores
+- Can "ride" certain enemies that jump around by jump on top of them to reach a secret spot
+- Minigame/tasks on each level that are unique to the level - ie in FF7 remake on the island there are segways you ride, could have achievements for this like time spent on it, tricks, near misses, etc. How would you integrate this into an FPS? Could do it, but would maybe need some kind of other NPCs in the game? Animal handling/pets?
+	- Maybe finding different spray painted logos/graffiti/etc around the level and taking pictures of them - gives different powers/abilities?
+- If you have a hub between levels, it's easy to go back to previous levels for secrets you needed higher levels in to access, stuff like that. Hub can also have shops, its own secrets, be destroyed at one point in the storyline, be under attack and become a level of its own at some point, etc
+- Room full of explosive barrels and enemies (maybe non-shooting ones?) - also has a secret in it that requires you to jump on the barrels to get to it
+- Enemies that can only be killed by a loser that rotates around the room - you have to dodge + lure them into it as waves come. Maybe a minigame
+- Going behind glass and activating a laser/scan/weapon/etc is fun, feels cool/powerful
+- Good place to hide secrets is behind doors that you open - most players won't turn around, close it, then check the wall it was covering
+- Cool when you're walking through a room and all of a sudden it starts raining - pretty but that means someone is breaking in through the glass roof. Other things that look pretty but mean death/destruction? Lights that mean death for robots? Do they believe it's their purpose?
+- Silly achievement for killing an enemy with a soccer bell/etc - although theyre mainly for an achievement/minigame where you try to make a goal/basket, they can also do damage as an easter egg if you throw them at enemies
+- Something great is while you have just cleared a room of enemies and have now dropped somewhere safe, some loud noise happens and the music changes. Maybe a loud door opening, something talking, loud footsteps, etc. Should get the impression that coming out will mean a fight, something dangerous is out
+- Enemies that stay "dead" until you look away - then theyre gone of all a sudden
+- Can have lots of little side rooms for labs, bathrooms, etc. These are not otherwise necessary from a purely gameplay perspective, but they add a lot of flavor to the world, can put lore notes in them, etc. 
+- Trampoline objects that bounce you higher the higher you jump on them - good opportunity for secrets. Or maybe higher jumps on consecutive different trampolines
+- Bringing explosive barrels around a level/room to unlock secrets when they blow up. Maybe same thing with crates for jumping up somewhere. Cool or annoying?
+- Soft time limit - you sneak  up on a room of a few enemies, all with rocket launchers/snipers/something like that. When you shoot, they will all notice you, so have to kill them off quickly before they all start firing
+- Idea for a chicken character to say "I'm choking!" or be able to choke chicken NPCs
+- Rotating platform that you have to walk across to get to different sections (like a big water mixer or something)
+- Jazz music, like FF7 rebirth's card game music, actually can work pretty well!
+- So can saloon/western showdown type music, especially for a rivalry boss battle
+- Having a boss that jumps/finds you can be great - player thinks theyre safe around the corner/in a hole or something, and boss jumps right to them/looks right at them in the hole before an attack. Probably a scream, too. If they jump, big shaking landing
+- Really fun to see an enemy fall off the ledge after you kill/shoot them. Even better if that's what actually kills them, and/or if they scream while they fall
+- For moving pillars that go back and forth like pistons that can push you off, good place to hide a secret in one of the holes they come out of where you can go behind it
+- Also for those same pistons, good to make them jump across them afterwards to get to the next part
+- Maybe for a secondary character, they have no ability/shooting but they can double jump? Would be a kind of speed clear character
+- (From Vinny's Doom wad stream on Mar 17 2024) Cool for a level to start (or end?) with going up a slow lift where you watch things out the outside, and serious music starts playing so you know to get ready for a fight. The lift goes to an open floor full of enemies and the fighting/dodging starts immediately
+	- Also fun to have unexpected levels, like a college courtyard, but full of unexpected enemies (aliens or zombies or something, etc) - could have cool powerups/minigames with the different rooms (ie big courtyard soccer, alchemy room, etc)
+- Cool to see explosive barrels, something starting it behind you, and you have to jump back and forth/outrun it while killing/dodging enemies as well (maybe it kills them, too?)
+- Fun to wait behind a doorway that you know an enemy is going to come through and kill/incapacitate them
+- Idea from FF7/IdleOn - dice roll (like Cait Sith) for an attack, VERY small chance to get a rare one-time unique item from it (like IdleOn)

@@ -1,0 +1,26 @@
+4x Space Game
+Abstract
+This is a design document for an unnamed 4X-like space game. “4X-like” specifies that the game will appear to be a 4X, and will have 4X features, but that the main goal of its design is not necessarily to make it a 4X game. The goal is to implement certain specific features and then add supporting features around that. The result may end up being a 4X game, or something very close to it.
+There are four parts to a 4X game – explore, expand, exploit, and exterminate. This document will not explain what these parts are, but only how this game will have features of each part.
+
+Gameplay
+General Design
+The player begins the game as a person of low status – a poor citizen, farmer, office employee, homeless person, etc. Part of their objective is to work their way up the social ladder. For instance, from farmer, to town leader, to government worker, to government sector leader, to government committee member, to vice president, to president. 
+Throughout the game, it is the player’s job to manage their resources so that they may progress. This is similar at all points in this game, but not exactly the same. At the beginning, they need to manage their food, energy, and money to stay alive and accomplish additional goals. At the end, they may need to manage armies, cities, population, food distribution, mining, and more.
+The player is given specific objectives to accomplish in order to guide them as they progress. Accomplishing these objectives will grant rewards, such as a sum of money. This can be explained, for instance, by government or company contracts, bounties, etc. These may either persist throughout the game or stop at a certain point when the player has gone through all game mechanics. These serve to give the player a short-term goal, in addition to the long-term goal.
+It is important that, even when the player is the head of a nation, they still have goals. With procedurally generated worlds, there should always be the possibility of additional conquest. Additional systems, each with their own planets, races, cultures, ecosystems, science and technology, cities, economies, government, and armies that act as a part of the whole should always be available for the player to explore and get value from.
+
+Explore
+The player’s goal 
+
+Expand
+
+
+Exploit
+
+
+Exterminate
+The player’s goal is to, one way or another, conquer other life, though that not necessarily need be through extermination. Alien animals and other sentient races with their own civilizations will exist, and the player will be able to interact with them. Ultimately, the goal is to rule over them, or at least form alliances, and defeat through battle, politics, or resources the ones who resist.
+
+Additional Features
+Multiplayer is not a critical feature of this game, but it could be an option.

@@ -1,0 +1,62 @@
+8 levels
+5 worlds
+
+bonus rounds aftrer completing 4 and 8?
+stars required to unlock worlds
+bonus rounds help with getting stars if cant complete levels
+something should happen when you get all 3 stars on everything
+new world unlock?
+
+only free mode?
+
+normal
+combos
+diff colors
+good + bad colors
+text displaying which color
+invisible grid (secret world?)
+powerups
+bonus rounds are clear it as fast as you can
+
+time req on everything
+1. intro level - slow + 1 color
+2. intro to points - same as above but faster + points req
+3. same as above but faster
+4. less points req but very fast
+4. intro to combos - slower + combo
+5. same as above but faster + bigger combo
+6. same as above but faster + bigger combo
+7. intro to more colors - med speed + 1 bad/1 good
+8. 1 bad/1 good + fast
+9. 2 bad/1 good + fast
+10. 
+
+world 1
+1. intro, slow + low points
+2. faster + more points
+3. intro to time req - same + more points
+4. same + faster + less time
+5. faster + more combo req
+6. same + intro to powerups + more combo since you have powerups now, powerups go slow
+7. same + less time and more combo req, faster powerups - this speed for rest of the game now
+8. everything together - points req, combo req, powerups, and gets real faster
+
+world 2
+1. intro to diff colors, 2 colors, avg speed
+2. 3 colors, avg speed
+3. 3 colors, speeds up, combo req
+4. bad colors intro, 2 good + 1 bad, avg speed
+5. 1 good + 1 bad, gets faster, combo req
+6. 2 good + 1 bad, gets faster, combo req
+7. text at top displays what color you are to click on, text + color dont always match, 1 rotating good + 1 bad
+8. text at top displays what color you are to click on, text + color dont always match, 1 rotating good + 1 bad, combo req, time req
+
+world 3
+1. intro to diff grids, normal game but with diff grid shape
+2. harder with more req
+3. 
+4.
+5.
+6.
+7.
+8.
