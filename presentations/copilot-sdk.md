@@ -14,9 +14,26 @@ The GitHub Copilot SDK is very newly released (this week!) and so is very topica
 
 Attendees will learn how and why to use the GitHub Copilot SDK, see the code for a custom agent using the SDK and see it in action, and how they could use it on their teams today.
 
+### 20-minute version
+
 Talk outline:
 - Why build custom agents? Limitations and benefits
 - GitHub Copilot SDK - what it is, SDK vs building from scratch
 - Demo of using the SDK to build a custom agent
 
-The lightning talk version of this session would just be a quicker over of the GitHub Copilot SDK with a short demo.
+The lightning talk version of this session would just be a quicker overview of the GitHub Copilot SDK with a short demo.
+
+### 60-minute version
+
+The 60-minute version keeps the same core structure and adds significant depth. Talk outline:
+- What is an agent? (deeper, with step-by-step reasoning examples and non-determinism)
+- GitHub Copilot SDK - what it is, architecture, auth options, BYOK
+- SDK vs. prompting - when to use which (with decision flowchart)
+- Tool design deep dive - naming, descriptions, rules of thumb, live contrast demo
+- Demo 1: Build a simple agent from scratch in ~10 minutes (live coding)
+- Testing AI agents - deterministic vs. non-deterministic, snapshot testing, hooks
+- Production gotchas - latency, cost, guardrails, CLI in prod, observability
+- Demo 2: Real-world MVP generator walkthrough (pre-built, shows scale)
+- Where the SDK fits in the landscape (vs. agent frameworks)
+
+Detailed outline: [copilot-sdk-60min-outline.md](copilot-sdk-60min-outline.md)
