@@ -13,22 +13,22 @@
 
 | Section | 20-min | 60-min | Notes |
 |---|---|---|---|
-| Slides 1–3: Title, bio, outline | ~1 min | ~2 min | Add 60-min outline slide |
-| Slide 4: What is the Copilot SDK? | ~1 min | ~1 min | Same |
-| Slides 5–8: What is an agent? | ~1.5 min | ~5 min | Expand significantly |
-| Slide 9: Why an agent in my app? | ~1 min | ~2 min | New: enterprise value props |
-| Slides 10–12: SDK details & features | ~2 min | ~4 min | Expand auth + BYOK |
-| Slides 13: Tool calling | ~1 min | ~1 min | Same (deep dive comes later) |
-| Slides 14–16: SDK vs. prompting | ~1.5 min | ~3 min | Add decision flowchart |
-| **NEW: Tool design deep dive** | — | ~4 min | New section |
-| Slide 17–18: Demo intro | ~0.5 min | ~1 min | |
+| Title, bio, outline | ~1 min | ~2 min | Add 60-min outline slide |
+| What is the Copilot SDK? (intro) | ~1 min | ~1 min | Same |
+| What is an agent? | ~1.5 min | ~5 min | Expand significantly |
+| Why an agent in my app? | ~1 min | ~2 min | New: enterprise value props |
+| SDK details & features | ~2 min | ~4 min | Expand auth + BYOK |
+| Tool calling | ~1 min | ~1 min | Same (deep dive comes later) |
+| SDK vs. prompting | ~1.5 min | ~3 min | Add decision flowchart |
+| **NEW: Tool design deep dive** | — | ~4 min | New section (slides 16–18) |
+| Demo intro | ~0.5 min | ~1 min | |
 | **Demo 1: Simple agent from scratch** | ~9 min | ~12 min | Restructured, three phases |
 | *Mid-talk pause* | — | ~2 min | Breathing room + quick Q&A |
-| **NEW: Testing agents** | — | ~5 min | New section |
-| **NEW: Production gotchas** | — | ~4 min | Expanded from 30-sec slide |
-| Slide 19: Demo 2 intro | — | ~1 min | |
+| **NEW: Testing agents** | — | ~5 min | New section (slides 20–23) |
+| **NEW: Production gotchas** | — | ~4 min | Expanded from 30-sec slide (slides 24–27) |
+| Demo 2 intro | — | ~1 min | |
 | **Demo 2: MVP generator (real-world)** | included above | ~8 min | Walkthrough, not live-coded |
-| Slides 20: Recap & close | ~1 min | ~2 min | Expanded |
+| Recap & close | ~1 min | ~2 min | Expanded (slides 29–32) |
 | Q&A | — | ~3 min | Buffer/audience questions |
 | **Total** | **~20 min** | **~60 min** | |
 
@@ -371,7 +371,7 @@ public List<Defect> GetOpenDefectsForComponent(string componentName) { ... }
 > This demo is a walkthrough of a pre-built app, not live-coded from scratch. The first demo proved you can build it fast. This one proves you can build something real.
 
 **Step 1: Show the architecture (~2 min)**
-- Walk through the three phases on Slide 19 (existing):
+- Walk through the three phases from the existing PowerPoint (the architecture slide with Planning → Generation → Verification):
   - Phase 1: Planning — locate idea file, generate slug, validate, create folder
   - Phase 2: Generation — generate implementation plan + spec files, loop over each spec, implement as code
   - Phase 3: Verification — verify user flows, generate README
