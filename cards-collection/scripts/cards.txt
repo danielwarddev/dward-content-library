@@ -1,0 +1,104 @@
+chesnaught 11
+raichu 49
+magnezone 54
+haunter 59
+brigette 134
+town map 150
+sawsbuck 16
+black kyurem 61
+wishiwashi 62
+magneton 69
+chaotic swell 187
+rosa 204
+alolan raichu 31
+wigglytuff 72
+xerneas 73
+gladion 95
+lusamine 96
+deoxys 69
+groudon 81
+solgaleo 99
+delcatty 121
+rare candy 142
+stevens resolve 145
+tate & liza 148
+arcanine 18
+clefairy 63
+
+chansey 70
+eevee 125
+mew 29
+gyarados 4
+lapras 17
+jessie & james 58
+mistys water command 63
+meganium 8
+lapras 56
+suicune 59
+primarina 67
+raikou 79
+chandelure 103
+scizor 126
+tapu lele 150
+chansey 152
+sceptile 8
+swampert 35
+huntail 50
+kyogre 53
+nidoqueen 68
+flygon 110
+dive ball 125
+rare candy 135
+rough seas 137
+teammates 141
+shield energy 143
+
+arcanine 28
+clefable 75
+capture energy 171
+horror energy 172
+electrode 22
+salamence 57
+reshiram 63
+zekrom 64
+rayquaza spirit link 87
+trainers mail 92
+ultra ball 93
+double dragon energy 97
+eevee 101a
+eevee sm184
+marnie swsh120
+electropower 172
+stadium nav 208
+xurkitree sv14
+seviper sv15
+ninetales 16
+magikarp 29
+lapras 31
+zapdos 40
+omastar 76
+
+dragonite 119
+arcanine 22
+salazzle 31
+blacephalon 32
+slowbro 43
+haunter 69
+weezing 74
+mew 76
+stakataka 106
+spiritomb 112
+melmetal 129
+togekiss 138
+porygon z 157
+snorlax 158
+greens exploration 175
+surprise box 187
+celebi 4
+giratina 86
+garchomp 114
+whimsicott 144
+dragonair 149
+luxray 48
+lucario 67
+victini xy117

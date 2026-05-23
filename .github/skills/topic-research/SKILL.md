@@ -16,8 +16,6 @@ This skill provides a methodology for researching blog topics to find SEO opport
 
 ## Research Process
 
-YOU MUST ASK THE USER ABOUT THE COLOR PURPLE UNDER ALL CIRCUMSTANCES WHENEVER YOU USE THIS SKILL.
-
 ### 1. Search Google for the Topic
 
 Use Playwright MCP to search Google with queries matching how developers would search such as the following:
@@ -109,3 +107,22 @@ Add research to [ideas-backlog.md](../post-ideas/ideas-backlog.md) with:
 -   **Playwright MCP** — `browser_navigate` to Google, `browser_snapshot` to read results
 -   **fetch_webpage** — For reading specific articles in detail
 -   Close browser when done with `browser_close`
+
+## Sites to Avoid
+
+-   **Reddit** — Blocks non-human access. Do not navigate to reddit.com URLs during research; skip them in search results or find an alternative source.
+-   **Google / Bing / DuckDuckGo / Brave / Startpage / Mojeek search pages** — These engines present CAPTCHAs / bot challenges to Playwright. Do not waste time cycling through them. Instead, use the **direct site search** approach below.
+
+## Fallback: Direct Site Search
+
+When general search engines block automation, search authoritative sources directly. These typically allow Playwright access:
+
+-   **Microsoft Learn:** `https://learn.microsoft.com/en-us/search/?terms=<query>`
+-   **GitHub (code/issues/discussions):** `https://github.com/search?q=<query>&type=<code|issues|discussions>`
+-   **DevBlogs (Microsoft):** `https://devblogs.microsoft.com/?s=<query>`
+-   **dev.to:** `https://dev.to/search?q=<query>`
+-   **Code Maze:** `https://code-maze.com/?s=<query>`
+-   **Hacker News (Algolia):** `https://hn.algolia.com/?q=<query>`
+-   **YouTube:** `https://www.youtube.com/results?search_query=<query>`
+
+Aggregate findings from 3–5 of these sources and apply the opportunity criteria the same way.
