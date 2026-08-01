@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Copilot Session Log Viewer</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg2: #161b22;
+    --bg3: #21262d;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --muted: #6e7681;
+    --blue: #58a6ff;
+    --green: #3fb950;
+    --purple: #bc8cff;
+    --orange: #ffa657;
+    --red: #f85149;
+    --yellow: #d29922;
+    --teal: #56d364;
+    --agent-bg: #1c2128;
+    --tool-bg: #161b22;
+    --llm-bg: #14191f;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  header {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  header h1 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .controls {
+    padding: 16px 20px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .upload-area {
+    border: 2px dashed var(--border);
+    border-radius: 8px;
+    padding: 20px 28px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    color: var(--muted);
+    font-size: 12px;
+    min-width: 180px;
+  }
+  .upload-area:hover, .upload-area.drag-over {
+    border-color: var(--blue);
+    background: rgba(88,166,255,0.05);
+    color: var(--blue);
+  }
+  .upload-area input { display: none; }
+
+  textarea {
+    flex: 1;
+    min-width: 280px;
+    min-height: 80px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    padding: 8px 10px;
+    font-family: 'Cascadia Code', 'Consolas', monospace;
+    font-size: 11px;
+    resize: vertical;
+  }
+
+  textarea:focus { outline: none; border-color: var(--blue); }
+
+  button {
+    background: var(--blue);
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    align-self: flex-start;
+  }
+  button:hover { background: #79c0ff; }
+  button.secondary {
+    background: var(--bg3);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  button.secondary:hover { background: var(--border); }
+
+  #output { padding: 16px 20px; }
+
+  .session-meta {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+  }
+
+  .meta-item { display: flex; flex-direction: column; gap: 2px; }
+  .meta-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .meta-value { font-size: 13px; font-family: 'Cascadia Code', monospace; color: var(--text); }
+
+  /* Session timeline */
+  .timeline { display: flex; flex-direction: column; gap: 4px; }
+
+  /* Turn block */
+  .turn-block {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .turn-header {
+    background: var(--bg2);
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+  }
+  .turn-header:hover { background: var(--bg3); }
+  .turn-header .turn-label { font-weight: 600; font-size: 11px; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; }
+  .turn-header .turn-time { font-size: 10px; color: var(--muted); font-family: monospace; }
+  .turn-header .turn-stats { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+  .turn-body { padding: 8px 0; }
+  .turn-body.collapsed { display: none; }
+
+  /* Event rows */
+  .event-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    padding: 2px 0;
+  }
+
+  /* Tree connector lines */
+  .tree-indent {
+    display: flex;
+    align-items: stretch;
+    flex-shrink: 0;
+  }
+
+  .tree-line {
+    width: 20px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    position: relative;
+  }
+  .tree-line::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+  .tree-line.last::before { bottom: 50%; }
+  .tree-line::after {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    width: 10px;
+    height: 1px;
+    background: var(--border);
+  }
+  .tree-line.no-branch::after { display: none; }
+  .tree-line.no-branch::before { display: block; }
+
+  .event-content {
+    flex: 1;
+    min-width: 0;
+    padding: 3px 10px 3px 0;
+  }
+
+  /* Node types */
+  .node {
+    border-radius: 5px;
+    padding: 4px 8px;
+    margin: 1px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    min-height: 28px;
+    cursor: default;
+  }
+
+  .node.clickable { cursor: pointer; }
+  .node.clickable:hover { filter: brightness(1.1); }
+
+  .node-icon { font-size: 14px; flex-shrink: 0; line-height: 1.4; }
+  .node-body { flex: 1; min-width: 0; }
+  .node-title { font-weight: 500; color: var(--text); }
+  .node-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .node-badges { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 3px; }
+
+  /* Node type color schemes */
+  .node-user { background: rgba(255,166,87,0.08); border-left: 3px solid var(--orange); }
+  .node-agent { background: rgba(88,166,255,0.08); border-left: 3px solid var(--blue); }
+  .node-message { background: rgba(188,140,255,0.06); border-left: 3px solid var(--purple); }
+  .node-usage { background: rgba(63,185,80,0.05); border-left: 3px solid var(--green); }
+  .node-tool { background: var(--bg3); border-left: 3px solid var(--border); }
+  .node-tool.is-task { background: rgba(88,166,255,0.06); border-left: 3px solid var(--blue); }
+  .node-tool.success { border-left-color: var(--green); }
+  .node-tool.failure { border-left-color: var(--red); }
+
+  /* Badges */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-family: 'Cascadia Code', monospace;
+    white-space: nowrap;
+  }
+  .badge-tokens { background: rgba(63,185,80,0.15); color: var(--green); }
+  .badge-duration { background: rgba(210,153,34,0.15); color: var(--yellow); }
+  .badge-tool { background: rgba(88,166,255,0.12); color: var(--blue); }
+  .badge-agent { background: rgba(188,140,255,0.15); color: var(--purple); }
+  .badge-success { background: rgba(63,185,80,0.12); color: var(--green); }
+  .badge-failure { background: rgba(248,81,73,0.12); color: var(--red); }
+  .badge-muted { background: rgba(110,118,129,0.15); color: var(--muted); }
+  .badge-initiator { background: rgba(255,166,87,0.12); color: var(--orange); }
+
+  /* Message content */
+  .msg-content {
+    font-size: 12px;
+    color: var(--text);
+    margin-top: 4px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 6px 8px;
+    max-height: 120px;
+    overflow-y: auto;
+  }
+  .msg-content.expanded { max-height: none; }
+
+  .expand-msg {
+    font-size: 10px;
+    color: var(--blue);
+    cursor: pointer;
+    margin-top: 2px;
+    display: inline-block;
+  }
+  .expand-msg:hover { text-decoration: underline; }
+
+  /* Tool args */
+  .tool-args {
+    font-family: 'Cascadia Code', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 500px;
+  }
+
+  .tool-result {
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 4px 8px;
+    margin-top: 4px;
+    max-height: 80px;
+    overflow-y: auto;
+    font-family: 'Cascadia Code', monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  /* Collapsible subagent block */
+  .subagent-block {
+    margin: 2px 0;
+    border: 1px solid var(--blue);
+    border-radius: 6px;
+    overflow: hidden;
+    opacity: 0.95;
+  }
+
+  .subagent-header {
+    background: rgba(88,166,255,0.1);
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .subagent-header:hover { background: rgba(88,166,255,0.18); }
+  .subagent-header .sa-name { font-weight: 600; color: var(--blue); font-size: 12px; }
+  .subagent-header .sa-meta { margin-left: auto; display: flex; gap: 6px; align-items: center; }
+
+  .subagent-body { padding: 4px 0; }
+  .subagent-body.collapsed { display: none; }
+
+  .chevron {
+    transition: transform 0.15s;
+    color: var(--muted);
+    font-style: normal;
+    display: inline-block;
+    font-size: 10px;
+  }
+  .chevron.open { transform: rotate(90deg); }
+
+  /* Misc standalone events */
+  .event-simple {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+  .event-simple .ts { font-family: monospace; font-size: 10px; }
+
+  /* Reasoning block */
+  .reasoning-block {
+    font-size: 11px;
+    color: var(--muted);
+    font-style: italic;
+    background: rgba(188,140,255,0.04);
+    border: 1px solid rgba(188,140,255,0.15);
+    border-radius: 4px;
+    padding: 4px 8px;
+    margin-top: 4px;
+    max-height: 60px;
+    overflow-y: auto;
+  }
+
+  /* Token summary bar */
+  .token-bar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-family: 'Cascadia Code', monospace;
+  }
+  .token-in { color: var(--blue); }
+  .token-out { color: var(--green); }
+  .token-cache { color: var(--muted); }
+  .token-sep { color: var(--border); }
+
+  /* Empty state */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+  }
+  .empty-state .icon { font-size: 40px; margin-bottom: 12px; }
+  .empty-state p { font-size: 14px; margin-bottom: 8px; }
+  .empty-state small { font-size: 12px; }
+
+  /* Error state */
+  .parse-error {
+    background: rgba(248,81,73,0.1);
+    border: 1px solid var(--red);
+    border-radius: 6px;
+    padding: 10px 14px;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🔭 Copilot Session Viewer</h1>
+  <span style="color:var(--muted);font-size:11px;">Visualizes Copilot session event logs with subagent call trees</span>
+</header>
+
+<div class="controls">
+  <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+    <div style="font-size:22px;margin-bottom:6px;">📁</div>
+    <div>Drop log file here</div>
+    <div>or click to browse</div>
+    <input type="file" id="fileInput" accept=".txt,.log">
+  </div>
+  <textarea id="logInput" placeholder="Or paste log content here…"></textarea>
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <button onclick="parseAndRender()">▶ Parse &amp; Visualize</button>
+    <button class="secondary" onclick="clearAll()">✕ Clear</button>
+    <button class="secondary" onclick="loadSample()">📋 Load from log.txt</button>
+  </div>
+</div>
+
+<div id="output">
+  <div class="empty-state">
+    <div class="icon">🧵</div>
+    <p>No session loaded</p>
+    <small>Upload a Copilot log file or paste its contents above, then click <strong>Parse &amp; Visualize</strong></small>
+  </div>
+</div>
+
+<script>
+// ─── Log Line Parsers ────────────────────────────────────────────────────────
+
+const EVENT_REGEX = /^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}) ([+-]\d{2}:\d{2}) \[(\w+)\] \[COPILOT\]\[([^\]]+)\] (.+)$/;
+const ID_DATA_REGEX = /^id="([^"]+)"(?:, data=(.+))?$/;
+const HOOK_REGEX = /^session=(\S+) tool=(\S+) args=(.+)$/;
+
+function tryParseJson(str) {
+  if (!str) return {};
+  try { return JSON.parse(str); } catch { return { _raw: str }; }
+}
+
+function parseLogLine(line) {
+  const m = line.match(EVENT_REGEX);
+  if (!m) return null;
+  const [, date, tz, level, eventType, rest] = m;
+  const timestamp = date + ' ' + tz;
+
+  if (eventType.includes('hook')) {
+    const hm = rest.match(HOOK_REGEX);
+    if (hm) return {
+      timestamp, level, type: eventType,
+      id: null,
+      data: { session: hm[1], tool: hm[2], args: tryParseJson(hm[3]) }
+    };
+    return null;
+  }
+
+  const idm = rest.match(ID_DATA_REGEX);
+  if (idm) return {
+    timestamp, level, type: eventType,
+    id: idm[1],
+    data: idm[2] ? tryParseJson(idm[2]) : {}
+  };
+
+  return null;
+}
+
+function parseLog(text) {
+  return text.split('\n')
+    .map(l => l.trim())
+    .filter(Boolean)
+    .map(parseLogLine)
+    .filter(Boolean);
+}
+
+// ─── Tree Building ───────────────────────────────────────────────────────────
+
+function buildSession(events) {
+  // Index tool calls by toolCallId
+  const toolStarts = new Map();  // toolCallId → event
+  const toolCompletes = new Map();
+  const subagentStarted = new Map();  // toolCallId → event
+  const subagentCompleted = new Map();
+
+  for (const e of events) {
+    if (e.type === 'tool.execution_start') toolStarts.set(e.data.toolCallId, e);
+    if (e.type === 'tool.execution_complete') toolCompletes.set(e.data.toolCallId, e);
+    if (e.type === 'subagent.started') subagentStarted.set(e.data.toolCallId, e);
+    if (e.type === 'subagent.completed') subagentCompleted.set(e.data.toolCallId, e);
+  }
+
+  // Build enriched tool call nodes
+  const toolNodes = new Map(); // toolCallId → node
+  for (const [id, startEvt] of toolStarts) {
+    toolNodes.set(id, {
+      id,
+      startEvt,
+      completeEvt: toolCompletes.get(id) || null,
+      subagentStart: subagentStarted.get(id) || null,
+      subagentEnd: subagentCompleted.get(id) || null,
+      parentToolCallId: startEvt.data.parentToolCallId || null,
+      children: [],        // nested tool calls
+      usageEvents: [],     // assistant.usage with this parentToolCallId
+      messageEvents: [],   // assistant.message with this parentToolCallId
+    });
+  }
+
+  // Collect usage/message events per parent
+  for (const e of events) {
+    const pid = e.data?.parentToolCallId;
+    if (!pid) continue;
+    const node = toolNodes.get(pid);
+    if (!node) continue;
+    if (e.type === 'assistant.usage') node.usageEvents.push(e);
+    if (e.type === 'assistant.message') node.messageEvents.push(e);
+  }
+
+  // Sort children by timestamp
+  const sortByTime = arr => arr.sort((a, b) => a.startEvt.timestamp.localeCompare(b.startEvt.timestamp));
+
+  // Build hierarchy: attach children tools to their parent
+  const roots = [];
+  for (const [id, node] of toolNodes) {
+    const pid = node.parentToolCallId;
+    if (pid && toolNodes.has(pid)) {
+      toolNodes.get(pid).children.push(node);
+    } else {
+      roots.push(node);
+    }
+  }
+
+  // Sort children
+  for (const node of toolNodes.values()) sortByTime(node.children);
+
+  // Top-level session events (not inside any tool call)
+  const topLevel = events.filter(e => {
+    const pid = e.data?.parentToolCallId;
+    return !pid || !toolNodes.has(pid);
+  });
+
+  return { events, topLevel, toolNodes, roots };
+}
+
+// ─── Rendering Helpers ───────────────────────────────────────────────────────
+
+let _expandedState = {};
+function toggleId(id) {
+  _expandedState[id] = !(_expandedState[id] ?? true);
+  const body = document.getElementById('body_' + id);
+  const icon = document.getElementById('icon_' + id);
+  if (body) body.className = body.className.replace(/\bcollapsed\b/, '') + (_expandedState[id] === false ? ' collapsed' : '');
+  if (icon) icon.className = 'chevron' + (_expandedState[id] === false ? '' : ' open');
+}
+
+function escHtml(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function fmtTime(ts) {
+  const m = ts?.match(/(\d{2}:\d{2}:\d{2})/);
+  return m ? m[1] : ts || '';
+}
+
+function fmtDuration(ms) {
+  if (ms == null) return '';
+  if (ms < 1000) return ms + 'ms';
+  return (ms / 1000).toFixed(1) + 's';
+}
+
+function fmtNum(n) {
+  if (n == null) return '–';
+  return Number(n).toLocaleString();
+}
+
+function badge(cls, text) {
+  return `<span class="badge ${cls}">${escHtml(text)}</span>`;
+}
+
+function tokenBadge(usage) {
+  if (!usage || (usage.inputTokens == null && usage.outputTokens == null)) return '';
+  const inp = fmtNum(usage.inputTokens);
+  const out = fmtNum(usage.outputTokens);
+  const cache = usage.cacheReadTokens ? ` ${fmtNum(usage.cacheReadTokens)} cached` : '';
+  return badge('badge-tokens', `↑${inp} ↓${out}${cache}`);
+}
+
+function durationBadge(ms) {
+  return ms != null ? badge('badge-duration', fmtDuration(ms)) : '';
+}
+
+function initiatorBadge(initiator) {
+  if (!initiator) return '';
+  const labels = { 'user': '👤 user', 'agent': '🤖 agent', 'sub-agent': '🔄 sub-agent' };
+  return badge('badge-initiator', labels[initiator] || initiator);
+}
+
+function truncate(s, max = 80) {
+  if (!s) return '';
+  s = String(s);
+  return s.length > max ? s.slice(0, max) + '…' : s;
+}
+
+function argsPreview(args) {
+  if (!args) return '';
+  if (typeof args === 'string') return truncate(args);
+  const keys = Object.keys(args);
+  if (keys.length === 0) return '{}';
+  const parts = keys.slice(0, 3).map(k => {
+    const v = args[k];
+    const vs = typeof v === 'string' ? `"${truncate(v, 40)}"` : truncate(JSON.stringify(v), 40);
+    return `${k}: ${vs}`;
+  });
+  return '{' + parts.join(', ') + (keys.length > 3 ? ', …' : '') + '}';
+}
+
+function toolEmoji(name) {
+  if (!name) return '🔧';
+  if (name === 'task') return '🤖';
+  if (name.startsWith('playwright-browser_navigate')) return '🌐';
+  if (name.startsWith('playwright-browser_take_screenshot') || name.startsWith('playwright-browser_screenshot')) return '📷';
+  if (name.startsWith('playwright-browser_snapshot')) return '📸';
+  if (name.startsWith('playwright-browser_click')) return '🖱️';
+  if (name.startsWith('playwright-browser_type')) return '⌨️';
+  if (name.startsWith('playwright-browser')) return '🎭';
+  if (name === 'report_intent') return '📋';
+  if (name.includes('file') || name.includes('read') || name.includes('write')) return '📄';
+  if (name.includes('shell') || name.includes('bash') || name.includes('command')) return '💻';
+  if (name.includes('search') || name.includes('grep')) return '🔍';
+  return '🔧';
+}
+
+// ─── Node Renderers ──────────────────────────────────────────────────────────
+
+function renderToolNode(node, depth = 0) {
+  const { startEvt, completeEvt, subagentStart, children, usageEvents, messageEvents } = node;
+  const toolName = startEvt.data.toolName;
+  const args = startEvt.data.arguments;
+  const isTask = toolName === 'task';
+  const agentName = subagentStart?.data?.agentDisplayName;
+  const success = completeEvt?.data?.success;
+  const isSubagent = !!subagentStart;
+
+  const uid = 'tool_' + node.id;
+  _expandedState[uid] = _expandedState[uid] ?? (isTask && isSubagent);
+
+  const bOpen = _expandedState[uid];
+  const hasChildren = children.length > 0 || usageEvents.length > 0 || messageEvents.length > 0;
+
+  // Duration from start to complete
+  let durationMs = null;
+  if (completeEvt) {
+    const t1 = new Date(startEvt.timestamp).getTime();
+    const t2 = new Date(completeEvt.timestamp).getTime();
+    if (!isNaN(t1) && !isNaN(t2)) durationMs = t2 - t1;
+  }
+
+  // Collect total tokens for subagent
+  let totalIn = 0, totalOut = 0;
+  for (const u of usageEvents) {
+    totalIn += u.data.inputTokens || 0;
+    totalOut += u.data.outputTokens || 0;
+  }
+  function sumTokens(n) {
+    for (const u of n.usageEvents) { totalIn += u.data.inputTokens || 0; totalOut += u.data.outputTokens || 0; }
+    for (const c of n.children) sumTokens(c);
+  }
+  for (const c of children) sumTokens(c);
+
+  const nodeClass = isTask && isSubagent ? 'node-tool is-task' : `node-tool${success === true ? ' success' : success === false ? ' failure' : ''}`;
+
+  // Subagent or plain tool
+  if (isTask && isSubagent) {
+    // Render as a collapsible subagent block
+    const innerHtml = `
+      <div class="subagent-block">
+        <div class="subagent-header" onclick="toggleId('${uid}')">
+          <i class="chevron ${bOpen ? 'open' : ''}" id="icon_${uid}">▶</i>
+          <span style="font-size:16px">🤖</span>
+          <span class="sa-name">${escHtml(agentName || 'subagent')}</span>
+          <span style="color:var(--muted);font-size:11px">via task tool</span>
+          <div class="sa-meta">
+            ${durationMs != null ? badge('badge-duration', fmtDuration(durationMs)) : ''}
+            ${totalIn > 0 ? badge('badge-tokens', `↑${fmtNum(totalIn)} ↓${fmtNum(totalOut)}`) : ''}
+            ${badge('badge-muted', fmtTime(startEvt.timestamp))}
+          </div>
+        </div>
+        <div class="subagent-body ${bOpen ? '' : 'collapsed'}" id="body_${uid}">
+          ${renderSubagentContents(node)}
+        </div>
+      </div>`;
+    return innerHtml;
+  }
+
+  // Plain tool call
+  const resultContent = completeEvt?.data?.result?.content;
+  const resultTruncated = resultContent ? truncate(resultContent, 200) : null;
+
+  return `
+    <div class="node ${nodeClass}" style="flex-direction:column">
+      <div style="display:flex;align-items:center;gap:6px;width:100%" ${hasChildren ? `onclick="toggleId('${uid}')" style="cursor:pointer;display:flex;align-items:center;gap:6px;width:100%"` : ''}>
+        ${hasChildren ? `<i class="chevron ${bOpen ? 'open' : ''}" id="icon_${uid}">▶</i>` : '<span style="width:14px"></span>'}
+        <span class="node-icon">${toolEmoji(toolName)}</span>
+        <div class="node-body" style="flex:1;min-width:0">
+          <span class="node-title">${escHtml(toolName)}</span>
+          <span class="tool-args" style="margin-left:6px">${escHtml(argsPreview(args))}</span>
+        </div>
+        <div class="node-badges">
+          ${success === true ? badge('badge-success', '✓') : success === false ? badge('badge-failure', '✗') : ''}
+          ${durationMs != null ? badge('badge-duration', fmtDuration(durationMs)) : ''}
+          ${badge('badge-muted', fmtTime(startEvt.timestamp))}
+        </div>
+      </div>
+      ${resultTruncated && !isTask ? `<div class="tool-result">${escHtml(resultTruncated)}</div>` : ''}
+      ${hasChildren ? `<div class="${bOpen ? '' : 'collapsed'}" id="body_${uid}" style="padding-left:20px;margin-top:4px">${renderSubagentContents(node)}</div>` : ''}
+    </div>`;
+}
+
+function renderSubagentContents(node) {
+  // Interleave usage + messages + children by timestamp
+  const items = [];
+
+  for (const u of node.usageEvents) {
+    items.push({ ts: u.timestamp, type: 'usage', data: u });
+  }
+  for (const m of node.messageEvents) {
+    items.push({ ts: m.timestamp, type: 'message', data: m });
+  }
+  for (const c of node.children) {
+    items.push({ ts: c.startEvt.timestamp, type: 'tool', data: c });
+  }
+
+  items.sort((a, b) => a.ts.localeCompare(b.ts));
+
+  let html = '';
+  for (const item of items) {
+    if (item.type === 'usage') {
+      html += renderUsageNode(item.data);
+    } else if (item.type === 'message') {
+      html += renderMessageNode(item.data);
+    } else {
+      html += `<div style="margin:2px 0">${renderToolNode(item.data)}</div>`;
+    }
+  }
+  return html;
+}
+
+function renderUsageNode(evt) {
+  const d = evt.data;
+  return `
+    <div class="node node-usage">
+      <span class="node-icon">📊</span>
+      <div class="node-body">
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+          <span class="node-title" style="font-size:12px">LLM Call</span>
+          ${badge('badge-muted', d.model || '')}
+          ${initiatorBadge(d.initiator)}
+        </div>
+        <div class="node-badges" style="margin-top:4px">
+          ${tokenBadge(d)}
+          ${durationBadge(d.duration)}
+          ${badge('badge-muted', fmtTime(evt.timestamp))}
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderMessageNode(evt) {
+  const d = evt.data;
+  const uid = 'msg_' + evt.id;
+  const content = d.content || '';
+  const reasoning = d.reasoningText || '';
+  const toolReqs = d.toolRequests || [];
+  const short = truncate(content, 180);
+  const needsExpand = content.length > 180;
+
+  _expandedState[uid] = _expandedState[uid] ?? false;
+
+  return `
+    <div class="node node-message" style="flex-direction:column">
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="node-icon">💬</span>
+        <span class="node-title" style="font-size:12px">Assistant Message</span>
+        ${toolReqs.length > 0 ? badge('badge-muted', `${toolReqs.length} tool req${toolReqs.length>1?'s':''}`) : ''}
+        <span style="margin-left:auto">${badge('badge-muted', fmtTime(evt.timestamp))}</span>
+      </div>
+      ${content ? `
+        <div class="msg-content" id="${uid}_content" onclick="expandMsg('${uid}')">${escHtml(short)}</div>
+        ${needsExpand ? `<span class="expand-msg" id="${uid}_exp" onclick="expandMsg('${uid}')">Show more</span>` : ''}
+      ` : ''}
+      ${reasoning ? `<div class="reasoning-block">💭 ${escHtml(truncate(reasoning, 200))}</div>` : ''}
+      ${toolReqs.length > 0 ? `
+        <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px">
+          ${toolReqs.map(r => `<span class="badge badge-tool">${toolEmoji(r.name)} ${escHtml(r.name)}</span>`).join('')}
+        </div>` : ''}
+    </div>`;
+}
+
+function expandMsg(uid) {
+  const el = document.getElementById(uid + '_content');
+  const exp = document.getElementById(uid + '_exp');
+  if (!el) return;
+  if (el.classList.contains('expanded')) {
+    el.classList.remove('expanded');
+    if (exp) exp.textContent = 'Show more';
+  } else {
+    const evt = _msgFullContent[uid];
+    if (evt) el.textContent = evt;
+    el.classList.add('expanded');
+    if (exp) exp.textContent = 'Show less';
+  }
+}
+const _msgFullContent = {};
+
+// ─── Main Render ─────────────────────────────────────────────────────────────
+
+function renderSession(events) {
+  const session = buildSession(events);
+  let html = '';
+
+  // Basic session stats
+  const usageAll = events.filter(e => e.type === 'assistant.usage');
+  const totalIn = usageAll.reduce((s, e) => s + (e.data.inputTokens || 0), 0);
+  const totalOut = usageAll.reduce((s, e) => s + (e.data.outputTokens || 0), 0);
+  const totalDuration = usageAll.reduce((s, e) => s + (e.data.duration || 0), 0);
+  const selectedAgent = events.find(e => e.type === 'subagent.selected')?.data?.agentDisplayName || 'Unknown';
+  const model = usageAll[0]?.data?.model || 'Unknown';
+  const firstTs = events[0]?.timestamp || '';
+  const lastTs = events[events.length - 1]?.timestamp || '';
+  const toolNames = [...new Set(events.filter(e => e.type === 'tool.execution_start').map(e => e.data.toolName))];
+
+  html += `
+    <div class="session-meta">
+      <div class="meta-item"><div class="meta-label">Root Agent</div><div class="meta-value">🤖 ${escHtml(selectedAgent)}</div></div>
+      <div class="meta-item"><div class="meta-label">Model</div><div class="meta-value">${escHtml(model)}</div></div>
+      <div class="meta-item"><div class="meta-label">LLM Calls</div><div class="meta-value">${usageAll.length}</div></div>
+      <div class="meta-item"><div class="meta-label">Total Tokens</div><div class="meta-value">↑${fmtNum(totalIn)} ↓${fmtNum(totalOut)}</div></div>
+      <div class="meta-item"><div class="meta-label">Total LLM Time</div><div class="meta-value">${fmtDuration(totalDuration)}</div></div>
+      <div class="meta-item"><div class="meta-label">Events Parsed</div><div class="meta-value">${events.length}</div></div>
+      <div class="meta-item"><div class="meta-label">Tools Used</div><div class="meta-value" style="font-size:11px">${toolNames.slice(0,5).map(escHtml).join(', ')}${toolNames.length > 5 ? ` +${toolNames.length-5}` : ''}</div></div>
+      <div class="meta-item"><div class="meta-label">Session Time</div><div class="meta-value" style="font-size:11px">${fmtTime(firstTs)} – ${fmtTime(lastTs)}</div></div>
+    </div>`;
+
+  html += `<div class="timeline">`;
+
+  // Walk top-level events, grouping into turns
+  const turns = groupIntoTurns(events, session);
+
+  for (const item of turns) {
+    if (item.type === 'user') {
+      const d = item.event.data;
+      const uid = 'umsg_' + item.event.id;
+      _msgFullContent[uid] = d.content;
+      html += `
+        <div class="node node-user" style="margin-bottom:6px">
+          <span class="node-icon">👤</span>
+          <div class="node-body">
+            <div style="display:flex;align-items:center;gap:6px">
+              <span class="node-title">User Message</span>
+              ${badge('badge-muted', fmtTime(item.event.timestamp))}
+            </div>
+            <div class="msg-content" id="${uid}_content" onclick="expandMsg('${uid}')">${escHtml(truncate(d.content, 200))}</div>
+            ${d.content.length > 200 ? `<span class="expand-msg" id="${uid}_exp" onclick="expandMsg('${uid}')">Show more</span>` : ''}
+          </div>
+        </div>`;
+    } else if (item.type === 'agent') {
+      html += `
+        <div class="event-simple">
+          <span>🤖</span>
+          <span>Agent selected:</span>
+          <strong style="color:var(--blue)">${escHtml(item.event.data.agentDisplayName)}</strong>
+          <span class="ts">${fmtTime(item.event.timestamp)}</span>
+        </div>`;
+    } else if (item.type === 'turn') {
+      html += renderTurn(item);
+    }
+  }
+
+  html += `</div>`;
+  return html;
+}
+
+function groupIntoTurns(events, session) {
+  const items = [];
+  let currentTurn = null;
+
+  for (const e of events) {
+    if (e.type === 'subagent.selected') {
+      items.push({ type: 'agent', event: e });
+    } else if (e.type === 'user.message') {
+      items.push({ type: 'user', event: e });
+    } else if (e.type === 'assistant.turn_start') {
+      currentTurn = {
+        type: 'turn',
+        id: e.data?.turnId,
+        startEvt: e,
+        endEvt: null,
+        events: [],
+        topToolNodes: [],
+      };
+      items.push(currentTurn);
+    } else if (e.type === 'assistant.turn_end') {
+      if (currentTurn) currentTurn.endEvt = e;
+      currentTurn = null;
+    } else if (currentTurn) {
+      currentTurn.events.push(e);
+    }
+  }
+
+  // Attach top-level tool nodes to turns
+  for (const tr of items.filter(i => i.type === 'turn')) {
+    const startTime = tr.startEvt.timestamp;
+    const endTime = tr.endEvt?.timestamp || '9999';
+    tr.topToolNodes = [...session.roots].filter(n => {
+      return n.startEvt.timestamp >= startTime && n.startEvt.timestamp <= endTime;
+    });
+  }
+
+  return items;
+}
+
+function renderTurn(turnItem) {
+  const uid = 'turn_' + turnItem.id;
+  _expandedState[uid] = _expandedState[uid] ?? true;
+  const open = _expandedState[uid];
+
+  const turnEvents = turnItem.events;
+  const usageEvts = turnEvents.filter(e => e.type === 'assistant.usage' && !e.data.parentToolCallId);
+  const msgEvts = turnEvents.filter(e => e.type === 'assistant.message' && !e.data.parentToolCallId);
+
+  let turnTotalIn = 0, turnTotalOut = 0, turnDuration = 0;
+  // Include all usage in tree for this turn
+  const allTurnUsage = turnEvents.filter(e => e.type === 'assistant.usage');
+  for (const u of allTurnUsage) {
+    turnTotalIn += u.data.inputTokens || 0;
+    turnTotalOut += u.data.outputTokens || 0;
+    turnDuration += u.data.duration || 0;
+  }
+
+  const startTime = fmtTime(turnItem.startEvt.timestamp);
+
+  // Interleave turn-level events by timestamp
+  const turnItems = [];
+  for (const u of usageEvts) turnItems.push({ ts: u.timestamp, type: 'usage', data: u });
+  for (const m of msgEvts) turnItems.push({ ts: m.timestamp, type: 'message', data: m });
+  for (const n of turnItem.topToolNodes) turnItems.push({ ts: n.startEvt.timestamp, type: 'tool', data: n });
+  turnItems.sort((a, b) => a.ts.localeCompare(b.ts));
+
+  return `
+    <div class="turn-block" style="margin-bottom:6px">
+      <div class="turn-header" onclick="toggleId('${uid}')">
+        <i class="chevron ${open ? 'open' : ''}" id="icon_${uid}">▶</i>
+        <span class="turn-label">Turn ${escHtml(String(turnItem.id))}</span>
+        <span class="turn-time">${startTime}</span>
+        <div class="turn-stats">
+          ${badge('badge-tokens', `↑${fmtNum(turnTotalIn)} ↓${fmtNum(turnTotalOut)}`)}
+          ${badge('badge-duration', fmtDuration(turnDuration))}
+          ${badge('badge-muted', `${allTurnUsage.length} LLM call${allTurnUsage.length!=1?'s':''}`)}
+        </div>
+      </div>
+      <div class="turn-body ${open ? '' : 'collapsed'}" id="body_${uid}">
+        ${turnItems.map(item => {
+          if (item.type === 'usage') return renderUsageNode(item.data);
+          if (item.type === 'message') {
+            if (item.data?.data?.messageId) _msgFullContent['msg_' + item.data.id] = item.data.data.content;
+            return renderMessageNode(item.data);
+          }
+          if (item.type === 'tool') return `<div style="padding:2px 8px">${renderToolNode(item.data)}</div>`;
+          return '';
+        }).join('')}
+      </div>
+    </div>`;
+}
+
+// ─── Entry Points ─────────────────────────────────────────────────────────────
+
+function parseAndRender(text) {
+  _expandedState = {};
+  const src = text || document.getElementById('logInput').value || '';
+  if (!src.trim()) {
+    showError('No log content to parse. Paste log text or upload a file.');
+    return;
+  }
+
+  const events = parseLog(src);
+  if (events.length === 0) {
+    showError('No recognizable Copilot log events found. Make sure the log is in the Serilog format written by CopilotLogging.cs.');
+    return;
+  }
+
+  document.getElementById('output').innerHTML = renderSession(events);
+}
+
+function showError(msg) {
+  document.getElementById('output').innerHTML = `<div class="parse-error">⚠️ ${escHtml(msg)}</div>`;
+}
+
+function clearAll() {
+  document.getElementById('logInput').value = '';
+  _expandedState = {};
+  document.getElementById('output').innerHTML = `
+    <div class="empty-state">
+      <div class="icon">🧵</div>
+      <p>No session loaded</p>
+      <small>Upload a Copilot log file or paste its contents above</small>
+    </div>`;
+}
+
+async function loadSample() {
+  try {
+    const r = await fetch('log.txt');
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const text = await r.text();
+    document.getElementById('logInput').value = text;
+    parseAndRender(text);
+  } catch (err) {
+    showError(`Could not load log.txt: ${err.message}. Open this viewer from a local server, or paste the log contents directly.`);
+  }
+}
+
+// ─── File Upload ──────────────────────────────────────────────────────────────
+
+const fileInput = document.getElementById('fileInput');
+const uploadArea = document.getElementById('uploadArea');
+
+fileInput.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const text = ev.target.result;
+    document.getElementById('logInput').value = text;
+    parseAndRender(text);
+  };
+  reader.readAsText(file);
+});
+
+uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.classList.add('drag-over'); });
+uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('drag-over'));
+uploadArea.addEventListener('drop', e => {
+  e.preventDefault();
+  uploadArea.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const text = ev.target.result;
+    document.getElementById('logInput').value = text;
+    parseAndRender(text);
+  };
+  reader.readAsText(file);
+});
+</script>
+</body>
+</html>

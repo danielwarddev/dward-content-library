@@ -1,0 +1,63 @@
+# NOTES
+
+- i like having the little "alerts' throughout the book with recognizable icons for diff purposes - eg one for case studies. risk is people sometimes just skip over these and dont even see them
+- probably DONT have a consistent project, just code snippets
+
+# BEFORE COPILOT FEATURES - PHILOSOPHY STUFF
+- not doing fancy autocomplete vs also not doing have it do everything for you
+- bring up studies done, especially by microsoft themselves - skill atrophy, less critical thinking less secure code BUT thought it was more, etc
+- should work how you already do - small batches, verify output each time
+- getting 0x models to work better
+- this book will be opinionated - not much data/studies around how models behave, prompt techniques, non-deterministic anyway, how i think you should use them is an opinion
+- examples of how it can also hurt? maybe real life examples or code snippet examples
+- if you ever get to the point where you dont know how a codebase you own works, thats a problem. copilot doesnt get pinged at 2am, you do. when a defect loses $2m, copilot doesnt get fired, you do
+- reasons people might be hesitant to use it - seen it perform badly, just use it as fancy autocomplete and barely notice it, give it huge tasks in one go and see it fail
+
+# TERMS
+
+- do these get their own chapters? index at the end?
+- vibe coding, semantic diffusion
+- prompt engineering, context engineering
+
+# WHAT IS AI
+
+- VERY brief what is ai? from my presentation - tokens, attention block, etc
+i hav
+
+# WHEN/HOW/WHY TO USE AI
+
+- rumsfeld model for ai usage
+
+# HOW COPILOT WORKS
+
+- github proxy server
+- copilot plans
+
+# COPILOT FEATURES
+
+- slash commands
+- modes: ask, plan, agent (all of these are actually agents which is a bit confusing)
+- local, cloud, cli tasks
+- copilot coding agent and copilot on github.com (different section?)
+- chat participants
+- tool use
+- adding context
+- reasoning
+- system prompt
+- chat debug view
+- agent view
+- mcp servers
+- agent skills
+- custom prompts
+- custom agents
+- models, choosing a model, auto mode
+
+# AI WITH TESTS
+
+- ai with testing - tests as guardrails, tdd, etc
+
+# OUT OF SCOPE
+
+- copilot enterprise management - this should be for devs using as a dev tool
+- chapter on sdk? deploying ai apps to production? might be out of scope
+- chapter on cli - or, examples for both in EACH section
