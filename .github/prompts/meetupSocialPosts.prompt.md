@@ -12,7 +12,7 @@ Generate social media posts for upcoming San Antonio/Austin .NET User Group meet
 
 ### Step 1: Get the Meetup Link
 
-If the user did not provide a Meetup link, ask for it and **stop immediately**. Do not proceed until the link is provided.
+If the user did not provide a Meetup link, ask for it with #askQuestions and **stop immediately**. Do not proceed until the link is provided.
 
 ### Step 2: Scrape Meetup Details
 

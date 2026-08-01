@@ -362,3 +362,23 @@ Key highlights from Microsoft docs:
 | **OpenAPI 3.1 Migration**          | Medium      | High         | Swashbuckle → Native migration, testing |
 | **.NET 10 Testing Features**       | Low         | High         | Microsoft.Testing.Platform, C# 14       |
 | **OpenTelemetry + Aspire Testing** | Medium      | Medium       | Verifying instrumentation in tests      |
+
+
+---
+
+### Testing Semantic Kernel Agents C# (Apr 2026)
+
+**Search:** `how to test semantic kernel agents c#` (general engines blocked Playwright; used direct site search per skill fallback)
+
+| Source                                              | Type        | Date / Status      | Notes                                                                              |
+| --------------------------------------------------- | ----------- | ------------------ | ---------------------------------------------------------------------------------- |
+| MS Learn — Semantic Kernel Agent Framework          | Official    | Live page          | Zero mentions of `test`, `mock`, or `unit` on the agent framework docs page |
+| dev.to                                              | Independent | **0 results**      | No articles match `semantic kernel agent test`                                   |
+| Code Maze                                           | Independent | **0 posts**        | `Sorry, No Posts Found` for `semantic kernel agent`                            |
+| Hacker News (Algolia)                               | Forum       | **0 results**      | No discussions on agent testing                                                    |
+| GitHub Repositories                                 | Code        | **12 repos total** | None testing-focused; mostly demos (Multi-Agent-App-Factory, OllamaAgent, etc.)    |
+| GitHub Code search                                  | Code        | Login-walled       | Could not verify count                                                             |
+
+**Verdict:** ✅ **HIGH OPPORTUNITY** — Builds directly on the existing `Semantic Kernel Unit Testing C#` win. The agent framework is newer than the older SK content already flagged, and there is essentially zero independent testing content for SK **Agents** specifically. Official docs cover `how to build` agents but not how to test them.
+
+**Recommended angle:** Testing-first — "How to Unit Test Semantic Kernel Agents in C#" with a follow-up on mocking `IChatCompletionService` / agent kernel functions. Possible 2-part series: (1) unit-testing a single agent's plugin behavior, (2) integration-testing multi-agent orchestration.

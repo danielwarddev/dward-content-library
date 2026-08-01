@@ -1,3 +1,13 @@
+# My notes
+
+- Use context7 + maybe jira?
+- Superwhisper?
+- Maybe just demo jira/trello - needs api key to set up, too much trouble
+- also github mcp server
+- frontend-design skill? plugins?
+- github mcp, fork the project and then have it review pr comments?
+- use cloud agent for something?
+
 # Final Decisions
 
 These were the final decisions made based on the research below/
@@ -14,65 +24,40 @@ Many developers either underuse GitHub Copilot, using it as a fancy autocomplete
 
 Daniel is a Microsoft .NET MVP and software consultant at Lean TECHniques. He helps teams deliver high-quality software while adopting modern practices such as effective CI/CD, automated testing, AI usage, and product management. With experience spanning multiple industries, including finance, retail, and agriculture, he has served as a technical coach, agile coach, and tech lead, with a primary background as a software developer.
 
-# GitHub Copilot Workshop: 3-Hour Plan (Geeks && Tech Tuesdays)
+# GitHub Copilot Workshop: 3-Hour Plan (Geeks && Tech Tuesdays) — v2
 
-**Generated:** February 14, 2026  
-**Context:** Trimmed version of the full-day workshop for Geeks && Tech Tuesdays at Geekdom, San Antonio  
-**Audience:** Intermediate+ developers  
-**Prerequisites (sent ahead):** Laptop with VS Code, GitHub account, Copilot extension installed, a language runtime (Node.js, .NET, or Python)
-
----
-
-## Title Options
-
-Pick the one that feels right for the Geeks && Drinks vibe:
-
-| #   | Title                                                            | Why It Works                                               |
-| --- | ---------------------------------------------------------------- | ---------------------------------------------------------- |
-| 1   | **Your New Favorite Coworker: Mastering GitHub Copilot**         | Personality, slightly playful, implies daily-use value     |
-| 2   | **Code Smarter, Ship Faster: Hands-On with GitHub Copilot**      | Action-oriented, clear value prop, signals hands-on format |
-| 3   | **From Prompt to Production: A GitHub Copilot Deep Dive**        | Developer-y, implies going beyond basics, matches audience |
-| 4   | **Pair Programming with AI: A Hands-On GitHub Copilot Workshop** | Classic framing, immediately understood, clear format      |
-| 5   | **The AI-Powered IDE: Getting the Most from GitHub Copilot**     | Practical, appeals to devs who already have Copilot        |
-
-**Recommendation:** Option 1 or 2 — they're catchy and match the casual, community-driven Geeks && Drinks tone. Option 3 is the safest if you want something more professional.
-
----
-
-## Description Options
-
-### Option A (Conversational)
-
-GitHub Copilot can do a lot more than autocomplete your code. In this 3-hour hands-on workshop, you'll learn how to prompt effectively, use Agent mode for complex tasks, wire up MCP servers, and build project-level instructions that make Copilot actually understand your codebase. Whether you've been using Copilot for a while or just getting started, you'll leave with techniques you can use on Monday morning. Come ready to code!
-
-### Option B (Punchy)
-
-You've got Copilot installed — but are you actually getting your money's worth? In this hands-on workshop, we'll go beyond Tab-to-accept and into the features that make Copilot a real productivity multiplier: agent mode, custom instructions, MCP integrations, and prompting techniques that actually work. Bring your laptop and let's build something together.
-
-### Option C (Structured)
-
-Stop guessing and start shipping. This 3-hour workshop covers the GitHub Copilot features that matter most for working developers: effective prompting, edit vs. agent modes, Copilot instructions, MCP servers, and more. You'll get hands-on time building with Copilot and walk away with a workflow you can immediately apply to your own projects. Laptop required — come ready to code!
-
-**Recommendation:** Option B — it hooks experienced devs who may feel like they're underusing Copilot, which matches your intermediate+ audience.
+**Generated:** February 14, 2026
+**Updated:** April 11, 2026
+**Context:** Trimmed version of the full-day workshop for Geeks && Tech Tuesdays at Geekdom, San Antonio
+**Audience:** Intermediate+ developers, most have AI coding tool experience (Cursor, Claude Code, Codex, Antigravity, etc.)
+**Facilitator stack:** VS Code + GitHub CLI (attendees follow along in whatever they prefer)
+**Free tier constraint:** Workshop fits within the free tier's 50 premium requests. Mention the budget and let attendees manage it themselves.
+**Prerequisites (sent ahead):** Laptop with VS Code, GitHub account, Copilot extension installed, GitHub CLI installed, Node.js runtime
 
 ---
 
 ## Schedule Overview (3 Hours)
 
-| Block | Topic                          | Duration    | Type         |
-| ----- | ------------------------------ | ----------- | ------------ |
-| 1     | Welcome & Verify Setup         | 10 min      | Mixed        |
-| 2     | AI Quick Primer                | 10 min      | Presentation |
-| 3     | Copilot Core Skills            | 25 min      | Mixed        |
-| 4     | Prompting That Works           | 20 min      | Mixed        |
-| —     | **Break**                      | 10 min      | —            |
-| 5     | Context, Instructions & Modes  | 25 min      | Mixed        |
-| 6     | Agent Mode Deep Dive           | 20 min      | Mixed        |
-| 7     | Hands-On Build                 | 30 min      | Lab          |
-| —     | **Break**                      | 10 min      | —            |
-| 8     | Advanced: MCP & Power Features | 10 min      | Mixed        |
-| 9     | Wrap-Up & Resources            | 10 min      | Presentation |
-|       | **Total**                      | **180 min** |              |
+| Block | Topic                                    | Duration    | Type         |
+| ----- | ---------------------------------------- | ----------- | ------------ |
+| 1     | Setup, Plans & Copilot Experiences       | 15 min      | Mixed        |
+| 2     | Feature Tour: What Makes Copilot Unique  | 30 min      | Demo         |
+| 3     | Live Build Demo                          | 15 min      | Demo         |
+| —     | **Break**                                | 10 min      | —            |
+| 4     | Hands-On Build (Part 1)                  | 45 min      | Lab          |
+| —     | **Break**                                | 10 min      | —            |
+| 5     | GitHub Platform & CLI Features           | 10 min      | Demo         |
+| 6     | Hands-On Build (Part 2)                  | 35 min      | Lab          |
+| 7     | Wrap-Up & Resources                      | 10 min      | Presentation |
+|       | **Total**                                | **180 min** |              |
+
+**Time breakdown:**
+
+| Category           | Time         |
+| ------------------ | ------------ |
+| Presentation/Demo  | ~70 min      |
+| Hands-On Building  | ~90 min      |
+| Breaks             | ~20 min      |
 
 ---
 
@@ -80,158 +65,83 @@ Stop guessing and start shipping. This 3-hour workshop covers the GitHub Copilot
 
 ---
 
-### Block 1: Welcome & Verify Setup (10 min)
+### Block 1: Setup, Plans & Copilot Experiences (15 min)
 
-**Goals:** Confirm everyone is ready, set expectations
+**Goals:** Get everyone signed up & ready, establish the landscape of Copilot experiences
 
-| Topic                                         | Time  | Notes                                     |
-| --------------------------------------------- | ----- | ----------------------------------------- |
-| Welcome, quick introductions                  | 3 min | Who you are, what you'll cover            |
-| Quick poll: How are you using Copilot today?  | 2 min | Show of hands — helps you gauge the room  |
-| Verify setup: "Ask Copilot something in chat" | 3 min | Quick smoke test, troubleshoot if needed  |
-| Copilot plans overview                        | 2 min | Free vs Pro — what they'll have access to |
+| Topic                                            | Time   | Notes                                                    |
+| ------------------------------------------------ | ------ | -------------------------------------------------------- |
+| Welcome, quick intros                            | 2 min  | Who you are, what you'll cover, "this is hands-on heavy" |
+| Verify setup / sign-up time                      | 8 min  |                                                          |
+| → GitHub account + Copilot Free plan             | 3 min  | Walk through sign-up for anyone who hasn't               |
+| → Copilot VS Code extension installed            | 2 min  | Quick smoke test: "Ask Copilot something in chat"        |
+| → GitHub CLI installed (`gh`)                    | 3 min  | `gh auth login`, verify `gh copilot` works               |
+| **Copilot plan differences**                     | 2 min  | Free (50 premium/mo) vs Pro vs Enterprise — quick slide  |
+| **The three Copilot experiences**                | 3 min  |                                                          |
+| → VS Code (local agent) — today's main focus     | 1 min  | Where most people will work                              |
+| → GitHub CLI (`gh copilot`) — a few CLI-only gems| 1 min  | We'll use this for rubber duck + explain/suggest         |
+| → Cloud agent (on GitHub.com) — async, autonomous| 1 min  | Brief mention, demo later                                |
 
-**What got cut from the full version:** Copilot CLI install, extended introductions, step-by-step sign-up walkthrough (sent as pre-reqs)
-
----
-
-### Block 2: AI Quick Primer (10 min)
-
-**Goals:** Shared mental model — enough to understand _why_ Copilot behaves the way it does
-
-| Topic                         | Time  | Notes                                            |
-| ----------------------------- | ----- | ------------------------------------------------ |
-| LLMs in 2 minutes             | 2 min | "Next token prediction, trained on code"         |
-| Tokens and context windows    | 4 min | Why prompts get "forgotten", why context matters |
-| What Copilot can and can't do | 4 min | Set expectations — trust but verify              |
-
-**What got cut:** Vectors/embeddings deep dive, extended "What is AI" section. Intermediate devs don't need this.
+**Key framing:** "Most of you have used Cursor, Claude Code, or similar tools. This workshop isn't 'intro to AI coding' — it's about features and workflows that are unique to the Copilot ecosystem. We'll go fast on the basics and deep on what's different."
 
 ---
 
-### Block 3: Copilot Core Skills (25 min)
+### Block 2: Feature Tour — What Makes Copilot Unique (30 min)
 
-**Goals:** Ensure everyone has a solid baseline, even experienced users pick up something
+**Goals:** Speed tour of Copilot-specific features. Demo-heavy, fast-paced. Not teaching "what is AI chat" — showing what's *different* about Copilot.
 
-| Topic                                        | Time   | Notes                                    |
-| -------------------------------------------- | ------ | ---------------------------------------- |
-| **UI Tour (fast)**                           | 5 min  |                                          |
-| → Chat panel, agent dropdown, model dropdown | 3 min  | Point out what's there, don't belabor it |
-| → Participants, tools, slash commands        | 2 min  | Quick fly-by                             |
-| **Inline Completions**                       | 5 min  |                                          |
-| → Tab/Esc, ghost text, comments as prompts   | 5 min  | Quick demo, they know this mostly        |
-| **Chat Fundamentals**                        | 5 min  |                                          |
-| → Asking questions, code explanations        | 3 min  |                                          |
-| → Editing previous messages                  | 2 min  | Useful trick many miss                   |
-| **Quick Exercise**                           | 10 min |                                          |
-| → Generate a function from a comment         | 5 min  |                                          |
-| → Ask Copilot to explain unfamiliar code     | 5 min  | Provide a code snippet if needed         |
+| Topic                                              | Time   | Notes                                                        |
+| -------------------------------------------------- | ------ | ------------------------------------------------------------ |
+| **Quick UI Orientation**                           | 3 min  | Chat panel, model picker, agent mode — just enough to navigate |
+| **Model Families**                                 | 3 min  |                                                              |
+| → GPT-4o, Claude, o-series reasoning models, etc.  | 2 min  | Show the model picker, explain trade-offs (speed vs quality) |
+| → Premium vs base models, 50-request budget        | 1 min  | "Pick your moments for premium"                              |
+| **Agent Mode + Autopilot**                         | 5 min  |                                                              |
+| → Agent mode basics (for those from other tools)    | 2 min  | Autonomous execution, terminal access, file creation         |
+| → Autopilot mode / bypass approvals                | 3 min  | Demo: flip it on, show hands-free execution. When to use/not |
+| **Fleet Mode**                                     | 3 min  |                                                              |
+| → What it is: multi-model orchestration             | 1 min  | Quick explanation                                            |
+| → Demo: show it dispatching to different models     | 2 min  | Show the UI indicators                                       |
+| **Custom Instructions**                            | 5 min  |                                                              |
+| → `.github/copilot-instructions.md`                | 2 min  | Create one live — "Use TypeScript, prefer functional style"  |
+| → Instruction files with `applyTo` scoping          | 1 min  | "Instructions for tests only", "Instructions for API code"   |
+| → Skills (`.prompt.md` files)                       | 2 min  | Show a reusable prompt template, briefly explain when to use |
+| **Custom Agents (`.agent.md`)**                    | 2 min  |                                                              |
+| → What they are: specialized personas/tool configs  | 1 min  | Show an example agent file                                   |
+| → When to use vs. instructions vs. skills           | 1 min  | Quick decision tree                                          |
+| **MCP Servers**                                    | 4 min  |                                                              |
+| → What it is: "Plugins that give Copilot tools"     | 1 min  |                                                              |
+| → Demo: wire up a server in `.vscode/mcp.json`      | 3 min  | Pick something visual — Playwright MCP or similar            |
+| **Speed Round (quick demos)**                      | 5 min  |                                                              |
+| → Vision: paste a screenshot into chat              | 2 min  | "Build this UI" from a mockup image                          |
+| → Hooks: auto-actions on tool execution             | 1 min  | Brief example — auto-lint after file edit                    |
+| → Copilot code review (request locally in VS Code)  | 2 min  | Show how to trigger review from within VS Code               |
 
-**What got cut:** Extended UI tour, detailed slash command walkthrough. Intermediate devs explore these on their own.
-
----
-
-### Block 4: Prompting That Works (20 min)
-
-**Goals:** Level up their prompting — this is the highest-ROI skill
-
-| Topic                                           | Time   | Notes                            |
-| ----------------------------------------------- | ------ | -------------------------------- |
-| **Good vs Bad Prompts**                         | 5 min  | Side-by-side live demo           |
-| → Vague ("make this better") vs specific        | 3 min  |                                  |
-| → Providing context ("I'm building a...")       | 2 min  |                                  |
-| **Power Techniques**                            | 10 min |                                  |
-| → Few-shot examples                             | 3 min  | Show input/output pattern        |
-| → "Ask me clarifying questions before starting" | 3 min  | Game-changer for complex tasks   |
-| → "Be honest with me" / flag uncertainty        | 2 min  |                                  |
-| → Iterative refinement                          | 2 min  | "That's close, but change X..."  |
-| **Mini Exercise: Prompt Battle**                | 5 min  |                                  |
-| → Same task, try different approaches           | 5 min  | Quick compare, share what worked |
-
-**What got cut:** Extended slash commands section (covered briefly in Block 3), longer prompt battle exercise, group share portion.
+**Facilitator notes:**
+- This block is a montage — keep energy high, don't go deep on any one feature. The goal is "oh, I didn't know it could do that."
+- Have all demos pre-staged. Don't type setup commands live — have `.vscode/mcp.json`, instruction files, etc. ready to show.
+- End with: "You'll get to try all of these during the hands-on build."
 
 ---
 
-### ☕ Break (10 min)
+### Block 3: Live Build Demo (15 min)
 
----
+**Goals:** Build the demo project from scratch using Agent mode so attendees see the end-to-end workflow they're about to replicate.
 
-### Block 5: Context, Instructions & Modes (25 min)
+| Topic                                             | Time   | Notes                                                      |
+| ------------------------------------------------- | ------ | ---------------------------------------------------------- |
+| **Introduce the project**                         | 2 min  | Show what we're building (screenshot or quick sketch)      |
+| **Scaffold with Agent mode**                      | 8 min  |                                                            |
+| → Start with a clear, detailed prompt              | 1 min  | Narrate why the prompt is structured this way              |
+| → Agent runs: creates files, installs deps, etc.   | 4 min  | Let it cook — narrate what's happening, show autopilot     |
+| → Review and accept changes                        | 3 min  | Show diff view, point out what to check                    |
+| **Add a feature with instructions + prompting**   | 5 min  |                                                            |
+| → Create `copilot-instructions.md` for the project | 2 min  | Ties back to Block 2                                       |
+| → Prompt for a new feature, show iterative workflow | 3 min  | "That's close, but change X..." — show refinement          |
 
-**Goals:** Understand how to make Copilot project-aware + know which mode to use when
+**Key message:** "That took me 15 minutes with Copilot. Now you're going to do it — and you'll have more time to go further."
 
-| Topic                                               | Time   | Notes                                   |
-| --------------------------------------------------- | ------ | --------------------------------------- |
-| **Context Window Awareness**                        | 5 min  |                                         |
-| → What counts as context (open files, history, etc) | 3 min  |                                         |
-| → Context rot — why new conversations matter        | 2 min  |                                         |
-| **Copilot Instructions**                            | 10 min |                                         |
-| → `.github/copilot-instructions.md`                 | 5 min  | Create one live, show what to put in it |
-| → Multiple instruction files / skills               | 3 min  | Brief mention of the pattern            |
-| → `@workspace` — when and how                       | 2 min  |                                         |
-| **Ask vs Edit vs Agent**                            | 10 min |                                         |
-| → Ask: Questions, explanations (default)            | 2 min  |                                         |
-| → Edit: Targeted, multi-file changes                | 3 min  | Quick demo, show diff view              |
-| → Agent: Complex, multi-step, autonomous            | 5 min  | This gets its own deep dive next        |
-
-**What got cut:** Plan Mode (mention as "also exists"), separate 60-min modes block, extended @workspace dive, instructions exercise (folded into hands-on).
-
----
-
-### Block 6: Agent Mode Deep Dive (20 min)
-
-**Goals:** This is the headliner — show them what Agent can really do
-
-| Topic                                          | Time   | Notes                                        |
-| ---------------------------------------------- | ------ | -------------------------------------------- |
-| **How Agent Differs from Edit**                | 3 min  | Autonomous execution, terminal access, tools |
-| **Live Demo: Build a Feature End-to-End**      | 12 min |                                              |
-| → Start with a clear prompt                    | 2 min  | "Build me a REST endpoint that..."           |
-| → Watch Agent plan, create files, run commands | 5 min  | Let it cook — narrate what's happening       |
-| → Review and accept/reject changes             | 3 min  | Show diff view, partial acceptance           |
-| → Ctrl+I inline chat for quick fixes           | 2 min  | Show as complement to Agent                  |
-| **When NOT to use Agent**                      | 2 min  | Small changes, sensitive code                |
-| **Tips: Getting better results from Agent**    | 3 min  | Be specific, break into steps, verify        |
-
-**What got cut:** Separate 10-min Ctrl+I block (folded in), Plan Mode deep dive.
-
----
-
-### Block 7: Hands-On Build (30 min)
-
-**Goals:** Apply everything — this is where it clicks
-
-| Activity                                 | Time   | Notes                                 |
-| ---------------------------------------- | ------ | ------------------------------------- |
-| **Introduce the challenge**              | 3 min  | See project options below             |
-| **Build with Copilot**                   | 22 min |                                       |
-| → Use Agent mode to scaffold the project | 7 min  |                                       |
-| → Add features using Edit + Agent        | 10 min |                                       |
-| → Generate tests or docs                 | 5 min  |                                       |
-| **Float for Q&A and help**               | 5 min  | Walk around, assist, answer questions |
-
-#### Recommended Project Options (Attendee Choice)
-
-**Option A: Utility Script Collection** (Lowest barrier — recommended for mixed languages)
-
-- File renaming script, CSV-to-JSON converter, or Markdown link checker
-- No project structure needed, immediate results
-
-**Option B: Simple REST API** (Great for intermediate devs)
-
-- Minimal API in their language of choice (Express, ASP.NET Minimal API, FastAPI)
-- Create 2-3 endpoints, add error handling
-
-**Option C: Refactoring Challenge** (Best for experienced devs)
-
-- Provide a deliberately messy file
-- Use Copilot to understand, refactor, and add tests
-
-**Facilitator Notes:**
-
-- Have a working solution ready to show if people get stuck
-- Encourage Agent mode for scaffolding, Edit mode for refinements
-- Create a `copilot-instructions.md` as part of the exercise (ties back to Block 5)
+**Demo project:** TBD — see [demo-project-ideas.md](demo-project-ideas.md) for options. Should be a full-stack React (Vite) + Express project in TypeScript.
 
 ---
 
@@ -239,78 +149,148 @@ Stop guessing and start shipping. This 3-hour workshop covers the GitHub Copilot
 
 ---
 
-### Block 8: Advanced — MCP & Power Features (10 min)
+### Block 4: Hands-On Build — Part 1 (45 min)
 
-**Goals:** Exposure to what's next — give them a reason to explore after the workshop
+**Goals:** Attendees scaffold and build the core project using Copilot Agent mode.
 
-| Topic                                        | Time  | Notes                                       |
-| -------------------------------------------- | ----- | ------------------------------------------- |
-| **MCP (Model Context Protocol)**             | 5 min |                                             |
-| → What it is: "Plugins for Copilot"          | 2 min | One-sentence explanation                    |
-| → Demo: Load a server in `.vscode/mcp.json`  | 3 min | GitHub or Playwright MCP — quick and visual |
-| **Custom Prompts**                           | 2 min |                                             |
-| → Creating reusable `.prompt.md` files       | 2 min | Brief, show an example                      |
-| **Quick Mentions (60 seconds each)**         | 3 min |                                             |
-| → Copilot CLI (`gh copilot explain/suggest`) | 1 min | "This exists, try it later"                 |
-| → Coding Agent (GitHub-side, async)          | 1 min | "Coming soon / preview"                     |
-| → Copilot Code Review on PRs                 | 1 min | "Works on your PRs automatically"           |
+| Activity                                          | Time   | Notes                                                |
+| ------------------------------------------------- | ------ | ---------------------------------------------------- |
+| **Introduce the challenge + starter prompt**      | 3 min  | Give them the prompt (or a starting point)            |
+| **Build Phase 1: Core App**                       | 37 min |                                                      |
+| → Scaffold the project with Agent mode             |        | Full-stack: React + Express, TypeScript              |
+| → Get the basic app running in the browser         |        | API endpoints + React UI rendering data              |
+| → Create a `copilot-instructions.md`               |        | They write project-specific instructions             |
+| **Float for Q&A and help**                        | 5 min  | Walk around, assist, help troubleshoot               |
 
-**What got cut from the full version:** Hooks, Agent Skills deep dive, Chat Debug View, custom agents, RPI/Spec Kit. All of these are mentioned in the resources handout for self-study.
+**Milestone check:** By end of Part 1, everyone should have a running app with at least the basic features visible in the browser.
 
----
-
-### Block 9: Wrap-Up & Resources (10 min)
-
-| Topic                                             | Time  | Notes                                      |
-| ------------------------------------------------- | ----- | ------------------------------------------ |
-| **Key Takeaways** (Top 5)                         | 3 min |                                            |
-| 1. Prompting is a skill — be specific             |       |                                            |
-| 2. Use instructions to teach Copilot your project |       |                                            |
-| 3. Agent mode for building, Edit for refining     |       |                                            |
-| 4. Start new conversations to avoid context rot   |       |                                            |
-| 5. Trust but verify — always review the output    |       |                                            |
-| **What We Didn't Cover** (self-study list)        | 2 min | Hooks, Skills, Coding Agent, Custom Agents |
-| **Resources**                                     | 3 min |                                            |
-| → GitHub Copilot Docs                             |       | docs.github.com/en/copilot                 |
-| → Free Plan Details                               |       | Link to plans page                         |
-| → awesome-copilot repo                            |       |                                            |
-| → Your copilot-instructions.md examples           |       | Share your own if comfortable              |
-| **Final Q&A**                                     | 2 min |                                            |
+**Tips to share with attendees:**
+- Start a new conversation if Copilot seems confused (context rot)
+- Be specific in prompts — describe what you want, not just the feature name
+- Use autopilot mode for scaffolding, switch back to approval mode for refinements
+- Watch your premium request budget — use base model for simple tasks
 
 ---
 
-## What Got Cut (Full Day → 3 Hours)
-
-For reference, here's what was removed and why:
-
-| Cut Item                  | Reason                                  | Self-Study? |
-| ------------------------- | --------------------------------------- | ----------- |
-| Extended setup / sign-up  | Sent as pre-reqs                        | N/A         |
-| AI Fundamentals deep dive | Audience is intermediate+               | No          |
-| Vectors & embeddings      | Not needed for effective usage          | Optional    |
-| Plan Mode                 | Mentioned briefly, not demoed           | Yes         |
-| Copilot CLI setup         | Quick mention only, try at home         | Yes         |
-| Hooks                     | Too niche for 3 hours                   | Yes         |
-| Agent Skills deep dive    | Too niche for 3 hours                   | Yes         |
-| Custom Agents             | Advanced topic, save for blog/follow-up | Yes         |
-| RPI / Spec Kit            | Power-user content                      | Yes         |
-| Hands-On Part 2           | Combined into a single 30-min build     | N/A         |
-| Show & Tell               | No time, fun but not essential          | N/A         |
-| Lunch                     | 3-hour format doesn't need it           | 🍕          |
-| Extended prompt battle    | Shortened to 5-min mini exercise        | N/A         |
-| Chat Debug View           | Niche troubleshooting tool              | Yes         |
+### ☕ Break (10 min)
 
 ---
 
-## Time Budget Summary
+### Block 5: GitHub Platform & CLI Features (10 min)
 
-| Category           | Time         |
-| ------------------ | ------------ |
-| Presentation/Demo  | ~1 hr 45 min |
-| Hands-On Exercises | ~50 min      |
-| Breaks             | ~20 min      |
-| Wrap-Up            | ~10 min      |
-| **Total**          | **3 hours**  |
+**Goals:** Cover features that live outside VS Code — CLI and GitHub.com. Short and punchy.
+
+| Topic                                            | Time   | Notes                                                      |
+| ------------------------------------------------ | ------ | ---------------------------------------------------------- |
+| **GitHub CLI: Rubber Duck Mode**                 | 3 min  |                                                            |
+| → `gh copilot` interactive rubber duck            | 2 min  | Live demo: reason through a problem in the terminal        |
+| → `gh copilot explain` / `gh copilot suggest`     | 1 min  | Quick examples — "explain this error", "suggest a command" |
+| **Coding Agent (Cloud)**                         | 3 min  |                                                            |
+| → What it is: async agent on GitHub.com           | 1 min  | "Assign an issue to Copilot, it opens a PR"               |
+| → When to use: low-context tasks, bulk changes    | 1 min  | Good for: migrations, docs, simple features               |
+| → How it differs from local agent                 | 1 min  | Local = interactive, cloud = fire-and-forget               |
+| **Copilot Code Review on PRs**                   | 2 min  |                                                            |
+| → Auto-review on GitHub PRs                       | 1 min  | Show a PR with Copilot review comments                     |
+| → Requesting review locally (recap from Block 2)  | 1 min  | Quick reminder                                             |
+| **GitHub Spark** (optional, if time)             | 2 min  |                                                            |
+| → Quick demo: natural language → hosted micro-app  | 2 min  | "Here's what it can do" — don't go deep                    |
+
+---
+
+### Block 6: Hands-On Build — Part 2 (35 min)
+
+**Goals:** Extend the project with advanced features. Try out the power features from Block 2.
+
+| Activity                                          | Time   | Notes                                                |
+| ------------------------------------------------- | ------ | ---------------------------------------------------- |
+| **Introduce Part 2 challenges**                   | 3 min  | See challenge list below                             |
+| **Build Phase 2: Advanced Features**              | 27 min |                                                      |
+| → Add a feature using a skill (`.prompt.md`)       |        | Provide a sample skill file they can use             |
+| → Wire up an MCP server                            |        | Have a simple one ready to go                        |
+| → Try vision: paste a UI mockup, have Copilot build it |    | Provide a mockup image if they don't have one        |
+| → Try CLI rubber duck on a problem they hit        |        | Encourage using `gh copilot` for debugging           |
+| → Extend with hooks (stretch goal)                 |        | Auto-format or auto-lint on file changes             |
+| **Float for Q&A and help**                        | 5 min  | Walk around, help with advanced features             |
+
+**Part 2 Challenge Menu (pick any):**
+Attendees should try at least 2-3 of these during the time:
+
+1. **Create a `.prompt.md` skill** — Write a reusable prompt for generating a specific type of component (e.g., "generate a React form component with validation")
+2. **Add an MCP server** — Wire up a provided MCP server in `.vscode/mcp.json` and use its tools in a Copilot conversation
+3. **Vision-driven feature** — Paste a UI screenshot/mockup into chat and have Copilot build or improve a component to match it
+4. **Custom agent** — Create a `.agent.md` file for a specialized workflow (e.g., a "reviewer" agent that focuses on code quality)
+5. **Hooks** — Set up a hook that auto-runs a linter or formatter after Copilot edits a file
+6. **CLI rubber duck** — Use `gh copilot` in the terminal to debug an issue or reason through an architecture decision
+7. **Freestyle** — Add any feature you want to the project using whatever Copilot features you choose
+
+---
+
+### Block 7: Wrap-Up & Resources (10 min)
+
+| Topic                                                  | Time  | Notes                                              |
+| ------------------------------------------------------ | ----- | -------------------------------------------------- |
+| **Key Takeaways** (Top 5)                              | 3 min |                                                    |
+| 1. Copilot is an ecosystem, not just chat               |       | VS Code + CLI + Cloud Agent + PR Review            |
+| 2. Instructions, skills, and agents make it project-aware|      | Invest in these for your real projects              |
+| 3. Autopilot for scaffolding, approval mode for precision|      | Know when to trust, when to verify                  |
+| 4. MCP servers extend what Copilot can do               |       | "Plugins" unlock domain-specific workflows          |
+| 5. Start new conversations to avoid context rot         |       | The most common mistake                             |
+| **What We Didn't Cover** (self-study list)             | 2 min | Copilot Workspace, Copilot Extensions, deep MCP    |
+| **Resources**                                          | 3 min |                                                    |
+| → GitHub Copilot Docs                                  |       | docs.github.com/en/copilot                         |
+| → Free Plan Details                                    |       | Link to plans page                                 |
+| → Copilot Customization Docs                           |       | Instructions, skills, agents docs                  |
+| → MCP Servers directory                                |       | Link to awesome-mcp-servers or similar             |
+| → Your example files                                   |       | Share your instructions/skills/agents if comfortable|
+| **Final Q&A**                                          | 2 min |                                                    |
+
+---
+
+## Feature Coverage Map
+
+Quick reference for which features are covered where:
+
+| Feature                              | Block 2 (Tour) | Block 3 (Demo) | Block 4 (Lab) | Block 5 (Platform) | Block 6 (Lab) |
+| ------------------------------------ | :-------------: | :-------------: | :-----------: | :-----------------: | :-----------: |
+| Agent mode + autopilot               | Demo            | Demo            | Practice      |                     | Practice      |
+| Model families / fleet mode          | Demo            |                 | Practice      |                     |               |
+| Custom instructions                  | Demo            | Demo            | Practice      |                     |               |
+| Skills (`.prompt.md`)                | Demo            |                 |               |                     | Practice      |
+| Custom agents (`.agent.md`)          | Demo            |                 |               |                     | Practice      |
+| MCP servers                          | Demo            |                 |               |                     | Practice      |
+| Vision (images in chat)              | Demo            |                 |               |                     | Practice      |
+| Hooks                                | Demo            |                 |               |                     | Practice      |
+| Code review (local)                  | Demo            |                 |               | Recap               |               |
+| CLI rubber duck                      |                 |                 |               | Demo                | Practice      |
+| CLI explain / suggest                |                 |                 |               | Demo                | Practice      |
+| Coding Agent (cloud)                 |                 |                 |               | Demo                |               |
+| Code review (PRs)                    |                 |                 |               | Demo                |               |
+| GitHub Spark                         |                 |                 |               | Demo                |               |
+
+---
+
+## What Changed from v1
+
+| v1 (Feb 2026)                         | v2 (Apr 2026)                                      | Why                                                    |
+| ------------------------------------- | --------------------------------------------------- | ------------------------------------------------------ |
+| Edit mode taught + demoed             | Removed — no longer exists                           | Feature deprecated                                     |
+| `@workspace` usage                    | Removed                                              | No longer needed                                       |
+| Basic chat fundamentals (20+ min)     | Quick UI tour (3 min)                                | Audience already uses AI coding tools                  |
+| Prompting block (20 min)              | Woven into demo + hands-on                           | Less lecture, more practice                            |
+| AI Quick Primer (10 min)              | Removed                                              | Audience doesn't need it                               |
+| 50 min hands-on                       | 90 min hands-on                                      | "Workshop is mostly building"                          |
+| CLI mentioned in passing              | CLI features demoed (rubber duck, explain/suggest)   | CLI-only features are unique and valuable              |
+| —                                     | Added: Fleet mode                                    | New feature                                            |
+| —                                     | Added: Autopilot / bypass approvals                  | New feature                                            |
+| —                                     | Added: Custom agents (`.agent.md`)                   | New feature                                            |
+| —                                     | Added: Skills (`.prompt.md`)                         | New feature                                            |
+| —                                     | Added: Hooks                                         | New feature                                            |
+| —                                     | Added: Vision                                        | New feature                                            |
+| —                                     | Added: Coding Agent (cloud)                          | New feature                                            |
+| —                                     | Added: GitHub Spark                                  | New feature                                            |
+| —                                     | Added: Code review (local + PR)                      | New feature                                            |
+| —                                     | Added: Copilot experiences framing (VS Code/CLI/cloud) | Unique to Copilot ecosystem                          |
+| —                                     | Added: CLI install + account signup time             | Free tier workflow                                     |
 
 ---
 
@@ -324,62 +304,19 @@ For reference, here's what was removed and why:
 > - [ ] **GitHub account** ([sign up](https://github.com/signup) if needed)
 > - [ ] **Copilot extension** installed in VS Code (search "GitHub Copilot" in Extensions)
 > - [ ] **Copilot plan** — Free tier works! ([sign up here](https://docs.github.com/en/copilot/get-started/plans))
-> - [ ] **A language runtime** — Node.js, .NET, or Python (whichever you're comfortable with)
+> - [ ] **GitHub CLI** installed ([download](https://cli.github.com/)) — run `gh auth login` to authenticate
+> - [ ] **Node.js** installed (v18+ recommended) ([download](https://nodejs.org/))
 > - [ ] **Laptop charger** — 3 hours is a long time on battery
 >
-> If you run into any issues, don't worry — we'll do a quick setup check at the start. See you there!
+> Don't worry if you primarily use Cursor, Claude Code, or another AI tool — this workshop focuses on features unique to the GitHub Copilot ecosystem, and we'll get you oriented quickly. If you run into setup issues, we'll have a few minutes at the start to troubleshoot. See you there!
 
 ---
 
 ## Notes
 
 - The full-day plan lives in [copilot-workshop-plan.md](copilot-workshop-plan.md) if you want to expand back to 6-8 hours for a different event.
-- Agent Mode is the headliner for this audience — intermediate devs will be blown away by what it can do autonomously.
-- Consider having a messy code file ready as a backup hands-on option for experienced devs who finish the main project early.
+- **Demo project is TBD** — see [demo-project-ideas.md](demo-project-ideas.md) for full-stack React + Express options. Should be decided before the workshop and tested end-to-end.
+- Have all demo files pre-staged (instructions, MCP config, skill files, agent files, a UI mockup image for vision). Don't fumble with setup during the feature tour.
+- The Part 2 "challenge menu" approach lets faster attendees explore advanced features while slower ones continue building the core app.
+- Consider providing a sample MCP server config and a `.prompt.md` skill file as handouts so attendees don't have to write them from scratch during the lab.
 - The Geeks && Drinks crowd is casual and community-driven — keep the energy conversational, not lecture-y.
-
----
-
-## Additional Brainstorm: "Zero to Hero" Style
-
-Extra options inspired by your "zero to hero" direction.
-
-### More Title Options
-
-| #   | Title                                                              | Style / Angle                                |
-| --- | ------------------------------------------------------------------ | -------------------------------------------- |
-| 1   | **Zero to Copilot Hero: Build Faster in 3 Hours**                  | Direct transformation, very clear value      |
-| 2   | **Zero to Hero with GitHub Copilot**                               | Short, catchy, broad                         |
-| 3   | **From Zero to Shipping: GitHub Copilot for Real-World Devs**      | Outcome-oriented, practical                  |
-| 4   | **Copilot Hero Mode: From First Prompt to Finished Feature**       | Playful + technical                          |
-| 5   | **Prompt to Hero: Master GitHub Copilot in One Session**           | Memorable and CTA-friendly                   |
-| 6   | **Zero to AI Pairing Hero: Hands-On GitHub Copilot**               | Emphasizes pair-programming framing          |
-| 7   | **From Tab-Complete to Team Superpower: GitHub Copilot Deep Dive** | Speaks to devs already using basic features  |
-| 8   | **Copilot Hero in 3 Hours: Prompt, Build, Ship**                   | Time-boxed promise + action verbs            |
-| 9   | **Beyond Autocomplete: Your Zero-to-Hero Copilot Workshop**        | Contrasts beginner usage with advanced usage |
-| 10  | **Build Like a Hero: Practical GitHub Copilot for Developers**     | Friendly, community-event tone               |
-
-### More Description Options
-
-#### Option D (Zero-to-Hero Core)
-
-Still using Copilot like fancy autocomplete? Let's fix that. In this fast-paced, hands-on workshop, you'll go from zero-to-hero with practical workflows for prompting, Agent mode, MCP tools, and project-level instructions. You'll build features live, learn when to use Ask vs Edit vs Agent, and leave with a playbook you can use on real projects immediately. Bring your laptop and join us!
-
-#### Option E (Transformation + Outcome)
-
-Go from "I have Copilot installed" to "I can ship with it confidently." This 3-hour workshop is built for developers who want real results: stronger prompts, faster implementation, better refactoring, and smarter debugging using GitHub Copilot. We'll practice on real coding tasks so you walk away with a repeatable workflow—not just tips. Join us and level up your dev speed.
-
-#### Option F (Playful Hero Tone)
-
-Ready to unlock Hero Mode in your IDE? In this hands-on GitHub Copilot workshop, you'll learn how to turn vague prompts into useful output, use Agent mode for multi-step tasks, and connect Copilot to real project context so responses get dramatically better. If you want to build faster without sacrificing quality, this session is for you. Come code with us!
-
-#### Option G (Professional + Clean)
-
-GitHub Copilot is most powerful when you know how to guide it. In this focused 3-hour workshop, you'll learn the workflows that matter most: prompting techniques, context and instructions, Agent mode execution, and practical MCP integration. You'll apply each concept in hands-on exercises and leave with a clear process for using Copilot effectively in day-to-day development. Save your seat and bring your laptop.
-
-### Quick Picks
-
-- **Strongest catchy title:** **Zero to Copilot Hero: Build Faster in 3 Hours**
-- **Strongest professional title:** **From Zero to Shipping: GitHub Copilot for Real-World Devs**
-- **Strongest broad-audience description:** Option E
-- **Strongest community-vibe description:** Option F
