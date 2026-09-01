@@ -1,6 +1,8 @@
 ---
 name: document-output
 description: Automatically creates markdown documents when responding with lists, multiple ideas, comparisons, or substantial content. Ensures the user gets persistent, reviewable information.
+user-invocable: false
+disable-model-invocation: false
 ---
 
 # Document Output Skill

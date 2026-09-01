@@ -1,6 +1,8 @@
 ---
 name: presentation-abstracts
 description: Guidelines for writing or refining conference presentation abstracts. Use this skill when creating, editing, or reviewing abstracts for conference talk submissions.
+user-invocable: true
+disable-model-invocation: false
 ---
 
 # Presentation Abstracts Skill

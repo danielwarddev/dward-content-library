@@ -1,6 +1,8 @@
 ---
 name: conference-research
 description: Research conferences to understand what talks get accepted. Use this skill to analyze past conference programs, talk topics, and abstract styles before submitting.
+user-invocable: true
+disable-model-invocation: false
 ---
 
 # Conference Research Skill

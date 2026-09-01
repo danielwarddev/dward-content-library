@@ -1,9 +1,11 @@
 ---
-name: topic-research
+name: blog-topic-research
 description: Research ideas for new blog topics to find SEO opportunities. Use this skill when evaluating potential post ideas or validating topic demand.
+user-invocable: true
+disable-model-invocation: false
 ---
 
-# Topic Research Skill
+# Blog Topic Research Skill
 
 This skill provides a methodology for researching blog topics to find SEO opportunities before writing.
 

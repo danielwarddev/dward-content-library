@@ -1,6 +1,8 @@
 ---
 name: saas-research
 description: Research and validate SaaS business ideas through systematic market analysis. Use this skill when helping discover business opportunities, validate ideas against real market signals, or generate scored SaaS concepts for a solo founder.
+user-invocable: true
+disable-model-invocation: false
 ---
 
 # SaaS Idea Research & Validation

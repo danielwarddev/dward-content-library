@@ -1,6 +1,8 @@
 ---
 name: pokemon-price-check
 description: Price check Pokemon cards across PriceCharting, GameNerdz buylist, and CoolStuffInc selllist. Uses Playwright MCP for navigation and PowerShell for fast HTML parsing. Use this skill when comparing card values, evaluating offers, or finding the best place to sell cards.
+user-invocable: true
+disable-model-invocation: false
 ---
 
 # Pokemon Price Check

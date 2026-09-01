@@ -1,6 +1,8 @@
 ---
 name: blog-content-strategy
 description: Content strategy, analytics insights, and writing guidelines for the Dan In A Can blog. Use this skill when helping generate blog post ideas, outlines, or drafts.
+user-invocable: true
+disable-model-invocation: false
 ---
 
 # Blog Content Strategy Skill

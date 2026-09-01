@@ -1,6 +1,8 @@
 ---
 name: post-ideas
 description: Brainstormed blog post ideas organized by category. Reference this when looking for topic inspiration or planning content calendar.
+user-invocable: true
+disable-model-invocation: false
 ---
 
 # Post Ideas Skill
