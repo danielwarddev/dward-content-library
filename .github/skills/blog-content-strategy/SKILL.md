@@ -5,57 +5,27 @@ user-invocable: true
 disable-model-invocation: false
 ---
 
-# Blog Content Strategy Skill
+# Blog Content Strategy
 
-This skill provides context about the Dan In A Can blog's content strategy, audience, and what works.
+Context about the Dan In A Can blog's audience, voice, and what actually performs.
 
-## When to Use This Skill
+## When to Use
 
--   Generating blog post ideas
--   Writing blog post outlines or drafts
--   Evaluating topic ideas for fit
--   Understanding the blog's voice and style
+- Generating blog post ideas
+- Writing blog post outlines or drafts
+- Evaluating topic ideas for fit
+- Understanding the blog's voice and style
 
-## Key Files
+## References
 
--   [analytics-and-strategy.md](analytics-and-strategy.md) — Performance data, what works, audience profile, SEO strategy
+Read only what the current task needs.
 
-## Quick Reference
+| File | Read it when |
+| ---- | ------------ |
+| [references/quick-reference.md](references/quick-reference.md) | Drafting or reviewing a post — audience, title formula, structure, checklist, what to avoid |
+| [references/analytics-and-strategy.md](references/analytics-and-strategy.md) | Deciding *what* to write — traffic data, top performers, audience profile, SEO strategy |
 
-### Audience
+## Related Skills
 
--   **Primary:** Intermediate C#/.NET developers needing help with testing, mocking, and tooling
--   **Secondary:** Senior developers looking for quick reference
-
-### Core Niche
-
-Testing, mocking, and developer tooling for .NET
-
-### Winning Title Formula
-
--   "How to [verb] X in C# using Y"
--   "How to [verb] X in C# with [Library]"
-
-### Content Structure
-
-1. Problem statement (first 2 paragraphs)
-2. Code example (within first scroll)
-3. Detailed walkthrough
-4. GitHub repo link at bottom
-
-### Post Checklist
-
--   [ ] Title follows proven formula
--   [ ] Clear problem statement in first 2 paragraphs
--   [ ] Code example within first scroll
--   [ ] GitHub repo link at bottom
--   [ ] Links to related posts (internal linking)
--   [ ] ~150-300 lines markdown
--   [ ] Scannable headers
-
-### What to Avoid
-
--   Purely opinion/soft-skills posts without actionable code
--   Topics with heavy existing competition
--   Content targeting non-developer audiences
--   "Top 10 lists" style content
+- **blog-topic-research** — validate SEO opportunity before committing to a topic
+- **post-ideas** — pull from the existing idea backlog

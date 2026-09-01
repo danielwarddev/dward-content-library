@@ -92,7 +92,7 @@ When searching for holo cards, note that PriceCharting naming can be inconsisten
 ## PowerShell Parsing
 
 ```powershell
-.\parse-price-html.ps1 -Site "PriceCharting" -Html $html
+.\.github\skills\pokemon-price-check\scripts\parse-price-html.ps1 -Site "PriceCharting" -Html $html
 ```
 
 **Output fields:**

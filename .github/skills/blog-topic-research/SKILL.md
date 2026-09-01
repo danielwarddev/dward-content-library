@@ -5,126 +5,37 @@ user-invocable: true
 disable-model-invocation: false
 ---
 
-# Blog Topic Research Skill
+# Blog Topic Research
 
-This skill provides a methodology for researching blog topics to find SEO opportunities before writing.
+A methodology for researching blog topics to find SEO opportunities before writing.
 
-## When to Use This Skill
+## When to Use
 
--   Evaluating a potential blog post topic
--   Validating if a topic has SEO opportunity
--   Comparing multiple topic ideas
--   Finding gaps in existing content
+- Evaluating a potential blog post topic
+- Validating if a topic has SEO opportunity
+- Comparing multiple topic ideas
+- Finding gaps in existing content
 
-## Research Process
+## Process at a Glance
 
-### 1. Search Google for the Topic
+1. Search for the topic the way a developer would
+2. Record what already ranks
+3. Score the opportunity (High / Medium / Low)
+4. Pick a differentiating angle
+5. Record findings in the ideas backlog
 
-Use Playwright MCP to search Google with queries matching how developers would search such as the following:
+## References
 
-```
-"how to [verb] [topic] in c#"
-"[topic] c# tutorial"
-"[topic] asp.net core example"
-etc.
-```
+Read these as you reach each step.
 
-### 2. Analyze Search Results
+| File | Read it when |
+| ---- | ------------ |
+| [references/research-process.md](references/research-process.md) | Steps 1–5 in detail: search patterns, results table, opportunity criteria, angles, output format |
+| [references/search-sources.md](references/search-sources.md) | Choosing where to search — browser tooling, blocked sites, and direct-site-search fallbacks |
 
-For each result on page 1, note:
+Record completed research in [../post-ideas/references/ideas-backlog.md](../post-ideas/references/ideas-backlog.md).
 
-| Field  | What to Record                                |
-| ------ | --------------------------------------------- |
-| Source | Website/platform name                         |
-| Type   | Official docs, independent blog, forum, video |
-| Date   | When published or last updated                |
-| Notes  | Key observations about the content            |
+## Related Skills
 
-### 3. Apply the Opportunity Criteria
-
-**🔥 High Opportunity** if:
-
--   Independent content is **2+ years old** (outdated)
--   Only official docs exist (no practical tutorials) OR no official docs exist
--   Forum questions are unanswered or old
--   Zero testing-focused content exists
-
-**⚡ Medium Opportunity** if:
-
--   Some recent content exists but lacks your unique angle
--   Official docs are dry/incomplete and lack practicality
--   No content from your specific niche (testing, mocking, etc.)
-
-**❌ Low Opportunity** if:
-
--   Multiple recent, high-quality independent articles exist
--   Saturated topic with major publishers
--   Official docs are comprehensive and practical
-
-### 4. Identify Your Angle
-
-Even in medium-competition spaces, find a unique angle:
-
--   **Testing angle:** "How to Test/Mock X" when only setup guides exist
--   **Practical angle:** Real examples when docs are abstract
--   **Migration angle:** "From Old Way to New Way"
--   **Comparison angle:** "X vs Y" when both are popular
--   **Critical angle:** Honest evaluation, pros/cons
-
-### 5. Record Findings
-
-Add research to [ideas-backlog.md](../post-ideas/ideas-backlog.md) with:
-
--   Search query used
--   Results table
--   Verdict with opportunity level
--   Recommended angle
-
-## Quick Reference: Search Patterns
-
-| Topic Type     | Search Query Pattern              |
-| -------------- | --------------------------------- |
-| Mocking        | `"mock [thing] c# unit test"`     |
-| Testing        | `"how to test [thing] c#"`        |
-| Setup/Tutorial | `"[thing] asp.net core tutorial"` |
-| Library        | `"[library] c# example"`          |
-| New Tech       | `"[thing] c# getting started"`    |
-
-## Example Research Output
-
-```markdown
-### [Topic Name]
-
-**Search:** "search query used"
-
-| Source | Type | Date | Notes |
-| ------ | ---- | ---- | ----- |
-| ...    | ...  | ...  | ...   |
-
-**Verdict:** ✅ **HIGH OPPORTUNITY** — [Reasoning]
-```
-
-## Tools to Use
-
--   **Playwright MCP** — `browser_navigate` to Google, `browser_snapshot` to read results
--   **fetch_webpage** — For reading specific articles in detail
--   Close browser when done with `browser_close`
-
-## Sites to Avoid
-
--   **Reddit** — Blocks non-human access. Do not navigate to reddit.com URLs during research; skip them in search results or find an alternative source.
--   **Google / Bing / DuckDuckGo / Brave / Startpage / Mojeek search pages** — These engines present CAPTCHAs / bot challenges to Playwright. Do not waste time cycling through them. Instead, use the **direct site search** approach below.
-
-## Fallback: Direct Site Search
-
-When general search engines block automation, search authoritative sources directly. These typically allow Playwright access:
-
--   **Microsoft Learn:** `https://learn.microsoft.com/en-us/search/?terms=<query>`
--   **GitHub (code/issues/discussions):** `https://github.com/search?q=<query>&type=<code|issues|discussions>`
--   **DevBlogs (Microsoft):** `https://devblogs.microsoft.com/?s=<query>`
--   **dev.to:** `https://dev.to/search?q=<query>`
--   **Code Maze:** `https://code-maze.com/?s=<query>`
--   **Hacker News (Algolia):** `https://hn.algolia.com/?q=<query>`
--   **YouTube:** `https://www.youtube.com/results?search_query=<query>`
-
-Aggregate findings from 3–5 of these sources and apply the opportunity criteria the same way.
+- **post-ideas** — the backlog where research findings are stored
+- **blog-content-strategy** — audience and voice once a topic is chosen

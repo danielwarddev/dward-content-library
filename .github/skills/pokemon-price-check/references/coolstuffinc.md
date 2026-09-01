@@ -91,7 +91,7 @@ CoolStuffInc displays **both** cash and credit values directly:
 ## PowerShell Parsing
 
 ```powershell
-.\parse-price-html.ps1 -Site "CoolStuffInc" -Html $html
+.\.github\skills\pokemon-price-check\scripts\parse-price-html.ps1 -Site "CoolStuffInc" -Html $html
 ```
 
 **Output fields:**

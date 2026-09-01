@@ -64,7 +64,7 @@ This file tracks all SaaS ideas that have been researched to prevent duplicate w
 
 | Date       | Idea Name     | Research File                                                                                      |
 | ---------- | ------------- | -------------------------------------------------------------------------------------------------- |
-| 2026-01-27 | DevCost Watch | [2026-01-27-deep-dive-devcost-watch.md](../../saas-research/2026-01-27-deep-dive-devcost-watch.md) |
+| 2026-01-27 | DevCost Watch | [2026-01-27-deep-dive-devcost-watch.md](../../../../saas-research/2026-01-27-deep-dive-devcost-watch.md) |
 
 ---
 

@@ -5,51 +5,27 @@ user-invocable: true
 disable-model-invocation: false
 ---
 
-# Post Ideas Skill
+# Post Ideas
 
-This skill contains brainstormed blog post ideas and SEO research for future content.
+The backlog of brainstormed blog post ideas and SEO research for future content.
 
-## When to Use This Skill
+## When to Use
 
--   Looking for topic inspiration
--   Planning the content calendar
--   Evaluating new topic ideas
--   Checking SEO opportunity for a topic
+- Looking for topic inspiration
+- Planning the content calendar
+- Evaluating new topic ideas
+- Checking SEO opportunity for a topic
 
-## Key Files
+## References
 
--   [ideas-backlog.md](ideas-backlog.md) — All brainstormed ideas organized by category, plus SEO research
+| File | Read it when |
+| ---- | ------------ |
+| [references/priorities.md](references/priorities.md) | Picking the next post — ranked opportunities, quick wins, series, interview targets |
+| [references/ideas-backlog.md](references/ideas-backlog.md) | Browsing the full backlog by category, or appending new research (large file — read only when needed) |
 
-## Quick Reference
+New research findings go into `references/ideas-backlog.md`.
 
-### Priority Ranking by SEO Opportunity (Jan 2026)
+## Related Skills
 
-| Topic                                  | Opportunity  | Notes                            |
-| -------------------------------------- | ------------ | -------------------------------- |
-| **Mocking Azure OpenAI in C#**         | 🔥 Very High | Almost no competition, rank #1   |
-| **Testing Semantic Kernel in C#**      | 🔥 Very High | Only 1 outdated official article |
-| **Microsoft Agent Framework Testing**  | 🔥 Very High | Zero testing content exists      |
-| **Microsoft Agent Framework Tutorial** | High         | New tech, low competition        |
-| **GitHub Copilot Test Generation**     | Medium       | Official docs exist, need angle  |
-
-### High-Priority Quick Wins
-
--   How to Mock ILogger in C# (3 Ways)
--   How to Mock IOptions<T> in C#
--   How to Mock DateTime/TimeProvider (.NET 8+)
--   How to Test Background Services (IHostedService)
--   How to Test Minimal APIs with WebApplicationFactory
-
-### Series Ideas
-
--   Testing with MassTransit/RabbitMQ (3-4 parts)
--   Testing with .NET Aspire (3-4 parts)
--   Microsoft Agent Framework + Testing (3-4 parts)
--   Fluent Assertions Deep Dive (3-4 parts)
-
-### Interview Targets (MVP Network)
-
--   Jimmy Bogard (AutoMapper, MediatR)
--   Dennis Doomen (Fluent Assertions)
--   Stryker.NET maintainers
--   Isaac Levin (Semantic Kernel)
+- **blog-topic-research** — the methodology that produces backlog entries
+- **blog-content-strategy** — audience and voice once a topic is chosen

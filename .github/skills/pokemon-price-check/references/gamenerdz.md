@@ -80,7 +80,7 @@ The PowerShell script automatically calculates both values.
 ## PowerShell Parsing
 
 ```powershell
-.\parse-price-html.ps1 -Site "GameNerdz" -Html $html
+.\.github\skills\pokemon-price-check\scripts\parse-price-html.ps1 -Site "GameNerdz" -Html $html
 ```
 
 **Output fields:**
