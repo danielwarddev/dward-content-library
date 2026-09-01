@@ -1,8 +1,0 @@
-{
-    "chat.useAgentSkills": true,
-    "chat.tools.terminal.autoApprove": {
-        "ConvertFrom-Json": true,
-        "ForEach-Object": true,
-        "ConvertTo-Json": true
-    }
-}
