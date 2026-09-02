@@ -1,7 +1,8 @@
 # File Locations
 
-Save the markdown file in a logical location within the workspace. Use a descriptive filename with a
-date prefix when the content is time-sensitive (e.g., `2026-01-16-testing-blog-ideas.md`).
+Save the markdown file in a logical location within the workspace. Use a descriptive, self-explanatory
+filename (e.g., `testing-blog-ideas.md`). Do not put dates or timestamps in filenames — put the date in
+the document's `Generated:` field instead.
 
 | Content Type        | Suggested Location                                 |
 | ------------------- | -------------------------------------------------- |

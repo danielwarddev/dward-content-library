@@ -32,9 +32,9 @@ After creating the document:
 
 ### "Give me 10 blog post ideas about testing"
 
-1. Create `blog/brainstorms/2026-01-16-testing-blog-ideas.md`
+1. Create `blog/brainstorms/testing-blog-ideas.md`
 2. Include all 10 ideas with descriptions, SEO notes, and priority indicators
-3. Respond: "I've created a document with 10 testing blog post ideas at [blog/brainstorms/2026-01-16-testing-blog-ideas.md](blog/brainstorms/2026-01-16-testing-blog-ideas.md). The ideas range from beginner topics like mocking basics to advanced concepts like mutation testing. Want me to expand on any of these or add SEO research?"
+3. Respond: "I've created a document with 10 testing blog post ideas at [blog/brainstorms/testing-blog-ideas.md](blog/brainstorms/testing-blog-ideas.md). The ideas range from beginner topics like mocking basics to advanced concepts like mutation testing. Want me to expand on any of these or add SEO research?"
 
 ### "Compare NSubstitute vs Moq"
 

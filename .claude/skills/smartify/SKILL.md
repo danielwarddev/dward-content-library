@@ -2,7 +2,7 @@
 name: smartify
 description: Turn a goal into a SMART goal, splitting it into multiple goals if it's too large.
 user-invocable: true
-disable-model-invocation: true
+disable-model-invocation: false
 ---
 
 # Smartify
