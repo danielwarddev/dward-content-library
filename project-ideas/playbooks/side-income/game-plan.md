@@ -1,4 +1,8 @@
-# Game Development Side-Income Playbook
+# Game Development Plan
+
+**Context:** The third side-income stream, alongside [workshop-on-ramp-plan.md](workshop-on-ramp-plan.md)
+(the income plan) and [building-plan.md](building-plan.md) (the solo-building track). See
+[README.md](README.md) for the overview.
 
 ## Objective
 
@@ -519,3 +523,105 @@ After 90 days, assess each path independently.
 - [ ] Preserve a non-commercial part of the hobby
 
 The most resilient approach is to use developer tools for the more predictable commercial bet and small games for creative experimentation. If a game begins attracting players organically, increase investment. If it does not, the project can still be enjoyable and can produce real-world insight for useful tools, articles, or educational products.
+
+---
+
+# Honest Assessment vs. the Other Two Streams
+
+**As income, this is the weakest of the three streams — and not by a small margin.**
+
+| Stream | Realistic year-one income | Uses existing advantages? |
+| ------ | ------------------------- | ------------------------- |
+| Workshops / consulting | ~$12k, reliable | Yes — fully |
+| Building (tools, SEO) | $0 to a few hundred/mo | Yes — partially |
+| Games | Median near zero, very high variance | **No** |
+
+## Three Problems, and They Multiply
+
+1. **Hit-driven distribution.** Median lifetime earnings for a solo Steam title land in the low thousands
+   *gross*, before the 30% revenue share, the $100 Direct fee, and taxes.
+2. **Cycle time.** A commercially viable solo game is 1–3 years at 2 hrs/night. This flatly violates the
+   rule in [building-plan.md](building-plan.md) — ship in 2–4 weeks so five attempts take a season. One
+   attempt per several years is the worst possible shape for a hit-driven market.
+3. **Zero asset transfer — the real killer.** The blog, MVP status, user group, email list, and workshop
+   reputation all multiply the building track. **None of them help a Steam launch.** A .NET audience will
+   not buy a roguelike.
+
+Point 3 is what separates games from building. Building uses the unfair advantages. Games discard them.
+
+## The One Seam Where That Isn't True: Godot + C#
+
+Godot's C# support is real but second-class — GDScript-first docs, thin tutorials, sharp tooling edges.
+There is essentially nobody with MVP-level .NET credibility teaching Godot to C# developers.
+
+Already in hand: `project-ideas/godot-planning/`, a configured Godot MCP server, and
+`project-ideas/research/godot-csharp-web-export-issue-70796.md`.
+
+This is the testingwithdot.net playbook applied to a second niche, and unlike shipping games it *does* use
+existing advantages. It is also exactly the "commercial side" of the barbell described above.
+
+## The Play
+
+- **Games themselves: hobby, not income.** The fastest way to poison the one thing done purely for
+  enjoyment is to give it a revenue target. (See the Objective at the top of this document.)
+- **Route the value through channels that already monetize.** Devlogs feed the blog. *"C# beyond the
+  enterprise: building games in Godot"* is a genuinely fresh conference talk that would get accepted, and
+  speaking feeds the workshop funnel. The games produce **content** even when they produce no sales.
+- **If money ever comes from this, it comes from tooling and teaching**, not from a title.
+
+---
+
+# "What if AI lets me ship a game every 3–6 months?"
+
+Better odds than one game every three years — but it does not change the binding constraint, and it adds
+work that is specifically unwanted.
+
+## What AI Actually Removes
+
+AI collapses **implementation** cost: systems code, boilerplate, editor tooling, level data, dialogue
+variants, save/load plumbing, test scaffolding. That is real, and it's the part most suited to existing
+strengths.
+
+## What It Doesn't
+
+| Bottleneck | Does AI help? |
+| ---------- | ------------- |
+| Is the core loop actually fun? | No |
+| Art direction and cohesion | Barely, and visible AI art carries real reputational risk with players |
+| Game feel, juice, polish | No |
+| **Discovery and wishlists** | **No** |
+
+Code was never why most indie games fail.
+
+## The Argument That Actually Matters
+
+**AI increases supply for everyone.** More games shipped means discovery gets *harder*, not easier. Racing
+to produce more units in a market whose scarce resource is attention rather than production capacity does
+not obviously improve the odds.
+
+Worse, Steam's algorithm rewards **wishlist velocity at launch**, and wishlists take months of marketing
+per title — trailers, Next Fest, streamer outreach, community building. Ship every 4 months and marketing
+becomes the actual job. That is the exact work being avoided everywhere else in this folder.
+
+## When Volume Does Work
+
+The "many small games" strategy works when the attempts **compound** — the same spine rule from
+[building-plan.md](building-plan.md):
+
+- **Same genre and audience every time.** Shared tech, reusable systems, and — critically — players and
+  wishlists that carry from one title to the next.
+- **A tight, legible hook** that can be communicated in a single GIF.
+- **Deliberately small scope**, finished and shipped rather than abandoned.
+
+Four games across four unrelated genres resets to zero four times. Four games in one lane builds something.
+
+## Verdict
+
+Viable as a *learning and content* engine; not as a reliable income plan. Assume the first three titles
+earn approximately nothing and are tuition.
+
+**The highest-expected-value output of this experiment is probably not the games.** "I shipped four games
+in a year using AI, here's what actually happened" is a strong blog series and a conference talk — feeding
+the speaking and workshop funnel that already produces reliable money.
+
+If the games happen to sell, that's upside rather than the plan.
