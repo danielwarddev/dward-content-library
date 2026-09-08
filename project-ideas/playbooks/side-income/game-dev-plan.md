@@ -625,3 +625,66 @@ in a year using AI, here's what actually happened" is a strong blog series and a
 the speaking and workshop funnel that already produces reliable money.
 
 If the games happen to sell, that's upside rather than the plan.
+
+---
+
+# SMART Goals
+
+**Added:** September 1, 2026
+
+Games are the weakest income stream and the strongest enjoyment stream. These goals are therefore written
+to **protect the hobby and harvest the content**, not to chase revenue. Deliberately fewer and looser than
+the other two plans.
+
+## 30-Minute Rule: The One Thing to Do First
+
+Shipping a game is far too large for 30 minutes. Extracted sub-task: **write the one-paragraph pitch for a
+single tiny game.** It forces a scope decision, which is the thing that actually kills solo game projects.
+
+> **SMART Goal G0 — Name one tiny game**
+>
+> Write a one-paragraph pitch for a single deliberately small game by **Sunday, September 6, 2026**,
+> including its one-sentence hook and an explicit statement of what it will *not* contain — choosing from
+> the existing `project-ideas/game-ideas/expanded ideas/` rather than inventing something new.
+>
+> - **Measure:** One paragraph committed to the repo.
+> - **Time cost:** ~30 minutes.
+
+## The Sequence After That
+
+> **SMART Goal G1 — Finish something small**
+>
+> Complete and publicly release one small game (itch.io is sufficient — Steam is not required) by
+> **March 31, 2027**, keeping scope small enough to actually finish, in order to learn what shipping
+> actually costs before making any bigger bet.
+>
+> - **Measure:** Playable by strangers at a public URL.
+> - **Explicitly not measured:** revenue. Assume zero.
+
+> **SMART Goal G2 — Harvest the content**
+>
+> Publish at least 3 devlog posts on daninacan.com about building in Godot with C# by **March 31, 2027**,
+> and submit one Godot-and-C# talk to a conference CFP by **December 31, 2026** — converting hobby time
+> into speaking and funnel value, which is the highest-expected-value output of this stream.
+>
+> - **Measure:** 3 posts published; 1 CFP submitted.
+> - **Why this matters more than the game:** it feeds the workshop funnel, which is what actually pays.
+
+> **SMART Goal G3 — Decide, don't drift**
+>
+> By **June 30, 2027**, make an explicit written decision on whether game dev stays a pure hobby or becomes
+> a commercial effort — based on whether G1 and G2 produced any observable pull (players, comments, talk
+> acceptance), so the choice is made deliberately rather than by slow drift.
+>
+> - **Measure:** A dated paragraph in this file recording the decision and its reasoning.
+> - **Default if unclear:** stays a hobby. That is a fine outcome.
+
+## Notes on These Goals
+
+- **Guard the enjoyment.** If any of these start to feel like obligations, drop them. A hobby with a
+  quota is no longer the thing that made it worth doing.
+- **G2 is the one that pays**, indirectly. The content and the talk feed the funnel in
+  [workshop-on-ramp-plan.md](workshop-on-ramp-plan.md); the game itself likely never will.
+- **The tooling route** (Godot + C# education, plugins, the automated-testing toolkit hypothesis above) is
+  intentionally *not* given goals here. If it becomes real, it belongs in
+  [building-plan.md](building-plan.md), where the cycle-time and distribution rules already apply.

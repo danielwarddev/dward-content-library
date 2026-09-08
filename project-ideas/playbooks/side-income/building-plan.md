@@ -152,3 +152,74 @@ current content beats finishing it.
 ## Diagrams
 
 See [ecosystem-map.md](ecosystem-map.md) for how the assets, audience, partners, and offers connect, and [mindmap.md](mindmap.md) for open brainstorming.
+
+---
+
+# SMART Goals
+
+**Added:** September 1, 2026
+
+Building is the preferred work but carries none of the income burden. These goals are therefore about
+**establishing signal and shipping cadence**, not revenue.
+
+## 30-Minute Rule: The One Thing to Do First
+
+The building track is far too large for 30 minutes. Extracted sub-task: **open Google Search Console and
+export the top 100 queries.** It is the correct first move because it converts "I don't know what to build"
+into a ranked list of real problems, using data already sitting there, in one sitting.
+
+> **SMART Goal B0 — Get the signal**
+>
+> Open Google Search Console for daninacan.com and export the top 100 queries by impressions to a file in
+> this repo by **end of day Thursday, September 3, 2026**, tagging each as *task* (candidate tool) or
+> *question* (candidate post) — turning "I don't know what to build" into a ranked list of observed problems.
+>
+> - **Measure:** A file with 100 tagged queries.
+> - **Time cost:** ~30 minutes.
+
+## The Sequence After That
+
+> **SMART Goal B1 — Ship testingwithdot.net**
+>
+> Publish testingwithdot.net with its current content by **Sunday, September 20, 2026**, resisting any new
+> sections before launch — because an unshipped site is worth zero and its query data is a second problem
+> feed that can't start collecting until it's live.
+>
+> - **Measure:** Site is live at the domain and indexed in Search Console.
+> - **Rule:** No new pages before launch. Publish what exists.
+
+> **SMART Goal B2 — Start the email list**
+>
+> Add a single email capture form to daninacan.com and testingwithdot.net by **Sunday, October 4, 2026**,
+> and reach **50 subscribers by December 31, 2026** — closing the largest structural gap in
+> [ecosystem-map.md](ecosystem-map.md), where four content assets currently feed nothing.
+>
+> - **Measure:** Form live on both sites; subscriber count.
+> - **Note:** No newsletter obligation yet. Collecting addresses is the goal.
+
+> **SMART Goal B3 — Ship one free tool**
+>
+> Build and publish one free tool addressing a *task* query identified in Goal B0, scoped to **two weeks of
+> evenings**, shipped publicly by **Sunday, November 15, 2026** — proving the cycle-time rule and generating
+> the third problem feed (usage data).
+>
+> - **Measure:** Tool is public, announced on the blog and to the user group, usage observable.
+> - **Constraint:** If it can't ship in two weeks of evenings, the scope is wrong. Cut, don't extend.
+
+> **SMART Goal B4 — Turn the loop twice**
+>
+> Ship three small public things (tools, extensions, or utility pages) serving the same .NET/Copilot
+> audience between now and **June 30, 2027**, each scoped to ≤3 weeks of evenings — testing the
+> "spaghetti with a spine" hypothesis with enough attempts to learn something.
+>
+> - **Measure:** 3 shipped and publicly announced.
+> - **Checkpoint:** If none attracts repeat usage by June 2027, the constraint is problem selection, not
+>   execution — go back to the Signals, not to more building.
+
+## Notes on These Goals
+
+- **Only B0 needs to happen now**, and it takes half an hour.
+- **None of these carry a revenue target.** That's deliberate — the workshops carry the $12k. Attaching
+  income pressure here converts the enjoyable work into a second job.
+- **B1 and B2 are the highest-leverage items** and neither is really "building." Shipping the site and
+  starting the list unlock everything downstream.
