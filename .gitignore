@@ -7,6 +7,9 @@
 .godot/
 /android/
 
+# Playwright MCP screenshots and artifacts
+/.playwright-mcp/
+
 # User-specific files
 *.rsuser
 *.suo

@@ -4,10 +4,11 @@
       "command": "npx",
       "args": [
         "@playwright/mcp@latest",
-        "--headless",
         "--isolated",
         "--output-dir",
-        "playwright-mcp-output"
+        ".playwright-mcp",
+        "--output-max-size",
+        "104857600"
       ]
     }
   }
