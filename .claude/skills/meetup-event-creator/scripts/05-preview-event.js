@@ -1,6 +1,6 @@
 async (page) => {
   const expected = {
-    title: ".NET@NOON: Generate the code once, so nobody has to write it again",
+    title: "Generate the code once, so nobody has to write it again",
     date: "Thu, Sep 24",
     startTime: "12:00",
     duration: "1 hour",
@@ -19,6 +19,8 @@ async (page) => {
       "https://www.linkedin.com/in/arturonereu/",
     ],
     speakerName: "Arturo Nereu",
+    topics: [".NET", "C#", "Artificial Intelligence", "Game Programming", "Game Design"],
+    hosts: ["Daniel Ward", "Ashish Patel"],
   };
 
   if (page.url().includes("/schedule/") || page.url().includes("/edit/")) {
@@ -56,8 +58,36 @@ async (page) => {
       .locator("xpath=following-sibling::div[1]//div[contains(@style, 'background-image')]")
       .waitFor({ state: "visible" });
 
+    const requiredOffSwitches = [
+      page.getByRole("switch", { name: "Enable event chat" }),
+      page.getByRole("switch", { name: "Allow comments" }),
+      page.getByText("Registration form", { exact: true }).locator("xpath=following::*[@role='switch'][1]"),
+    ];
+    for (const toggle of requiredOffSwitches) {
+      if (await toggle.isChecked()) {
+        throw new Error("Chat, comments, and registration must be disabled.");
+      }
+    }
+
+    const topicSearch = page.locator("input[placeholder='Search topics (max 5)...']");
+    const topicsSection = topicSearch.locator("xpath=ancestor::div[contains(@class, 'gap-ds2-16')][1]");
+    const actualTopics = (await topicsSection.locator('button[aria-pressed="true"]').allInnerTexts())
+      .map(topic => topic.trim())
+      .sort();
+    if (actualTopics.join("|") !== [...expected.topics].sort().join("|")) {
+      throw new Error(`Topic mismatch: found ${actualTopics.join(", ")}.`);
+    }
+
+    const hostsSection = page.getByText("Hosts", { exact: true })
+      .locator("xpath=ancestor::*[.//input[@placeholder='Search hosts...']][1]");
+    for (const host of expected.hosts) {
+      if (!await hostsSection.locator(`xpath=.//p[normalize-space()="${host}" and not(ancestor::button)]`).count()) {
+        throw new Error(`Required host is missing: ${host}.`);
+      }
+    }
+
     await Promise.all([
-      page.waitForURL(/\/sadnug\/events\/\d+\//),
+      page.waitForURL(/\/austin-net-user-group\/events\/\d+\//),
       page.getByTestId("event-preview-btn").first().click(),
     ]);
   }

@@ -1,11 +1,11 @@
 ---
 name: meetup-event-creator
-description: Create and preview events for the San Antonio .NET User Group on Meetup using saved Playwright MCP scripts. Use when scheduling, drafting, previewing, or publishing a SADNUG Meetup event from prompt details or a Markdown event brief.
+description: Create and preview .NET user group events on Meetup using saved Playwright MCP scripts. Use when scheduling, drafting, previewing, or publishing a Meetup event from prompt details or a Markdown event brief.
 ---
 
 # Meetup Event Creator
 
-Create SADNUG Meetup events through Playwright MCP with an auditable script for each browser step. Populate and preview the event, then stop for user review. Never publish without explicit confirmation in the current conversation.
+Create Meetup events through Playwright MCP with an auditable script for each browser step. Populate and preview the event, then stop for user review. Never publish without explicit confirmation in the current conversation.
 
 ## Inputs
 
@@ -21,14 +21,22 @@ Required:
 
 When the event has a speaker, require their name, bio, and a local photo file; collect any available social or website links. Always ask for a missing speaker photo because Meetup's dedicated Speakers section requires one for a complete profile. Keep the speaker's name, bio, photo, and links in the dedicated Speakers fields; do not append an "About" section, speaker bio, or speaker links to the event description. The speaker photo is separate from the optional event image. Ask only for other required details that cannot be inferred safely. For SADNUG noon events, use the `.NET@NOON:` title prefix and Central time unless the user specifies otherwise.
 
+Determine hosts from the group URL:
+
+- For `meetup.com/sadnug/`, use Daniel Ward.
+- For `meetup.com/austin-net-user-group/`, use Daniel Ward and Ashish Patel.
+- For any other group, ask the user who should host the event.
+
+If a required host is unavailable in Meetup's host picker, stop and report the missing host rather than silently omitting or substituting someone.
+
 ## Workflow
 
 1. Read and normalize the event data. Preserve the user's wording unless asked to edit it.
 2. Create or update event-specific scripts in `scripts/`. Keep event values embedded in the scripts so the exact automation is reviewable and repeatable.
-3. Run `scripts/01-open-event-creator.js`. It opens the SADNUG home page, clicks `Create event`, and selects `Create a new event`. Do not navigate through the Events tab. If it reports `authenticationRequired: true`, ask the user to log in directly in the visible browser, then rerun it. Never request or handle credentials.
+3. Run `scripts/01-open-event-creator.js`. It opens the target group home page, clicks `Create event`, and selects `Create a new event`. Do not navigate through the Events tab. If it reports `authenticationRequired: true`, ask the user to log in directly in the visible browser, then rerun it. Never request or handle credentials.
 4. Run `scripts/02-open-scheduler.js` to dismiss known startup dialogs. Start from scratch unless the user explicitly requests duplication.
 5. Update and run `scripts/03-fill-event-details.js` for the normalized event data. The description must contain only event or talk content, not speaker-profile content. Use stable IDs, accessible labels, and the first visible `.ProseMirror` editor because enabling Speakers adds a second editor for the bio.
-6. Update and run `scripts/04-configure-event.js`. Select up to five relevant topics. Preserve the group's existing chat and comment defaults unless the user requests changes. Disable an incomplete optional registration form rather than inventing RSVP questions.
+6. Update and run `scripts/04-configure-event.js`. Disable event chat, event comments, and the registration form, and verify all three are off. Configure the required hosts based on the group URL. Select up to five relevant topics from `.NET`, `C#`, `Software Development`, `Technology`, `ASP.NET`, `Web Development`, `Artificial Intelligence`, `Game Programming`, `Unity Game Engine`, and `Game Design`. Always use `.NET` and `C#` when available. Use five topics whenever five approved topics genuinely apply, but never add a broad, unrelated, or weakly related topic just to reach the limit. Prefer `Software Development` unless directly applicable, more specific topics fill the five-topic limit; use a specific topic only when the event content supports it.
 7. When the event has a speaker, update and run `scripts/07-configure-speaker.js`. Enable Speakers, fill the dedicated name, bio, and link fields, and upload the local photo through the speaker's `Upload photo` control. Set the modal's hidden `input[type="file"]` with Playwright, save the crop, and verify Meetup renders the uploaded photo. Do not use the event-image `Select` control.
 8. Update and run `scripts/05-preview-event.js`. Assert the form values, open Meetup's Event preview, and validate the rendered title, schedule, format, description, and speaker details.
 9. Report the preview URL and any formatting caveats. Stop for review.
@@ -39,9 +47,9 @@ When the event has a speaker, require their name, bio, and a local photo file; c
 Update `scripts/06-open-event-editor.js` with the exact event title before running it. The script supports both verified entry points:
 
 - From an open event preview, locate the banner headed `Event preview` and click its `Edit` button. Scope the button to that banner because the page can contain another Edit control.
-- From elsewhere, open the SADNUG home page and select `Create event` > `Edit a saved draft`. On the drafts page, select the event by its exact title, open its preview, and click the banner's `Edit` button.
+- From elsewhere, open the target group home page and select `Create event` > `Edit a saved draft`. On the drafts page, select the event by its exact title, open its preview, and click the banner's `Edit` button.
 
-Wait for `/sadnug/events/{id}/edit/` and a visible `#title`, then verify the title before changing anything. Update the event-specific values and expectations in the fill, configure, and preview scripts as needed. Run only the affected scripts, finish by rerunning `scripts/05-preview-event.js`, and stop for review again. Editing a draft does not grant permission to publish it.
+Wait for the target group's `/events/{id}/edit/` URL and a visible `#title`, then verify the title before changing anything. Update the event-specific values and expectations in the fill, configure, and preview scripts as needed. Run only the affected scripts, finish by rerunning `scripts/05-preview-event.js`, and stop for review again. Editing a draft does not grant permission to publish it.
 
 ## Safety Rules
 
@@ -57,7 +65,7 @@ Wait for `/sadnug/events/{id}/edit/` and a visible `#title`, then verify the tit
 - `scripts/01-open-event-creator.js`: open the group home page, detect authentication, and use `Create event` > `Create a new event`.
 - `scripts/02-open-scheduler.js`: prepare the blank scheduler and dismiss known startup dialogs.
 - `scripts/03-fill-event-details.js`: fill and verify core event fields.
-- `scripts/04-configure-event.js`: configure topics and optional registration behavior.
+- `scripts/04-configure-event.js`: configure hosts and topics, and disable chat, comments, and registration.
 - `scripts/05-preview-event.js`: validate the form and rendered preview without publishing.
 - `scripts/06-open-event-editor.js`: reopen an existing draft through its preview and verify the editor before making changes.
 - `scripts/07-configure-speaker.js`: populate the dedicated speaker profile, upload the speaker photo, and verify the result.

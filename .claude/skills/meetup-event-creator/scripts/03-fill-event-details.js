@@ -1,6 +1,6 @@
 async (page) => {
   const event = {
-    title: ".NET@NOON: Generate the code once, so nobody has to write it again",
+    title: "Generate the code once, so nobody has to write it again",
     dateLabel: "Thursday, September 24th, 2026",
     startTime: "12:00",
     duration: "1 hour",

@@ -23,9 +23,10 @@
 
 ## Optional Settings
 
+- Hosts (inferred for SADNUG and Austin; required for other groups):
 - Topics (maximum five):
-- Event chat: Group default
-- Comments: Group default
-- RSVP questions: None
+- Event chat: Off
+- Comments: Off
+- Registration form: Off
 - Event image (separate from speaker photo):
 - Publish policy: Stop for review

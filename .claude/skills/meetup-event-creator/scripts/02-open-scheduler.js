@@ -1,6 +1,6 @@
 async (page) => {
-  if (!page.url().includes("/sadnug/schedule/")) {
-    throw new Error("Run 01-open-event-creator.js from the SADNUG home page first.");
+  if (!page.url().includes("/austin-net-user-group/schedule/")) {
+    throw new Error("Run 01-open-event-creator.js from the Austin .NET User Group home page first.");
   }
 
   const startFromScratch = page.getByRole("button", { name: /Start from scratch/ });

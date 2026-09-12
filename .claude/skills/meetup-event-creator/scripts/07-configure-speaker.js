@@ -8,16 +8,17 @@ async (page) => {
     website: "https://nereu.co",
   };
 
-  if (!page.url().includes("/edit/")) {
-    throw new Error("Open the event editor before configuring the speaker.");
+  if (!page.url().includes("/austin-net-user-group/schedule/") && !page.url().includes("/edit/")) {
+    throw new Error("Open the Austin event scheduler or event editor before configuring the speaker.");
   }
 
-  const speakersToggle = page.getByRole("button", { name: "Speakers", exact: true });
+  const speakersToggle = page.getByText("Speakers", { exact: true })
+    .locator("xpath=following::*[@role='switch'][1]");
   const speakerRegion = page.getByRole("heading", { name: "Speaker bio *", exact: true })
     .locator("xpath=ancestor::*[@role='region'][1]");
   const speakerName = speakerRegion.locator('input[type="text"]').first();
 
-  if (!await speakerName.isVisible().catch(() => false)) {
+  if (!await speakersToggle.isChecked()) {
     await speakersToggle.click();
     await speakerName.waitFor({ state: "visible" });
   }
