@@ -29,4 +29,10 @@
 - Comments: Off
 - Registration form: Off
 - Event image (separate from speaker photo):
-- Publish policy: Stop for review
+- Meetup publish policy: Stop for review
+
+## Feedback Form
+
+- Automatically create and publish one form for this event: Required
+- Generate QR-code PNG from the published responder URL: Required
+- Template: Default shared feedback form

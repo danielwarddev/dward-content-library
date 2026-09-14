@@ -1,0 +1,29 @@
+{
+  "title": ".NET User Group Feedback - {{eventDate}}",
+  "description": "If you're interested in presenting for the group, please email:\n\ndanielwarddev@gmail.com\nashish@simpat.tech\n\nNo qualifications needed; just an interest in a .NET-related topic and a willingness to talk about it!",
+  "items": [
+    {
+      "title": "How satisfied were you with the presentation topic and content?",
+      "questionItem": {
+        "question": {
+          "required": true,
+          "scaleQuestion": {
+            "low": 1,
+            "high": 5
+          }
+        }
+      }
+    },
+    {
+      "title": "Do you have any other feedback or ideas for the group or this month's presenter?",
+      "questionItem": {
+        "question": {
+          "required": false,
+          "textQuestion": {
+            "paragraph": true
+          }
+        }
+      }
+    }
+  ]
+}

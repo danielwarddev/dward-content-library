@@ -10,6 +10,9 @@
 # Playwright MCP screenshots and artifacts
 /.playwright-mcp/
 
+# Generated Meetup feedback form QR codes
+/.claude/skills/meetup-event-creator/scripts/google-forms/generated/
+
 # User-specific files
 *.rsuser
 *.suo
