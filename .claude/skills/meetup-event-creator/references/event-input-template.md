@@ -20,6 +20,16 @@
 - Bio:
 - Photo file:
 - Links:
+- Twitter/X handle (when not included in Links):
+- Bluesky handle or none:
+- LinkedIn display name (when not included in Links):
+
+## Social Posts
+
+- Products, tools, or companies to tag:
+- Twitter/X handles for tags:
+- Bluesky handles for tags:
+- LinkedIn display names for tags:
 
 ## Optional Settings
 
