@@ -39,7 +39,12 @@ async function saveCredentials(client) {
 export async function authorize() {
   const savedCredentials = await loadSavedCredentials();
   if (savedCredentials) {
-    return savedCredentials;
+    try {
+      await savedCredentials.getAccessToken();
+      return savedCredentials;
+    } catch {
+      console.log("Saved Google authorization is no longer valid; opening browser authorization.");
+    }
   }
 
   const client = await authenticate({
