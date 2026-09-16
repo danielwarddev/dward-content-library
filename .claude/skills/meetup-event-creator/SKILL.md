@@ -1,11 +1,11 @@
 ---
 name: meetup-event-creator
-description: Create and preview .NET user group events on Meetup using saved Playwright MCP scripts, create the matching Google feedback form and QR code, and draft LinkedIn, Twitter/X, and Bluesky posts. Use when scheduling, drafting, previewing, publishing, or promoting a Meetup event from prompt details or a Markdown event brief.
+description: Create and preview .NET user group events on Meetup using saved Playwright MCP scripts. Use when scheduling, drafting, previewing, or publishing a Meetup event from prompt details or a Markdown event brief.
 ---
 
 # Meetup Event Creator
 
-Create Meetup events through Playwright MCP with an auditable script for each browser step. Create and publish the matching Google feedback form through the Forms API, generate its QR code, and draft social posts after the Meetup event is published. Preview the Meetup event, then stop for user review. Never publish the Meetup event without explicit confirmation in the current conversation, and never publish social posts.
+Create Meetup events through Playwright MCP with an auditable script for each browser step. Populate and preview the event, then stop for user review. Never publish without explicit confirmation in the current conversation.
 
 ## Inputs
 
@@ -21,14 +21,10 @@ Required:
 
 When the event has a speaker, require their name, bio, and a local photo file; collect any available social or website links. Always ask for a missing speaker photo because Meetup's dedicated Speakers section requires one for a complete profile. Keep the speaker's name, bio, photo, and links in the dedicated Speakers fields; do not append an "About" section, speaker bio, or speaker links to the event description. The speaker photo is separate from the optional event image. Ask only for other required details that cannot be inferred safely. For SADNUG noon events, use the `.NET@NOON:` title prefix and Central time unless the user specifies otherwise.
 
-For social posts, use the event and speaker details already collected. When the event has a speaker, always ask for their Bluesky handle or confirmation that they do not have one. Ask for their Twitter/X handle only when it is not present in their links, and ask for their LinkedIn display name only when LinkedIn information is unavailable. Ask whether any products, tools, or companies should be tagged and collect their Twitter/X handle, Bluesky handle, and LinkedIn display name. Never infer an account handle.
-
-Always create and publish one feedback form and generate its QR code for every Meetup event. Its title uses the event date as `.NET User Group Feedback - M/D/YYYY`. The form content comes from `scripts/google-forms/feedback-form-template.json`; do not skip form or QR-code creation or silently alter the questions or description for a single event.
-
 Determine hosts from the group URL:
 
 - For `meetup.com/sadnug/`, use Daniel Ward.
-- For `meetup.com/austin-net-user-group/`, use Daniel Ward and Ashish Patel.
+- For `meetup.com/austin-net-user-group/`, use Daniel Ward, Ashish Patle, and Claudia Reyes. Match the actual Meetup member identity when an obvious spelling correction is shown by the host picker.
 - For any other group, ask the user who should host the event.
 
 If a required host is unavailable in Meetup's host picker, stop and report the missing host rather than silently omitting or substituting someone.
@@ -43,25 +39,9 @@ If a required host is unavailable in Meetup's host picker, stop and report the m
 6. Update and run `scripts/04-configure-event.js`. Disable event chat, event comments, and the registration form, and verify all three are off. Configure the required hosts based on the group URL. Select up to five relevant topics from `.NET`, `C#`, `Software Development`, `Technology`, `ASP.NET`, `Web Development`, `Artificial Intelligence`, `Game Programming`, `Unity Game Engine`, and `Game Design`. Always use `.NET` and `C#` when available. Use five topics whenever five approved topics genuinely apply, but never add a broad, unrelated, or weakly related topic just to reach the limit. Prefer `Software Development` unless directly applicable, more specific topics fill the five-topic limit; use a specific topic only when the event content supports it.
 7. When the event has a speaker, update and run `scripts/07-configure-speaker.js`. Enable Speakers, fill the dedicated name, bio, and link fields, and upload the local photo through the speaker's `Upload photo` control. Set the modal's hidden `input[type="file"]` with Playwright, save the crop, and verify Meetup renders the uploaded photo. Do not use the event-image `Select` control.
 8. Update and run `scripts/05-preview-event.js`. Assert the form values, open Meetup's Event preview, and validate the rendered title, schedule, format, description, and speaker details.
-9. For every new Meetup event, run `npm run create -- --date M/D/YYYY` from `scripts/google-forms/`. On the first run, complete Google authorization in the browser; never request or handle Google credentials. The helper creates, validates, and publishes the form with responses enabled, then generates a QR-code PNG in `scripts/google-forms/generated/`. Do not consider event creation complete if this step fails.
-10. Report the Meetup preview URL and published Google Form responder URL together, along with the Google Form edit URL, QR-code image path, and any formatting caveats. Stop for Meetup review.
-11. Publish the Meetup event only after the user explicitly approves the displayed preview. Create a separate event-specific publish script from the current preview UI, keep its action narrowly scoped to Publish, and run it once.
-12. Capture the final Meetup event URL after publication.
-13. Research popular hashtags related to the talk's technology with Playwright MCP. Always include `#dotnet`, then select one or two genuinely relevant hashtags such as `#csharp`, `#ai`, `#azure`, or `#maui` based on the event topic and research.
-14. Read `references/social-style-guide.md` and `references/social-post-templates.md`. Draft separate Twitter/X, Bluesky, and LinkedIn posts using the final Meetup event URL. Apply platform-specific handles and display names, and include exact character counts for Twitter/X and Bluesky. Do not publish the posts.
-15. Report the final Meetup event URL, published Google Form responder URL, QR-code image path, and all three social post drafts together.
-
-## Social Posts
-
-Write posts only after the Meetup event is published so every draft contains the final event URL. Use the exact output format in `references/social-post-templates.md`; the voice and prohibited phrasing in `references/social-style-guide.md` take priority over generic marketing language. Use the normalized event data instead of scraping details back from Meetup.
-
-## Google Forms Setup
-
-The helper uses a Desktop OAuth client and only requests `https://www.googleapis.com/auth/drive.file`. Install dependencies once with `npm install` from `scripts/google-forms/`.
-
-It reads the OAuth client from `~/.config/gws/client_secret.json` and stores the authorized-user token at `~/.config/meetup-event-creator/token.json`. Both files must remain outside the repository.
-
-Enable the Google Forms API for the OAuth client's Google Cloud project before the first live run. The initial authorization opens a browser and saves a refresh token for later events.
+9. Create paste-ready Markdown reminders from [references/announcement-template.md](references/announcement-template.md) under `messages/`. Unless the user requests different groups, create one Austin version and one San Antonio version with identical text except for their Meetup links. Use each event's canonical Meetup URL without preview query parameters when available; otherwise use the group's Meetup URL. Use the actual presenter and talk title; do not write in first person unless the sender is the presenter. Include an organizer update only when the user provides one. Default to a day-of reminder using `today`, and default the sender to Daniel Ward unless the user specifies otherwise. Keep each file body limited to the message so it can be copied directly into Meetup.
+10. Report the preview URL, reminder files, and any formatting caveats. Stop for review.
+11. Publish only after the user explicitly approves the displayed preview. Create a separate event-specific publish script from the current preview UI, keep its action narrowly scoped to Publish, and run it once.
 
 ## Editing A Saved Draft
 
@@ -74,14 +54,11 @@ Wait for the target group's `/events/{id}/edit/` URL and a visible `#title`, the
 
 ## Safety Rules
 
-- Do not publish the Meetup event during population or preview.
+- Do not click Publish during population or preview.
 - Do not infer a venue, meeting URL, date, or time.
 - Do not duplicate an old event by default; hidden settings may carry over.
 - Do not overwrite or discard an in-progress event unless the user approves.
 - Treat a generated `/events/{id}/` page labeled `Event preview` as unpublished.
-- Keep OAuth client secrets and tokens outside the repository. Never read, print, copy, or commit their contents.
-- Keep the Google OAuth scope limited to `drive.file`.
-- Draft social posts for the user to review; do not post them to any platform.
 - Validate after every substantive script change by running that exact saved script.
 
 ## Current Scripts
@@ -93,12 +70,5 @@ Wait for the target group's `/events/{id}/edit/` URL and a visible `#title`, the
 - `scripts/05-preview-event.js`: validate the form and rendered preview without publishing.
 - `scripts/06-open-event-editor.js`: reopen an existing draft through its preview and verify the editor before making changes.
 - `scripts/07-configure-speaker.js`: populate the dedicated speaker profile, upload the speaker photo, and verify the result.
-- `scripts/google-forms/create-form.js`: create, validate, and publish a feedback form with responses enabled, then generate its QR-code PNG.
-- `scripts/google-forms/feedback-form-template.json`: define the shared feedback form title, description, and questions.
-
-## References
-
-- `references/social-style-guide.md`: define the social writing voice, emoji conventions, and language to avoid.
-- `references/social-post-templates.md`: define platform limits, event structures, tagging rules, and exact output format.
 
 Meetup changes its markup periodically. Prefer IDs and roles already proven by these scripts. If a selector fails, inspect the smallest relevant page region, patch the script, and rerun it before continuing.
