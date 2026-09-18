@@ -4,7 +4,7 @@ async (page) => {
     date: "Thu, Sep 24",
     startTime: "12:00",
     duration: "1 hour",
-    onlineUrl: "https://simpat.zoom.us/j/83263323822?jst=2",
+    onlineUrl: "https://simpat.zoom.us/j/89601187468",
     previewTime: "Thursday, Sep 24 · 12:00 PM to 1:00 PM CDT",
     descriptionIncludes: [
       "The current approaches to game development",

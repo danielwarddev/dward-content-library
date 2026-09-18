@@ -4,7 +4,7 @@ async (page) => {
     dateLabel: "Thursday, September 24th, 2026",
     startTime: "12:00",
     duration: "1 hour",
-    onlineUrl: "https://simpat.zoom.us/j/83263323822?jst=2",
+    onlineUrl: "https://simpat.zoom.us/j/89601187468",
     description: `The current approaches to game development mimic how the industry has worked in previous years. Coding agents are reinventing the wheel over and over. If a developer asks for a shooting mechanic, the LLM will write variations of it.
 
 I'm building a game engine that tackles the problem from the other side. Generating the code once, then letting each developer and their agent repurpose what's out there. This allows developers to iterate faster. The code is not simply functions and classes, but higher level concepts that are well proven and standard in the games industry. Previously difficult to have in a single code base.
