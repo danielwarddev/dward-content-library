@@ -10,6 +10,10 @@
 # Playwright MCP screenshots and artifacts
 /.playwright-mcp/
 
+# Private WordPress migration exports
+/blog-migration/*.WordPress.*.xml
+/blog-migration/*.sql
+
 # Generated Meetup feedback form QR codes
 /.claude/skills/meetup-event-creator/scripts/google-forms/generated/
 
