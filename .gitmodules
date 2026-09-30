@@ -1,0 +1,3 @@
+[submodule "speaking-content/presentations/revealjs/reveal.js"]
+	path = speaking-content/presentations/revealjs/reveal.js
+	url = https://github.com/hakimel/reveal.js.git
