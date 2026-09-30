@@ -1,12 +1,12 @@
 async (page) => {
   const event = {
     groupSlug: "sadnug",
-    eventId: "316528855",
-    date: "2026-09-24",
+    eventId: "316684872",
+    date: "2026-09-29",
     timeZone: "America/Chicago",
-    title: "Generate the code once, so nobody has to write it again",
-    presenter: "Arturo Nereu",
-    url: "https://www.meetup.com/sadnug/events/316528855",
+    title: "Herding Clankers into the Pit of Success",
+    presenter: "Jon Roberts",
+    url: "https://www.meetup.com/sadnug/events/316684872/",
     sender: "Daniel Ward",
   };
 
@@ -27,9 +27,9 @@ async (page) => {
     throw new Error("The event date has passed; update the event-specific message values.");
   }
 
-  const timing = daysUntil === 0 ? "today" : daysUntil === 1 ? "tomorrow" : `in ${daysUntil} days`;
+  const timing = daysUntil === 0 ? "today at 1 PM" : daysUntil === 1 ? "tomorrow" : `in ${daysUntil} days`;
   const subject = daysUntil === 0
-    ? ".NET meetup today at noon!"
+    ? ".NET meetup today at 1 PM!"
     : daysUntil === 1
       ? ".NET meetup tomorrow!"
       : `.NET meetup in ${daysUntil} days!`;
@@ -37,7 +37,8 @@ async (page) => {
     "Hi all,",
     `As a reminder, the next .NET User Group meetup will be ${timing}! We hope to see you there!`,
     `${event.presenter} will be presenting on ${event.title}.`,
-    `Click here to sign up and get the Zoom link: ${event.url}`,
+    "This is a special 1 PM session at Geekdom as part of San Antonio Startup + Tech Week.",
+    `Click here to sign up and get the event details: ${event.url}`,
     "Thank you,",
     event.sender,
   ].join("\n");
@@ -52,25 +53,12 @@ async (page) => {
   ]);
   await messagePage.waitForURL(`**/${event.groupSlug}/messages/send/?eventId=${event.eventId}`);
 
-  const rsvpRecipients = messagePage.getByRole("radio", {
-    name: /Members based on RSVP status to a given event/,
-  });
-  const rsvpYes = messagePage.getByRole("checkbox", {
-    name: "Members who RSVPed Yes for this event",
-    exact: true,
-  });
-  const rsvpNo = messagePage.getByRole("checkbox", {
-    name: "Members who RSVPed No for this event",
-    exact: true,
-  });
-  const noResponse = messagePage.getByRole("checkbox", {
-    name: "Members who haven't RSVPed for this event yet",
-    exact: true,
-  });
-
-  if (!await rsvpRecipients.isChecked() || !await rsvpYes.isChecked()
-    || await rsvpNo.isChecked() || await noResponse.isChecked()) {
-    throw new Error("Expected only members who RSVPed Yes to be selected.");
+  const allMembers = messagePage.getByRole("radio", { name: /^All members/ });
+  if (!await allMembers.isChecked()) {
+    await allMembers.click();
+  }
+  if (!await allMembers.isChecked()) {
+    throw new Error("Expected All members to be selected.");
   }
 
   await messagePage.locator("#subject").fill(subject);
@@ -135,7 +123,7 @@ async (page) => {
   }
 
   return {
-    recipient: "Members who RSVPed Yes for this event",
+    recipient: "All members",
     subject,
     messageComposed: true,
     sent: false,

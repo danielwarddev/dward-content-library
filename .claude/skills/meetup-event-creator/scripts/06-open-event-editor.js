@@ -1,6 +1,6 @@
 async (page) => {
-  const groupUrl = "https://www.meetup.com/austin-net-user-group/";
-  const eventTitle = "Generate the code once, so nobody has to write it again";
+  const groupUrl = "https://www.meetup.com/sadnug/";
+  const eventTitle = "SADNUG @ SA Startup + Tech Week";
 
   if (page.url().includes("/edit/")) {
     await page.locator("#title").waitFor({ state: "visible" });
@@ -18,14 +18,14 @@ async (page) => {
 
       await page.getByRole("button", { name: "Create event", exact: true }).click();
       await Promise.all([
-        page.waitForURL(/\/austin-net-user-group\/events\/drafts\//),
+        page.waitForURL(/\/sadnug\/events\/drafts\//),
         page.getByRole("menuitem", { name: "Edit a saved draft", exact: true }).click(),
       ]);
 
       const draftHeading = page.getByRole("heading", { name: eventTitle, exact: true });
       const draftLink = draftHeading.locator("xpath=ancestor::a[1]");
       await Promise.all([
-        page.waitForURL(/\/austin-net-user-group\/events\/\d+\//),
+        page.waitForURL(/\/sadnug\/events\/\d+\//),
         draftLink.click(),
       ]);
     }
@@ -33,7 +33,7 @@ async (page) => {
     const previewBanner = page.getByRole("heading", { name: "Event preview", exact: true })
       .locator("xpath=ancestor::*[.//button[normalize-space()='Publish']][1]");
     await Promise.all([
-      page.waitForURL(/\/austin-net-user-group\/events\/\d+\/edit\//),
+      page.waitForURL(/\/sadnug\/events\/\d+\/edit\//),
       previewBanner.getByRole("button", { name: "Edit", exact: true }).click(),
     ]);
     await page.locator("#title").waitFor({ state: "visible" });

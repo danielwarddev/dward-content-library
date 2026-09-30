@@ -1,15 +1,15 @@
 async (page) => {
   const speaker = {
-    name: "Arturo Nereu",
-    bio: "Arturo is a software engineer who's spent the last decade helping developers build games, and AI and data applications. Ex Unity, ex MongoDB. He's now building Nereu, a 3D game engine where anyone can make a game by describing what they want.",
-    photo: "c:\\repos\\dward-content-library\\arturo.jpg",
-    x: "https://x.com/arturonereu",
-    linkedIn: "https://www.linkedin.com/in/arturonereu/",
-    website: "https://nereu.co",
+    name: "Jon Roberts",
+    bio: "Jon Roberts has over 25 years of experience in software development. He has worked in both management and technical leadership roles across various industries. These days he spends too much of his time exploiting clankers and teaching others how to do the same.",
+    photo: "c:\\repos\\dward-content-library\\image0.jpg",
+    x: "",
+    linkedIn: "",
+    website: "",
   };
 
-  if (!page.url().includes("/austin-net-user-group/schedule/") && !page.url().includes("/edit/")) {
-    throw new Error("Open the Austin event scheduler or event editor before configuring the speaker.");
+  if (!page.url().includes("/sadnug/schedule/") && !page.url().includes("/edit/")) {
+    throw new Error("Open the SADNUG event scheduler or event editor before configuring the speaker.");
   }
 
   const speakersToggle = page.getByText("Speakers", { exact: true })
@@ -68,7 +68,7 @@ async (page) => {
   return {
     speaker: speaker.name,
     photoUploaded: true,
-    linksConfigured: true,
+    linksConfigured: false,
     published: false,
   };
 }

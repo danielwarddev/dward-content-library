@@ -27,7 +27,7 @@ async (page) => {
     throw new Error("The event date has passed; update the event-specific message values.");
   }
 
-  const timing = daysUntil === 0 ? "today" : daysUntil === 1 ? "tomorrow" : `in ${daysUntil} days`;
+  const timing = daysUntil === 0 ? "today at noon" : daysUntil === 1 ? "tomorrow" : `in ${daysUntil} days`;
   const subject = daysUntil === 0
     ? ".NET meetup today at noon!"
     : daysUntil === 1
@@ -52,25 +52,12 @@ async (page) => {
   ]);
   await messagePage.waitForURL(`**/${event.groupSlug}/messages/send/?eventId=${event.eventId}`);
 
-  const rsvpRecipients = messagePage.getByRole("radio", {
-    name: /Members based on RSVP status to a given event/,
-  });
-  const rsvpYes = messagePage.getByRole("checkbox", {
-    name: "Members who RSVPed Yes for this event",
-    exact: true,
-  });
-  const rsvpNo = messagePage.getByRole("checkbox", {
-    name: "Members who RSVPed No for this event",
-    exact: true,
-  });
-  const noResponse = messagePage.getByRole("checkbox", {
-    name: "Members who haven't RSVPed for this event yet",
-    exact: true,
-  });
-
-  if (!await rsvpRecipients.isChecked() || !await rsvpYes.isChecked()
-    || await rsvpNo.isChecked() || await noResponse.isChecked()) {
-    throw new Error("Expected only members who RSVPed Yes to be selected.");
+  const allMembers = messagePage.getByRole("radio", { name: /^All members/ });
+  if (!await allMembers.isChecked()) {
+    await allMembers.click();
+  }
+  if (!await allMembers.isChecked()) {
+    throw new Error("Expected All members to be selected.");
   }
 
   await messagePage.locator("#subject").fill(subject);
@@ -135,7 +122,7 @@ async (page) => {
   }
 
   return {
-    recipient: "Members who RSVPed Yes for this event",
+    recipient: "All members",
     subject,
     messageComposed: true,
     sent: false,

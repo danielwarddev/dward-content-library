@@ -1,6 +1,6 @@
 Hi all,
 
-As a reminder, the next .NET User Group meetup will be **tomorrow!** We hope to see you there!
+As a reminder, the next .NET User Group meetup will be **today at noon!** We hope to see you there!
 
 **Arturo Nereu** will be presenting on **Generate the code once, so nobody has to write it again**.
 

@@ -2,13 +2,12 @@ async (page) => {
   const topics = [
     ["net framework", ".NET"],
     ["C sharp", "C#"],
+    ["software development", "Software Development"],
     ["artificial intelligence", "Artificial Intelligence"],
-    ["game development", "Game Programming"],
-    ["game design", "Game Design"],
+    ["technology", "Technology"],
   ];
   const hosts = [
     ["Daniel Ward", "Daniel Ward"],
-    ["Ashish", "Ashish Patel"],
   ];
 
   const ensureOff = async (toggle) => {
